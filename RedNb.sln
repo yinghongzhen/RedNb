@@ -1,0 +1,90 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32929.385
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "services", "services", "{D5774D73-7748-44F1-AA44-3AD032B5C37F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "gateways", "gateways", "{33FD3108-75E9-45F2-91A0-747E430F843E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "apps", "apps", "{F0967C0C-2EDC-4A95-9667-0B5FC41348B5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "shared", "shared", "{53D5B58D-5049-4C8A-AE83-56FBE4AC16F7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "products", "products", "{7F26B560-89F2-4E97-B517-532FEB27D22B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "auth", "auth", "{F4A1928A-159C-4FAB-A232-9885B89E7837}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RedNb.Auth.Application", "src\services\auth\RedNb.Auth.Application\RedNb.Auth.Application.csproj", "{6631E938-E0B9-4AA5-B195-55124D8964AA}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RedNb.Auth.Application.Contracts", "src\services\auth\RedNb.Auth.Application.Contracts\RedNb.Auth.Application.Contracts.csproj", "{B055165E-9AC6-422D-9EA9-F14B02FD131C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RedNb.Auth.Domain", "src\services\auth\RedNb.Auth.Domain\RedNb.Auth.Domain.csproj", "{61947CBE-6A26-4A42-8BF6-A6C8F5D96E39}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RedNb.Auth.Domain.Shared", "src\services\auth\RedNb.Auth.Domain.Shared\RedNb.Auth.Domain.Shared.csproj", "{E9F4F0AF-3FBF-4883-8291-0370E47EE305}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RedNb.Auth.EntityFrameworkCore", "src\services\auth\RedNb.Auth.EntityFrameworkCore\RedNb.Auth.EntityFrameworkCore.csproj", "{728FF55D-0E51-4D7F-AD85-B026200D1BD7}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RedNb.Auth.HttpApi", "src\services\auth\RedNb.Auth.HttpApi\RedNb.Auth.HttpApi.csproj", "{91B9354A-9294-4E45-A3EE-A96ED2D3DFF6}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RedNb.Auth.HttpApi.Client", "src\services\auth\RedNb.Auth.HttpApi.Client\RedNb.Auth.HttpApi.Client.csproj", "{D86433E5-4520-4F1E-B743-9FAE53E549E7}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RedNb.Auth.HttpApi.Host", "src\services\auth\RedNb.Auth.HttpApi.Host\RedNb.Auth.HttpApi.Host.csproj", "{C6A60A5F-5943-4250-AD30-F1AB75A3041C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6631E938-E0B9-4AA5-B195-55124D8964AA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6631E938-E0B9-4AA5-B195-55124D8964AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6631E938-E0B9-4AA5-B195-55124D8964AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6631E938-E0B9-4AA5-B195-55124D8964AA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B055165E-9AC6-422D-9EA9-F14B02FD131C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B055165E-9AC6-422D-9EA9-F14B02FD131C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B055165E-9AC6-422D-9EA9-F14B02FD131C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B055165E-9AC6-422D-9EA9-F14B02FD131C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{61947CBE-6A26-4A42-8BF6-A6C8F5D96E39}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{61947CBE-6A26-4A42-8BF6-A6C8F5D96E39}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{61947CBE-6A26-4A42-8BF6-A6C8F5D96E39}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{61947CBE-6A26-4A42-8BF6-A6C8F5D96E39}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E9F4F0AF-3FBF-4883-8291-0370E47EE305}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E9F4F0AF-3FBF-4883-8291-0370E47EE305}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E9F4F0AF-3FBF-4883-8291-0370E47EE305}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E9F4F0AF-3FBF-4883-8291-0370E47EE305}.Release|Any CPU.Build.0 = Release|Any CPU
+		{728FF55D-0E51-4D7F-AD85-B026200D1BD7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{728FF55D-0E51-4D7F-AD85-B026200D1BD7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{728FF55D-0E51-4D7F-AD85-B026200D1BD7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{728FF55D-0E51-4D7F-AD85-B026200D1BD7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{91B9354A-9294-4E45-A3EE-A96ED2D3DFF6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{91B9354A-9294-4E45-A3EE-A96ED2D3DFF6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{91B9354A-9294-4E45-A3EE-A96ED2D3DFF6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{91B9354A-9294-4E45-A3EE-A96ED2D3DFF6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D86433E5-4520-4F1E-B743-9FAE53E549E7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D86433E5-4520-4F1E-B743-9FAE53E549E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D86433E5-4520-4F1E-B743-9FAE53E549E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D86433E5-4520-4F1E-B743-9FAE53E549E7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C6A60A5F-5943-4250-AD30-F1AB75A3041C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C6A60A5F-5943-4250-AD30-F1AB75A3041C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C6A60A5F-5943-4250-AD30-F1AB75A3041C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C6A60A5F-5943-4250-AD30-F1AB75A3041C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{F4A1928A-159C-4FAB-A232-9885B89E7837} = {D5774D73-7748-44F1-AA44-3AD032B5C37F}
+		{6631E938-E0B9-4AA5-B195-55124D8964AA} = {F4A1928A-159C-4FAB-A232-9885B89E7837}
+		{B055165E-9AC6-422D-9EA9-F14B02FD131C} = {F4A1928A-159C-4FAB-A232-9885B89E7837}
+		{61947CBE-6A26-4A42-8BF6-A6C8F5D96E39} = {F4A1928A-159C-4FAB-A232-9885B89E7837}
+		{E9F4F0AF-3FBF-4883-8291-0370E47EE305} = {F4A1928A-159C-4FAB-A232-9885B89E7837}
+		{728FF55D-0E51-4D7F-AD85-B026200D1BD7} = {F4A1928A-159C-4FAB-A232-9885B89E7837}
+		{91B9354A-9294-4E45-A3EE-A96ED2D3DFF6} = {F4A1928A-159C-4FAB-A232-9885B89E7837}
+		{D86433E5-4520-4F1E-B743-9FAE53E549E7} = {F4A1928A-159C-4FAB-A232-9885B89E7837}
+		{C6A60A5F-5943-4250-AD30-F1AB75A3041C} = {F4A1928A-159C-4FAB-A232-9885B89E7837}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {77BB5C0F-ABA5-4459-9FC9-7845E5A25D12}
+	EndGlobalSection
+EndGlobal
