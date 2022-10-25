@@ -1,29 +1,28 @@
 ﻿using System.ComponentModel;
 
-namespace RedNb.Auth.Domain.Shared.Enums
+namespace RedNb.Auth.Domain.Shared.Enums;
+
+/// <summary>
+/// 员工状态
+/// </summary>
+[Description("员工状态")]
+public enum EEmployeeStatus
 {
     /// <summary>
-    /// 菜单类型
+    /// 在职
     /// </summary>
-    [Description("员工状态")]
-    public enum EEmployeeStatus
-    {
-        /// <summary>
-        /// 在职
-        /// </summary>
-        [Description("在职")]
-        Normal = 0,
+    [Description("在职")]
+    Normal = 0,
 
-        /// <summary>
-        /// 离职
-        /// </summary>
-        [Description("离职")]
-        Disabled = 1,
+    /// <summary>
+    /// 离职
+    /// </summary>
+    [Description("离职")]
+    Disabled = 1,
 
-        /// <summary>
-        /// 删除
-        /// </summary>
-        [Description("删除")]
-        Deleted = 2
-    }
+    /// <summary>
+    /// 删除
+    /// </summary>
+    [Description("删除")]
+    Deleted = 2
 }

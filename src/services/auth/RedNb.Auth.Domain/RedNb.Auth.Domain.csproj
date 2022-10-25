@@ -6,6 +6,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Volo.Abp.Ddd.Domain" Version="6.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\RedNb.Auth.Domain.Shared\RedNb.Auth.Domain.Shared.csproj" />
   </ItemGroup>
 
