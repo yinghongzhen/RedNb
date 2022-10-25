@@ -1,4 +1,4 @@
-﻿namespace RedNb.Auth;
+﻿namespace RedNb.Auth.Domain.Shared;
 
 public static class AuthDomainErrorCodes
 {
