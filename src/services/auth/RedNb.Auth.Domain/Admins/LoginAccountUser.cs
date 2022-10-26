@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Net;
+using RedNb.Auth.Domain.Users;
 
 namespace RedNb.Auth.Domain.Admins;
 

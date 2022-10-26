@@ -1,4 +1,5 @@
-﻿using RedNb.Auth.Domain.Admins;
+﻿using RedNb.Auth.Domain.Tenants;
+using RedNb.Auth.Domain.Users;
 
 namespace RedNb.Auth.Domain.Offices;
 

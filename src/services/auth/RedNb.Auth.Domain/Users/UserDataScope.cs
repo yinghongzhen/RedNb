@@ -4,9 +4,10 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 using RedNb.Auth.Domain.Shared.Enums;
+using RedNb.Auth.Domain.Tenants;
 using RedNb.Core.Domain;
 
-namespace RedNb.Auth.Domain.Admins
+namespace RedNb.Auth.Domain.Users
 {
     /// <summary>
     /// 用户数据权限实体类

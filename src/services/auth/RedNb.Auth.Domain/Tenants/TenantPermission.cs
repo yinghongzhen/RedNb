@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using RedNb.Auth.Domain.Admins;
 using RedNb.Core.Domain;
 
-namespace RedNb.Auth.Domain.Admins
+namespace RedNb.Auth.Domain.Tenants
 {
     /// <summary>
     /// 租户权限实体类，定义最大权限

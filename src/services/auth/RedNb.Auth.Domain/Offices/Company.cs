@@ -1,5 +1,4 @@
-﻿
-using RedNb.Auth.Domain.Admins;
+﻿using RedNb.Auth.Domain.Tenants;
 
 namespace RedNb.Auth.Domain.Offices;
 
@@ -9,8 +8,6 @@ namespace RedNb.Auth.Domain.Offices;
 [Table("Company")]
 public class Company : AggregateRoot<long>
 {
-    public List<string> A { get; set; }
-
     /// <summary>
     /// 编码
     /// </summary>

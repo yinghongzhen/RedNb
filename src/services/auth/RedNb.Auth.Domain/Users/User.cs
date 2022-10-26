@@ -8,7 +8,7 @@ using RedNb.Core.Domain;
 using RedNb.Core.Domain.Audit;
 using Volo.Abp.Domain.Entities;
 
-namespace RedNb.Auth.Domain.Admins;
+namespace RedNb.Auth.Domain.Users;
 
 /// <summary>
 /// 用户实体类

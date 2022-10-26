@@ -7,7 +7,7 @@ using RedNb.Core.Domain;
 using RedNb.Core.Domain.Audit;
 using Volo.Abp;
 
-namespace RedNb.Auth.Domain.Admins
+namespace RedNb.Auth.Domain.Tenants
 {
     /// <summary>
     /// 租户实体类

@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
+using RedNb.Auth.Domain.Admins;
 using RedNb.Auth.Domain.Shared.Enums;
 using RedNb.Core.Domain;
 
-namespace RedNb.Auth.Domain.Admins
+namespace RedNb.Auth.Domain.Tenants
 {
     /// <summary>
     /// 租户模块实体类

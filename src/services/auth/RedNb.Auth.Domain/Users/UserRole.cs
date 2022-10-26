@@ -3,24 +3,23 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
-using RedNb.Auth.Domain.Shared.Enums;
+using RedNb.Auth.Domain.Roles;
 using RedNb.Core.Domain;
-using RedNb.Core.Domain.Audit;
 
-namespace RedNb.Auth.Domain.Admins
+namespace RedNb.Auth.Domain.Users
 {
     /// <summary>
-    /// 用户信息实体类
+    /// 用户角色关联实体类
     /// </summary>
-    [Table("UserClaim")]
-    public class UserClaim : AuditFullEntity
+    [Table("UserRole")]
+    public class UserRole : EntityBase
     {
-        [Required]
-        [MaxLength(200)]
-        public string Type { get; set; }
+        /// <summary>
+        /// 角色编号
+        /// </summary>
+        public long RoleId { get; set; }
 
-        [Required]
-        public string Value { get; set; }
+        public virtual Role Role { get; set; }
 
         /// <summary>
         /// 用户编号

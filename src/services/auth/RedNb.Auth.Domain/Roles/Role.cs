@@ -4,10 +4,11 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 using RedNb.Auth.Domain.Shared.Enums;
+using RedNb.Auth.Domain.Tenants;
 using RedNb.Core.Domain;
 using RedNb.Core.Domain.Audit;
 
-namespace RedNb.Auth.Domain.Admins
+namespace RedNb.Auth.Domain.Roles
 {
     /// <summary>
     /// 角色实体类
@@ -28,7 +29,7 @@ namespace RedNb.Auth.Domain.Admins
         [Required]
         [MaxLength(20)]
         public string Key { get; set; }
-        
+
         /// <summary>
         /// 排序号
         /// </summary>
