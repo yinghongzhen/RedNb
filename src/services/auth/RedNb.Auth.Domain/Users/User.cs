@@ -1,20 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Text;
-using RedNb.Auth.Domain.Shared.Enums;
-using RedNb.Core.Domain;
-using RedNb.Core.Domain.Audit;
-using Volo.Abp.Domain.Entities;
-
-namespace RedNb.Auth.Domain.Users;
+﻿namespace RedNb.Auth.Domain.Users;
 
 /// <summary>
 /// 用户实体类
 /// </summary>
 [Table("User")]
-public class User : Entity
+public class User : AggregateRoot<long>
 {
     /// <summary>
     /// 用户名
