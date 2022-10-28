@@ -11,9 +11,6 @@ public class AuthDomainModule : AbpModule
 {
     public override void ConfigureServices(ServiceConfigurationContext context)
     {
-        Configure<AbpMultiTenancyOptions>(options =>
-        {
-            options.IsEnabled = false;
-        });
+        
     }
 }
