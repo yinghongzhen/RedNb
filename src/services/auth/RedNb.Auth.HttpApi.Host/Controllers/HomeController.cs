@@ -1,12 +1,20 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Volo.Abp.AspNetCore.Mvc;
+using System.Diagnostics;
 
-namespace RedNb.Auth.Controllers;
-
-public class HomeController : AbpController
+namespace RedNb.Auth.HttpApi.Host.Controllers
 {
-    public ActionResult Index()
+    public class HomeController : Controller
     {
-        return Redirect("~/swagger");
+        private readonly ILogger<HomeController> _logger;
+
+        public HomeController(ILogger<HomeController> logger)
+        {
+            _logger = logger;
+        }
+
+        public IActionResult Index()
+        {
+            return View();
+        }
     }
 }
