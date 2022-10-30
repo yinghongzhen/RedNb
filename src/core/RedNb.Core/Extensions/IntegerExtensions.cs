@@ -1,42 +1,48 @@
-﻿using System;
+﻿namespace RedNb.Core.Extensions;
 
-namespace RedNb.Core.Extensions
+public static class IntegerExtensions
 {
-    public static class IntegerExtensions
+    public static string FormatMillisecond(this int val)
     {
-        public static string FormatMillisecond(this int val)
+        var str = $"{val}毫秒";
+
+        if (val < 1000)
         {
-            var str = $"{val}毫秒";
+            str = $"{val}毫秒";
+        }
+        else if (val >= 1000 && val < 60000)
+        {
+            var second = val / 1000d;
 
-            if (val < 1000)
-            {
-                str = $"{val}毫秒";
-            }
-            else if (val >= 1000 && val < 60000)
-            {
-                var second = val / 1000d;
-
-                str = $"{second}秒";
-            }
-
-            return str;
+            str = $"{second}秒";
         }
 
-        public static string FormatFileSize(this long source)
-        {
-            var str = "";
+        return str;
+    }
 
-            if (source < 1024)
+    public static string FormatFileSize(this long source)
+    {
+        var str = "";
+
+        if (source < 1024)
+        {
+            str = $"{source} B";
+        }
+        else
+        {
+            var size = Math.Round(source / 1024d);
+
+            if (size < 1024)
             {
-                str = $"{source} B";
+                str = $"{size} KB";
             }
             else
             {
-                var size = Math.Round(source / 1024d);
+                size = Math.Round(size / 1024d);
 
                 if (size < 1024)
                 {
-                    str = $"{size} KB";
+                    str = $"{size} MB";
                 }
                 else
                 {
@@ -44,25 +50,16 @@ namespace RedNb.Core.Extensions
 
                     if (size < 1024)
                     {
-                        str = $"{size} MB";
+                        str = $"{size} GB";
                     }
                     else
                     {
-                        size = Math.Round(size / 1024d);
 
-                        if (size < 1024)
-                        {
-                            str = $"{size} GB";
-                        }
-                        else
-                        {
-
-                        }
                     }
                 }
             }
-
-            return str;
         }
+
+        return str;
     }
 }

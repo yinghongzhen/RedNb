@@ -1,6 +1,5 @@
 using RedNb.Core.Contracts;
 using RedNb.Core.Extensions;
-using Volo.Abp.DependencyInjection;
 
 namespace RedNb.Core.Application;
 

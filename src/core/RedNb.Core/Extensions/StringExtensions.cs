@@ -1,54 +1,51 @@
 ﻿using RedNb.Core.Domain;
-using System;
-using System.ComponentModel;
 
-namespace RedNb.Core.Extensions
+namespace RedNb.Core.Extensions;
+
+public static class StringExtensions
 {
-    public static class StringExtensions
+    public static EHttpMethod GetHttpMethod(this string str)
     {
-        public static EHttpMethod GetHttpMethod(this string str)
+        var method = EHttpMethod.Get;
+
+        switch (str)
         {
-            var method = EHttpMethod.Get;
+            case "GET":
+                method = EHttpMethod.Get;
+                break;
 
-            switch (str)
-            {
-                case "GET":
-                    method = EHttpMethod.Get;
-                    break;
+            case "POST":
+                method = EHttpMethod.Post;
+                break;
 
-                case "POST":
-                    method = EHttpMethod.Post;
-                    break;
+            case "PUT":
+                method = EHttpMethod.Put;
+                break;
 
-                case "PUT":
-                    method = EHttpMethod.Put;
-                    break;
+            case "DELETE":
+                method = EHttpMethod.Delete;
+                break;
 
-                case "DELETE":
-                    method = EHttpMethod.Delete;
-                    break;
-
-                default:
-                    break;
-            }
-
-            return method;
+            default:
+                break;
         }
 
-        public static T GetEnumByDescription<T>(this string description) where T : Enum
+        return method;
+    }
+
+    public static T GetEnumByDescription<T>(this string description) where T : Enum
+    {
+        var fields = typeof(T).GetFields();
+
+        foreach (var field in fields)
         {
-            var fields = typeof(T).GetFields();
+            var objs = field.GetCustomAttributes(typeof(DescriptionAttribute), false);
 
-            foreach (var field in fields)
+            if (objs.Length > 0 && (objs[0] as DescriptionAttribute).Description == description)
             {
-                var objs = field.GetCustomAttributes(typeof(DescriptionAttribute), false);
-
-                if (objs.Length > 0 && (objs[0] as DescriptionAttribute).Description == description)
-                {
-                    return (T)field.GetValue(null);
-                }
+                return (T)field.GetValue(null);
             }
-            return default(T);
         }
+        return default(T);
     }
 }

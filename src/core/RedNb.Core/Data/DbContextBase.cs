@@ -1,5 +1,3 @@
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Infrastructure;
 using RedNb.Core.Application;
 using RedNb.Core.Domain;
 using RedNb.Core.Domain.Audit;

@@ -7,40 +7,39 @@ using RedNb.Core.Contracts;
 using System.Web;
 using Newtonsoft.Json;
 
-namespace RedNb.Core.Extensions
+namespace RedNb.Core.Extensions;
+
+public static class HttpContextExtensions
 {
-    public static class HttpContextExtensions
+    public static LoginUserDto GetLoginUser(this IHttpContextAccessor httpContextAccessor)
     {
-        public static LoginUserDto GetLoginUser(this IHttpContextAccessor httpContextAccessor)
-        {
-            var loginUser = new LoginUserDto();
+        var loginUser = new LoginUserDto();
 
-            if (httpContextAccessor.HttpContext != null)
-            {
-                var headers = httpContextAccessor.HttpContext.Request.Headers;
-
-                if (headers != null &&
-                    headers.ContainsKey("LoginUser"))
-                {
-                    var json = HttpUtility.UrlDecode(headers["LoginUser"]);
-
-                    loginUser = JsonConvert.DeserializeObject<LoginUserDto>(json);
-                }
-            }
-
-            return loginUser;
-        }
-
-        public static string GetFlag(this IHttpContextAccessor httpContextAccessor)
+        if (httpContextAccessor.HttpContext != null)
         {
             var headers = httpContextAccessor.HttpContext.Request.Headers;
 
-            if (headers.ContainsKey("Flag"))
+            if (headers != null &&
+                headers.ContainsKey("LoginUser"))
             {
-                return headers["Flag"];
-            }
+                var json = HttpUtility.UrlDecode(headers["LoginUser"]);
 
-            return "admin";
+                loginUser = JsonConvert.DeserializeObject<LoginUserDto>(json);
+            }
         }
+
+        return loginUser;
+    }
+
+    public static string GetFlag(this IHttpContextAccessor httpContextAccessor)
+    {
+        var headers = httpContextAccessor.HttpContext.Request.Headers;
+
+        if (headers.ContainsKey("Flag"))
+        {
+            return headers["Flag"];
+        }
+
+        return "admin";
     }
 }
