@@ -12,11 +12,11 @@ public enum EModuleType
     /// 基础微服务
     /// </summary>
     [Description("基础微服务")]
-    Core = 0,
+    Base = 0,
 
     /// <summary>
-    /// 产品微服务
+    /// 聚合微服务
     /// </summary>
-    [Description("产品微服务")]
-    Product = 1
+    [Description("聚合微服务")]
+    Aggregate = 1
 }

@@ -3,18 +3,16 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
-using RedNb.Auth.Domain.Admins;
-using RedNb.Auth.Domain.Modules;
 using RedNb.Auth.Domain.Shared.Enums;
 using RedNb.Core.Domain;
 
-namespace RedNb.Auth.Domain.Tenants
+namespace RedNb.Auth.Domain.Admins
 {
     /// <summary>
     /// 租户模块实体类
     /// </summary>
     [Table("TenantModule")]
-    public class TenantModule : EntityBase, IHasTenant
+    public class TenantModule : EntityBase
     {
         public long ModuleId { get; set; }
 
@@ -23,5 +21,9 @@ namespace RedNb.Auth.Domain.Tenants
         public long TenantId { get; set; }
 
         public virtual Tenant Tenant { get; set; }
+
+        public DateTime? VaildTime { get; set; }
+
+        public ETenantModuleType Type { get; set; }
     }
 }
