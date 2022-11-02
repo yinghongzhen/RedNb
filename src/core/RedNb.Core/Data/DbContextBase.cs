@@ -1,6 +1,5 @@
 using RedNb.Core.Application;
 using RedNb.Core.Domain;
-using RedNb.Core.Domain.Audit;
 using RedNb.Core.Extensions;
 
 namespace RedNb.Core.Data;
@@ -15,92 +14,92 @@ public class DbContextBase<TDbContext> : AbpDbContext<TDbContext> where TDbConte
 
     }
 
-    public override Task<int> SaveChangesAsync(bool acceptAllChangesOnSuccess, CancellationToken cancellationToken = default)
-    {
-        var entries = base.ChangeTracker.Entries();
+    //public override Task<int> SaveChangesAsync(bool acceptAllChangesOnSuccess, CancellationToken cancellationToken = default)
+    //{
+    //    var entries = base.ChangeTracker.Entries();
 
-        var milliSecond = 0;
-        var now = DateTime.Now;
+    //    var milliSecond = 0;
+    //    var now = DateTime.Now;
 
-        foreach (var item in entries)
-        {
-            milliSecond++;
+    //    foreach (var item in entries)
+    //    {
+    //        milliSecond++;
 
-            var currentTime = now.AddMilliseconds(milliSecond);
+    //        var currentTime = now.AddMilliseconds(milliSecond);
 
-            if (item.State == EntityState.Added)
-            {
-                if (item.Entity is AuditFullEntity)
-                {
-                    var entity = (AuditFullEntity)item.Entity;
+    //        if (item.State == EntityState.Added)
+    //        {
+    //            if (item.Entity is AuditFullEntity)
+    //            {
+    //                var entity = (AuditFullEntity)item.Entity;
 
-                    entity.CreateTime = currentTime;
-                    entity.UpdateTime = currentTime;
+    //                entity.CreateTime = currentTime;
+    //                entity.UpdateTime = currentTime;
 
-                    if (LoginUser != null && LoginUser.IsValid())
-                    {
-                        entity.CreateId = LoginUser.UserId;
-                        entity.CreateName = LoginUser.Username;
-                        entity.UpdateId = LoginUser.UserId;
-                        entity.UpdateName = LoginUser.Username;
-                    }
-                    else
-                    {
-                        entity.CreateName = "-";
-                        entity.UpdateName = "-";
-                    }
-                }
+    //                if (LoginUser != null && LoginUser.IsValid())
+    //                {
+    //                    entity.CreateId = LoginUser.UserId;
+    //                    entity.CreateName = LoginUser.Username;
+    //                    entity.UpdateId = LoginUser.UserId;
+    //                    entity.UpdateName = LoginUser.Username;
+    //                }
+    //                else
+    //                {
+    //                    entity.CreateName = "-";
+    //                    entity.UpdateName = "-";
+    //                }
+    //            }
 
-                if (item.Entity is IHasTenant)
-                {
-                    var entity = (IHasTenant)item.Entity;
+    //            if (item.Entity is IHasTenant)
+    //            {
+    //                var entity = (IHasTenant)item.Entity;
 
-                    if (LoginUser != null && LoginUser.IsValid() && entity.TenantId == 0)
-                    {
-                        entity.TenantId = LoginUser.TenantId;
-                    }
-                }
+    //                if (LoginUser != null && LoginUser.IsValid() && entity.TenantId == 0)
+    //                {
+    //                    entity.TenantId = LoginUser.TenantId;
+    //                }
+    //            }
 
-                if (item.Entity is IHasConcurrency)
-                {
-                    var entity = (IHasConcurrency)item.Entity;
+    //            if (item.Entity is IHasConcurrency)
+    //            {
+    //                var entity = (IHasConcurrency)item.Entity;
 
-                    entity.RowVersion = currentTime;
-                }
+    //                entity.RowVersion = currentTime;
+    //            }
 
-                if (item.Entity is ISoftDelete)
-                {
-                    var entity = (ISoftDelete)item.Entity;
+    //            if (item.Entity is ISoftDelete)
+    //            {
+    //                var entity = (ISoftDelete)item.Entity;
 
-                    entity.IsDeleted = false;
-                }
-            }
-            else if (item.State == EntityState.Modified)
-            {
-                if (item.Entity is AuditFullEntity)
-                {
-                    var entity = (AuditFullEntity)item.Entity;
+    //                entity.IsDeleted = false;
+    //            }
+    //        }
+    //        else if (item.State == EntityState.Modified)
+    //        {
+    //            if (item.Entity is AuditFullEntity)
+    //            {
+    //                var entity = (AuditFullEntity)item.Entity;
 
-                    entity.UpdateTime = currentTime;
+    //                entity.UpdateTime = currentTime;
 
-                    if (LoginUser != null && LoginUser.IsValid())
-                    {
-                        entity.UpdateId = LoginUser.UserId;
-                        entity.UpdateName = LoginUser.Username;
-                    }
-                }
+    //                if (LoginUser != null && LoginUser.IsValid())
+    //                {
+    //                    entity.UpdateId = LoginUser.UserId;
+    //                    entity.UpdateName = LoginUser.Username;
+    //                }
+    //            }
 
-                if (item.Entity is IHasConcurrency)
-                {
-                    var entity = (IHasConcurrency)item.Entity;
+    //            if (item.Entity is IHasConcurrency)
+    //            {
+    //                var entity = (IHasConcurrency)item.Entity;
 
-                    entity.RowVersion = currentTime;
-                }
-            }
-        }
+    //                entity.RowVersion = currentTime;
+    //            }
+    //        }
+    //    }
 
-        return base.SaveChangesAsync(acceptAllChangesOnSuccess, cancellationToken);
-    }
+    //    return base.SaveChangesAsync(acceptAllChangesOnSuccess, cancellationToken);
+    //}
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {

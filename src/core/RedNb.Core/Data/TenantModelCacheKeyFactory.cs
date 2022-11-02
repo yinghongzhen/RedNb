@@ -3,7 +3,6 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using RedNb.Core.Application;
 using RedNb.Core.Contracts;
 using RedNb.Core.Domain;
-using RedNb.Core.Domain.Audit;
 using System.Linq.Expressions;
 using Volo.Abp.EntityFrameworkCore;
 
