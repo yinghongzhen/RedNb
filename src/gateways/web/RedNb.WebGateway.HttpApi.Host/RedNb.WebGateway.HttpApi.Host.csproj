@@ -26,7 +26,6 @@
   <ItemGroup>
     <ProjectReference Include="..\RedNb.WebGateway.Application\RedNb.WebGateway.Application.csproj" />
     <ProjectReference Include="..\RedNb.WebGateway.EntityFrameworkCore\RedNb.WebGateway.EntityFrameworkCore.csproj" />
-    <ProjectReference Include="..\RedNb.WebGateway.HttpApi\RedNb.WebGateway.HttpApi.csproj" />
   </ItemGroup>
 
   <ItemGroup>
