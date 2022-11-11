@@ -1,28 +1,20 @@
-<Project Sdk="Microsoft.NET.Sdk">
-
-  <Import Project="..\..\common.props" />
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
-    <RootNamespace>RedNb.WebGateway</RootNamespace>
+    <TargetFramework>net7.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\RedNb.WebGateway.Domain\RedNb.WebGateway.Domain.csproj" />
+    <PackageReference Include="RestSharp" Version="108.0.1" />
+    <PackageReference Include="Volo.Abp.AutoMapper" Version="6.0.0" />
+    <PackageReference Include="Volo.Abp.Ddd.Application" Version="6.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\RedNb.WebGateway.Application.Contracts\RedNb.WebGateway.Application.Contracts.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <PackageReference Include="Volo.Abp.Account.Application" Version="6.0.1" />
-    <PackageReference Include="Volo.Abp.Identity.Application" Version="6.0.1" />
-    <PackageReference Include="Volo.Abp.PermissionManagement.Application" Version="6.0.1" />
-    <PackageReference Include="Volo.Abp.TenantManagement.Application" Version="6.0.1" />
-    <PackageReference Include="Volo.Abp.FeatureManagement.Application" Version="6.0.1" />
-    <PackageReference Include="Volo.Abp.SettingManagement.Application" Version="6.0.1" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Tests\" />
+    <ProjectReference Include="..\RedNb.WebGateway.Data\RedNb.WebGateway.Data.csproj" />
+    <ProjectReference Include="..\RedNb.WebGateway.Domain\RedNb.WebGateway.Domain.csproj" />
   </ItemGroup>
 
 </Project>
