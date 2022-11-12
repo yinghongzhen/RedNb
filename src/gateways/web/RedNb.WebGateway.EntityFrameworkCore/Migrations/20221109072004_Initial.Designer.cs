@@ -13,7 +13,7 @@ using Volo.Abp.EntityFrameworkCore;
 namespace RedNb.WebGateway.Migrations
 {
     [DbContext(typeof(WebGatewayDbContext))]
-    [Migration("20221024084516_Initial")]
+    [Migration("20221109072004_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

@@ -1,7 +1,7 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
+    <TargetFramework>net7.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
@@ -13,5 +13,5 @@
     <PackageReference Include="Volo.Abp.EntityFrameworkCore" Version="6.0.1" />
     <PackageReference Include="Volo.Abp.Http.Client" Version="6.0.1" />
   </ItemGroup>
-
+  
 </Project>

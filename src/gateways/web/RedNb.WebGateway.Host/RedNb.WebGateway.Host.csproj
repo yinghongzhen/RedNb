@@ -15,18 +15,17 @@
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.5" />
     <PackageReference Include="Microsoft.AspNetCore.DataProtection.StackExchangeRedis" Version="6.0.5" />
     <PackageReference Include="DistributedLock.Redis" Version="1.0.2" />
-    <PackageReference Include="Volo.Abp.AspNetCore.Mvc.UI.MultiTenancy" Version="6.0.0" />
-    <PackageReference Include="Volo.Abp.Autofac" Version="6.0.0" />
-    <PackageReference Include="Volo.Abp.Caching.StackExchangeRedis" Version="6.0.0" />
-    <PackageReference Include="Volo.Abp.DistributedLocking" Version="6.0.0" />
-    <PackageReference Include="Volo.Abp.AspNetCore.Serilog" Version="6.0.0" />
-    <PackageReference Include="Volo.Abp.Swashbuckle" Version="6.0.0" />
+    <PackageReference Include="Volo.Abp.AspNetCore.Mvc.UI.MultiTenancy" Version="6.0.1" />
+    <PackageReference Include="Volo.Abp.Autofac" Version="6.0.1" />
+    <PackageReference Include="Volo.Abp.Caching.StackExchangeRedis" Version="6.0.1" />
+    <PackageReference Include="Volo.Abp.DistributedLocking" Version="6.0.1" />
+    <PackageReference Include="Volo.Abp.AspNetCore.Serilog" Version="6.0.1" />
+    <PackageReference Include="Volo.Abp.Swashbuckle" Version="6.0.1" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\RedNb.WebGateway.Application\RedNb.WebGateway.Application.csproj" />
     <ProjectReference Include="..\RedNb.WebGateway.EntityFrameworkCore\RedNb.WebGateway.EntityFrameworkCore.csproj" />
-    <ProjectReference Include="..\RedNb.WebGateway.HttpApi\RedNb.WebGateway.HttpApi.csproj" />
   </ItemGroup>
 
   <ItemGroup>
