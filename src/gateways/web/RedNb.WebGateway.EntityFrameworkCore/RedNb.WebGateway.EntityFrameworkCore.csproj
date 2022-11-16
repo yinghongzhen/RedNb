@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
 		<TargetFramework>net7.0</TargetFramework>
@@ -7,14 +7,7 @@
 
 	<ItemGroup>
 		<ProjectReference Include="..\RedNb.WebGateway.Domain\RedNb.WebGateway.Domain.csproj" />
-		<PackageReference Include="Volo.Abp.EntityFrameworkCore.SqlServer" Version="6.0.1" />
-	</ItemGroup>
-
-	<ItemGroup>
-		<PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.5">
-			<IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
-			<PrivateAssets>compile; contentFiles; build; buildMultitargeting; buildTransitive; analyzers; native</PrivateAssets>
-		</PackageReference>
+		<PackageReference Include="Volo.Abp.EntityFrameworkCore.MySQL" Version="6.0.1" />
 	</ItemGroup>
 
 </Project>

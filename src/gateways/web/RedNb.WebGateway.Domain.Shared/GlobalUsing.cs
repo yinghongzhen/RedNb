@@ -1,4 +1,5 @@
-﻿global using Volo.Abp.DependencyInjection;
-global using Volo.Abp.Modularity;
-global using Volo.Abp.ObjectExtending;
-global using Volo.Abp.Threading;
+﻿global using Volo.Abp.Modularity;
+global using Volo.Abp.Localization;
+global using Volo.Abp.Localization.ExceptionHandling;
+global using Volo.Abp.Validation.Localization;
+global using Volo.Abp.VirtualFileSystem;

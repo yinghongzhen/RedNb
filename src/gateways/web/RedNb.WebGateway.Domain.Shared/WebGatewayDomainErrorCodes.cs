@@ -1,4 +1,4 @@
-﻿namespace RedNb.WebGateway;
+﻿namespace RedNb.WebGateway.Domain.Shared;
 
 public static class WebGatewayDomainErrorCodes
 {

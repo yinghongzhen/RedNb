@@ -1,8 +1,8 @@
-﻿namespace RedNb.WebGateway;
+﻿namespace RedNb.WebGateway.Domain;
 
 public static class WebGatewayConsts
 {
-    public const string DbTablePrefix = "App";
+    public const string DbTablePrefix = "RedNb";
 
     public const string DbSchema = null;
 }

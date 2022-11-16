@@ -2,7 +2,7 @@
 
 namespace RedNb.WebGateway.Application.Contracts.Tests;
 
-public class TestDto : EntityDto<long>
+public class TestOutputDto : EntityDto<long>
 {
     public string Name { get; set; }
 }

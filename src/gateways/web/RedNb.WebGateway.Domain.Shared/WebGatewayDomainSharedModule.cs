@@ -1,10 +1,6 @@
-﻿using RedNb.WebGateway.Localization;
-using Volo.Abp.Localization;
-using Volo.Abp.Localization.ExceptionHandling;
-using Volo.Abp.Validation.Localization;
-using Volo.Abp.VirtualFileSystem;
+﻿using RedNb.WebGateway.Domain.Shared.Localization;
 
-namespace RedNb.WebGateway;
+namespace RedNb.WebGateway.Domain.Shared;
 
 [DependsOn()]
 public class WebGatewayDomainSharedModule : AbpModule

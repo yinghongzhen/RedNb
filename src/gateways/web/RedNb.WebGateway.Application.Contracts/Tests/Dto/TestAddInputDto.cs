@@ -1,6 +1,6 @@
 ﻿namespace RedNb.WebGateway.Application.Contracts.Tests;
 
-public class TestAddDto
+public class TestAddInputDto
 {
     public string Name { get; set; }
 }
