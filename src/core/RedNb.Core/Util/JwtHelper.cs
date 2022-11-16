@@ -32,11 +32,11 @@ namespace RedNb.Core.Util
 
                 return data;
             }
-            catch (TokenExpiredException ex)
+            catch (TokenExpiredException)
             {
                 throw new UserFriendlyException(EErrorCode.Timeout.GetDescription(), ((int)EErrorCode.Timeout).ToString());
             }
-            catch (SignatureVerificationException ex)
+            catch (SignatureVerificationException)
             {
                 throw new UserFriendlyException(EErrorCode.NotLogin.GetDescription(), ((int)EErrorCode.NotLogin).ToString());
             }
