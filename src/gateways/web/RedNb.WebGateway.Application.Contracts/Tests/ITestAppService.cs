@@ -2,5 +2,5 @@
 
 public interface ITestAppService : IApplicationService, ITransientDependency
 {
-    public Task<TestOutputDto> GetAsync(TestAddInputDto input);
+    public Task AddAsync(TestAddInputDto input);
 }

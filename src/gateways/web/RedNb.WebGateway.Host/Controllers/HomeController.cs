@@ -1,12 +1,32 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Volo.Abp.AspNetCore.Mvc;
+using RedNb.WebGateway.Host.Models;
+using System.Diagnostics;
 
-namespace RedNb.WebGateway.Controllers;
-
-public class HomeController : AbpController
+namespace RedNb.WebGateway.Host.Controllers
 {
-    public ActionResult Index()
+    public class HomeController : Controller
     {
-        return Redirect("~/swagger");
+        private readonly ILogger<HomeController> _logger;
+
+        public HomeController(ILogger<HomeController> logger)
+        {
+            _logger = logger;
+        }
+
+        public IActionResult Index()
+        {
+            return View();
+        }
+
+        public IActionResult Privacy()
+        {
+            return View();
+        }
+
+        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+        public IActionResult Error()
+        {
+            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
     }
 }
