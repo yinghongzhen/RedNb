@@ -27,13 +27,6 @@ public class Module : AggregateRoot<long>
     public string Key { get; set; }
 
     /// <summary>
-    /// 版本
-    /// </summary>
-    [Required]
-    [MaxLength(20)]
-    public string Version { get; set; }
-
-    /// <summary>
     /// 排序号
     /// </summary>
     [Required]
