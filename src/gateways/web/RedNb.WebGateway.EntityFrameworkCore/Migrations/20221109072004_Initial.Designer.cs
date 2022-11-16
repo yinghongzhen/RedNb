@@ -5,7 +5,6 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using RedNb.WebGateway.EntityFrameworkCore;
 using Volo.Abp.EntityFrameworkCore;
 
 #nullable disable

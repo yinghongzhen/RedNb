@@ -13,7 +13,7 @@ using Volo.Abp.SettingManagement.EntityFrameworkCore;
 using Volo.Abp.TenantManagement;
 using Volo.Abp.TenantManagement.EntityFrameworkCore;
 
-namespace RedNb.WebGateway.EntityFrameworkCore;
+namespace RedNb.WebGateway;
 
 [ReplaceDbContext(typeof(IIdentityDbContext))]
 [ReplaceDbContext(typeof(ITenantManagementDbContext))]

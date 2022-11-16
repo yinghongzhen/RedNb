@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.Extensions.Configuration;
 
-namespace RedNb.WebGateway.EntityFrameworkCore;
+namespace RedNb.WebGateway;
 
 /* This class is needed for EF Core console commands
  * (like Add-Migration and Update-Database commands) */

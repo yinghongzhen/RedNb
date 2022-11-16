@@ -5,7 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 using RedNb.WebGateway.Data;
 using Volo.Abp.DependencyInjection;
 
-namespace RedNb.WebGateway.EntityFrameworkCore;
+namespace RedNb.WebGateway;
 
 public class EntityFrameworkCoreWebGatewayDbSchemaMigrator
     : IWebGatewayDbSchemaMigrator, ITransientDependency
