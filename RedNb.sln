@@ -53,7 +53,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RedNb.WebGateway.Domain.Sha
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RedNb.WebGateway.EntityFrameworkCore", "src\gateways\web\RedNb.WebGateway.EntityFrameworkCore\RedNb.WebGateway.EntityFrameworkCore.csproj", "{49EC4D34-6448-4310-B859-D9C339437C19}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RedNb.WebGateway.Host", "src\gateways\web\RedNb.WebGateway.Host\RedNb.WebGateway.Host.csproj", "{4B421BB5-DD5D-4E2C-BEBD-22CC9EA7493F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RedNb.WebGateway.Host", "src\gateways\web\RedNb.WebGateway.Host\RedNb.WebGateway.Host.csproj", "{4B421BB5-DD5D-4E2C-BEBD-22CC9EA7493F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
