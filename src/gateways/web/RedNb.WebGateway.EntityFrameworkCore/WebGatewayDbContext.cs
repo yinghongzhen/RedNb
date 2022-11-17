@@ -2,7 +2,6 @@
 
 namespace RedNb.WebGateway.EntityFrameworkCore;
 
-[ConnectionStringName("Default")]
 public class WebGatewayDbContext : AbpDbContext<WebGatewayDbContext>
 {
     public WebGatewayDbContext(DbContextOptions<WebGatewayDbContext> options)
