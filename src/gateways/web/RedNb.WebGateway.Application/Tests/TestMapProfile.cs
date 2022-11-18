@@ -7,7 +7,7 @@ public class TestMapProfile : Profile
 {
     public TestMapProfile()
     {
-        CreateMap<TestAddInputDto, Test>();
+        //CreateMap<TestAddInputDto, Test>();
 
         CreateMap<Test, TestOutputDto>();
     }

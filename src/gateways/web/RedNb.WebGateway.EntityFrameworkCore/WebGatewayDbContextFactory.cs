@@ -6,26 +6,20 @@ public class WebGatewayDbContextFactory : IDesignTimeDbContextFactory<WebGateway
     {
         var configuration = BuildConfiguration();
 
-        var conn = configuration.GetConnectionString("Default");
-
-        Console.WriteLine(conn);
-
         var builder = new DbContextOptionsBuilder<WebGatewayDbContext>()
-            .UseMySql(conn,
-                new MySqlServerVersion(new Version(8, 0, 27)));
+            .UseMySql(configuration.GetConnectionString("Default"),
+                new MySqlServerVersion(new Version(8, 0, 0)));
 
         return new WebGatewayDbContext(builder.Options);
     }
 
     private static IConfigurationRoot BuildConfiguration()
     {
-        string envName = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
-
         var builder = new ConfigurationBuilder()
             .SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
             .AddJsonFile("appsettings.json", optional: false)
-            .AddJsonFile($"appsettings.{envName}.json", optional: false)
-            .AddUserSecrets(typeof(WebGatewayDbContext).Assembly, optional: false);
+            .AddJsonFile("appsettings.Development.json", optional: false)
+            .AddJsonFile("appsettings.secrets.json", optional: false);
 
         return builder.Build();
     }

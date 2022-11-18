@@ -1,4 +1,6 @@
-﻿namespace RedNb.WebGateway.Domain.Tests;
+﻿using Volo.Abp.Application.Dtos;
+
+namespace RedNb.WebGateway.Domain.Tests;
 
 public class TestManager : DomainService
 {
@@ -12,11 +14,7 @@ public class TestManager : DomainService
     public async Task<Test> CreateAsync(string name)
     {
         return await _testRepository.InsertAsync(
-            new Test(
-                IdentityManager.NewId(),
-                name
-            )
+            new Test(IdentityManager.NewId(), name) 
         );
     }
-
 }
