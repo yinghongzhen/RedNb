@@ -396,3 +396,4 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+/src/gateways/web/RedNb.WebGateway.Host/appsettings.secrets.json
