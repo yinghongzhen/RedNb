@@ -1,4 +1,5 @@
-﻿using RedNb.WebGateway.Domain.Tests;
+﻿using RedNb.WebGateway.Domain.Test2s;
+using RedNb.WebGateway.Domain.Tests;
 
 namespace RedNb.WebGateway.EntityFrameworkCore;
 
@@ -11,6 +12,7 @@ public class WebGatewayDbContext : AbpDbContext<WebGatewayDbContext>
     }
 
     public DbSet<Test> Tests { get; set; }
+    public DbSet<Test2> Test2s { get; set; }
 
     protected override void OnModelCreating(ModelBuilder builder)
     {

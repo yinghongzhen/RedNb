@@ -3,7 +3,6 @@ using RedNb.WebGateway.Domain.Tests;
 using Volo.Abp.ObjectMapping;
 using Volo.Abp;
 using RedNb.Core.Util;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace RedNb.WebGateway.Application.Tests;
 

@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RedNb.WebGateway.EntityFrameworkCore;
 using Volo.Abp.EntityFrameworkCore;
@@ -11,9 +12,10 @@ using Volo.Abp.EntityFrameworkCore;
 namespace RedNb.WebGateway.EntityFrameworkCore.Migrations
 {
     [DbContext(typeof(WebGatewayDbContext))]
-    partial class WebGatewayDbContextModelSnapshot : ModelSnapshot
+    [Migration("20221119093906_v1")]
+    partial class v1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -49,8 +51,8 @@ namespace RedNb.WebGateway.EntityFrameworkCore.Migrations
             modelBuilder.Entity("RedNb.WebGateway.Domain.Tests.Test", b =>
                 {
                     b.Property<long>("Id")
-                        .HasColumnType("bigint")
-                        .HasColumnOrder(0);
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
