@@ -3,11 +3,8 @@
 namespace RedNb.WebGateway.Domain.Tests;
 
 [Table("Test")]
-public class Test: EntityBase
+public class Test : AggregateRoot<long>
 {
-    [Key]
-    public long Id { get; set; }
-
     [Required]
     [MaxLength(100)]
     public string Name { get; set; }

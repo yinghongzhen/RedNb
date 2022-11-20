@@ -6,12 +6,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="JWT" Version="9.0.3" />
+    <PackageReference Include="JWT" Version="10.0.0-beta9" />
     <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
-    <PackageReference Include="Volo.Abp.AspNetCore.Mvc" Version="6.0.1" />
-    <PackageReference Include="Volo.Abp.Ddd.Domain" Version="6.0.1" />
-    <PackageReference Include="Volo.Abp.EntityFrameworkCore" Version="6.0.1" />
-    <PackageReference Include="Volo.Abp.Http.Client" Version="6.0.1" />
+    <PackageReference Include="Volo.Abp.AspNetCore.Mvc" Version="7.0.0-rc.1" />
+    <PackageReference Include="Volo.Abp.Ddd.Domain" Version="7.0.0-rc.1" />
+    <PackageReference Include="Volo.Abp.EntityFrameworkCore" Version="7.0.0-rc.1" />
+    <PackageReference Include="Volo.Abp.Http.Client" Version="7.0.0-rc.1" />
   </ItemGroup>
   
 </Project>
