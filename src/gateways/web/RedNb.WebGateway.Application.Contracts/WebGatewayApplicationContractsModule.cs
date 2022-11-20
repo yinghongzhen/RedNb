@@ -8,7 +8,7 @@ namespace RedNb.WebGateway.Application.Contracts;
 )]
 public class WebGatewayApplicationContractsModule : AbpModule
 {
-    public override void PreConfigureServices(ServiceConfigurationContext context)
+    public override void ConfigureServices(ServiceConfigurationContext context)
     {
 
     }

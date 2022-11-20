@@ -3,11 +3,14 @@
 using Medallion.Threading;
 using Medallion.Threading.Redis;
 using Microsoft.AspNetCore.Cors;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.OpenApi.Models;
+using RedNb.Core.Web;
 using RedNb.WebGateway.Application.Contracts;
 using RedNb.WebGateway.Domain;
 using RedNb.WebGateway.Domain.Shared;
 using StackExchange.Redis;
+using System.Text.Json;
 using Volo.Abp;
 using Volo.Abp.AspNetCore.Mvc.AntiForgery;
 using Volo.Abp.Caching;
@@ -34,6 +37,17 @@ public class WebGatewayHostModule : AbpModule
         var hostingEnvironment = context.Services.GetHostingEnvironment();
 
         context.Services.AddControllersWithViews();
+
+        //Configure<MvcOptions>(mvcOptions =>
+        //{
+        //    mvcOptions.Filters.AddService(typeof(DefaultAbpExceptionFilter), 20);
+        //});
+
+        Configure<JsonOptions>(options =>
+        {
+            options.JsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;
+            options.JsonSerializerOptions.Converters.Add(new DefaultJsonConverter());
+        });
 
         Configure<AbpAntiForgeryOptions>(options =>
         {

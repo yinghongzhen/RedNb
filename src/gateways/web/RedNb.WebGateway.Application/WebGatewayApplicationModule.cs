@@ -1,21 +1,17 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-
-namespace RedNb.WebGateway;
+﻿namespace RedNb.WebGateway;
 
 [DependsOn(
-    typeof(AbpAutoMapperModule),
     typeof(WebGatewayApplicationContractsModule),
-    typeof(WebGatewayDomainModule)
+    typeof(WebGatewayDomainModule),
+    typeof(AbpAutoMapperModule)
     )]
 public class WebGatewayApplicationModule : AbpModule
 {
     public override void ConfigureServices(ServiceConfigurationContext context)
     {
-        context.Services.AddAutoMapperObjectMapper<WebGatewayApplicationModule>();
-
         Configure<AbpAutoMapperOptions>(options =>
         {
-            options.AddMaps<WebGatewayApplicationModule>(validate: false);
+            options.AddMaps<WebGatewayApplicationModule>();
         });
     }
 }

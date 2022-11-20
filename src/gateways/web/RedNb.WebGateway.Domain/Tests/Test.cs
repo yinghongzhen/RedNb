@@ -1,27 +1,14 @@
-﻿namespace RedNb.WebGateway.Domain.Tests;
+﻿using RedNb.Core.Domain;
 
-public class BaseRoot : AggregateRoot<long>
-{
-    [Key]
-    [DatabaseGenerated(DatabaseGeneratedOption.None)]
-    [Column(Order = 0)]
-    public override long Id { get; protected set; }
-}
+namespace RedNb.WebGateway.Domain.Tests;
 
 [Table("Test")]
-public class Test : BaseRoot
+public class Test: EntityBase
 {
+    [Key]
+    public long Id { get; set; }
+
     [Required]
     [MaxLength(100)]
     public string Name { get; set; }
-
-    private Test()
-    {
-    }
-
-    internal Test(long id, string name)
-    {
-        Id = id;
-        Name = name;
-    }
 }

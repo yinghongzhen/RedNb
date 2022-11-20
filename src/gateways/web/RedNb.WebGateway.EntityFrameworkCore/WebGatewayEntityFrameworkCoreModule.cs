@@ -19,7 +19,7 @@ public class WebGatewayEntityFrameworkCoreModule : AbpModule
 
         context.Services.AddAbpDbContext<WebGatewayDbContext>(options =>
         {
-            options.AddDefaultRepositories();
+            options.AddDefaultRepositories(includeAllEntities: true);
         });
 
         Configure<AbpDbContextOptions>(options =>

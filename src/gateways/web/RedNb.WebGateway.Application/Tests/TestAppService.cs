@@ -3,34 +3,34 @@ using RedNb.WebGateway.Domain.Tests;
 using Volo.Abp.ObjectMapping;
 using Volo.Abp;
 using RedNb.Core.Util;
+using Microsoft.EntityFrameworkCore;
 
 namespace RedNb.WebGateway.Application.Tests;
 
 public class TestAppService : ITestAppService
 {
-    private readonly TestManager _testManager;
     private readonly IRepository<Test, long> _testRepository;
     private readonly IObjectMapper _objectMapper;
 
     public TestAppService(
-        TestManager testManager,
         IRepository<Test, long> testRepository,
         IObjectMapper objectMapper)
     {
-        _testManager = testManager;
         _testRepository = testRepository;
         _objectMapper = objectMapper;
     }
 
     public async Task AddAsync(TestAddInputDto input)
     {
-        await _testManager.CreateAsync(input.Name);
+        //await _testManager.CreateAsync(input.Name);
     }
 
-    public async Task<List<TestOutputDto>> GetPageAsync()
+    public async Task GetPageAsync()
     {
-        var list = await _testRepository.GetListAsync();
+        var query = await _testRepository.GetQueryableAsync();
 
-        return _objectMapper.Map<List<Test>, List<TestOutputDto>>(list);
+        var first = await query.FirstOrDefaultAsync();
+
+        var second = _objectMapper.Map<Test, TestOutputDto>(first);   
     }
 }
