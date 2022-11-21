@@ -4,6 +4,7 @@ using Volo.Abp.ObjectMapping;
 using Volo.Abp;
 using RedNb.Core.Util;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
 
 namespace RedNb.WebGateway.Application.Tests;
 
@@ -22,15 +23,17 @@ public class TestAppService : ITestAppService
 
     public async Task AddAsync(TestAddInputDto input)
     {
-        //await _testManager.CreateAsync(input.Name);
+        var model = _objectMapper.Map<TestAddInputDto, Test>(input);
+
+        await _testRepository.InsertAsync(model);
     }
 
-    public async Task GetPageAsync()
+    public async Task<List<TestOutputDto>> GetPageAsync()
     {
-        var query = await _testRepository.GetQueryableAsync();
+        var list = await _testRepository.GetListAsync();
 
-        var first = await query.FirstOrDefaultAsync();
+        var data = _objectMapper.Map<List<Test>, List<TestOutputDto>>(list);
 
-        var second = _objectMapper.Map<Test, TestOutputDto>(first);   
+        return data;
     }
 }

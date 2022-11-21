@@ -3,4 +3,6 @@
 public interface ITestAppService : IApplicationService, ITransientDependency
 {
     public Task AddAsync(TestAddInputDto input);
+
+    public Task<List<TestOutputDto>> GetPageAsync();
 }

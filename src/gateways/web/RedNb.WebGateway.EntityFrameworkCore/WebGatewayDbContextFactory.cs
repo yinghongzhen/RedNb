@@ -7,8 +7,9 @@ public class WebGatewayDbContextFactory : IDesignTimeDbContextFactory<WebGateway
         var configuration = BuildConfiguration();
 
         var builder = new DbContextOptionsBuilder<WebGatewayDbContext>()
-            .UseMySql(configuration.GetConnectionString("Default"),
-                new MySqlServerVersion(new Version(8, 0, 0)));
+                .UseNpgsql(configuration.GetConnectionString("Default"));
+
+        AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
 
         return new WebGatewayDbContext(builder.Options);
     }

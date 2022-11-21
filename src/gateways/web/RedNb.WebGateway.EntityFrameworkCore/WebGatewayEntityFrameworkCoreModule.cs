@@ -1,10 +1,12 @@
 ﻿using RedNb.WebGateway.Domain;
+using Volo.Abp.EntityFrameworkCore;
+using Volo.Abp.EntityFrameworkCore.PostgreSql;
 
 namespace RedNb.WebGateway.EntityFrameworkCore;
 
 [DependsOn(
     typeof(WebGatewayDomainModule),
-    typeof(AbpEntityFrameworkCoreMySQLModule)
+    typeof(AbpEntityFrameworkCorePostgreSqlModule)
     )]
 public class WebGatewayEntityFrameworkCoreModule : AbpModule
 {
@@ -24,7 +26,7 @@ public class WebGatewayEntityFrameworkCoreModule : AbpModule
 
         Configure<AbpDbContextOptions>(options =>
         {
-            options.UseMySQL();
+            options.UseNpgsql();
         });
     }
 }
