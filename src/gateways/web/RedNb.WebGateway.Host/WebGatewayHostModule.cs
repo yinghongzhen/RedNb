@@ -179,8 +179,6 @@ public class WebGatewayHostModule : AbpModule
             app.UseDeveloperExceptionPage();
         }
 
-        //app.UseAbpRequestLocalization();
-
         app.UseStaticFiles();
 
         app.UseRouting();
