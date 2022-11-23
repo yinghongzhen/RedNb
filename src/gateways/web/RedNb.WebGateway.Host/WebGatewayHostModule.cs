@@ -1,5 +1,6 @@
 
 
+using Autofac.Core;
 using Medallion.Threading;
 using Medallion.Threading.Redis;
 using Microsoft.AspNetCore.Cors;
