@@ -37,7 +37,7 @@ public class WebGatewayHostModule : AbpModule
         var configuration = context.Services.GetConfiguration();
         var hostingEnvironment = context.Services.GetHostingEnvironment();
 
-        context.Services.AddControllersWithViews();
+        //context.Services.AddControllersWithViews();
 
         //Configure<MvcOptions>(mvcOptions =>
         //{
@@ -190,11 +190,11 @@ public class WebGatewayHostModule : AbpModule
             options.SwaggerEndpoint("/swagger/v1/swagger.json", "WebGateway API");
         });
 
-        app.UseEndpoints(endpoints =>
-        {
-            endpoints.MapControllerRoute(
-                name: "default",
-                pattern: "{controller=Home}/{action=Index}/{id?}");
-        });
+        //app.UseEndpoints(endpoints =>
+        //{
+        //    endpoints.MapControllerRoute(
+        //        name: "default",
+        //        pattern: "{controller=Home}/{action=Index}/{id?}");
+        //});
     }
 }
