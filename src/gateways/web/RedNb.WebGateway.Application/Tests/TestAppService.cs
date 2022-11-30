@@ -5,6 +5,7 @@ using Volo.Abp;
 using RedNb.Core.Util;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
+using RedNb.WebGateway.Domain.Clusters;
 
 namespace RedNb.WebGateway.Application.Tests;
 

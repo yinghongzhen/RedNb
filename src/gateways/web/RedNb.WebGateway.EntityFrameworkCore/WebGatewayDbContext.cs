@@ -1,4 +1,5 @@
-﻿using RedNb.WebGateway.Domain.Tests;
+﻿using RedNb.WebGateway.Domain.Clusters;
+using RedNb.WebGateway.Domain.Tests;
 
 namespace RedNb.WebGateway.EntityFrameworkCore;
 

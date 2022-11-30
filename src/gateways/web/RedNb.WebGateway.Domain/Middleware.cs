@@ -2,8 +2,8 @@
 
 namespace RedNb.WebGateway.Domain.Tests;
 
-[Table("Test")]
-public class Test : AggregateRoot<long>
+[Table("Middleware")]
+public class Middleware : AggregateRoot<long>
 {
     [Required]
     [MaxLength(100)]
