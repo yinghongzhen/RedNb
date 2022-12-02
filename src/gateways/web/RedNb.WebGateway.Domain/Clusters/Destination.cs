@@ -3,9 +3,11 @@
 namespace RedNb.WebGateway.Domain.Clusters;
 
 [Table("Destination")]
-public class Destination : AggregateRoot<long>
+public class Destination : EntityBase
 {
     [Required]
     [MaxLength(100)]
     public string Name { get; set; }
+
+    public virtual Cluster Cluster { get; set; }
 }

@@ -150,24 +150,24 @@ public class WebGatewayHostModule : AbpModule
 
     private void ConfigureCors(ServiceConfigurationContext context, IConfiguration configuration)
     {
-        //context.Services.AddCors(options =>
-        //{
-        //    options.AddDefaultPolicy(builder =>
-        //    {
-        //        builder
-        //            .WithOrigins(
-        //                configuration["App:CorsOrigins"]
-        //                    .Split(",", StringSplitOptions.RemoveEmptyEntries)
-        //                    .Select(o => o.RemovePostFix("/"))
-        //                    .ToArray()
-        //            )
-        //            .WithAbpExposedHeaders()
-        //            .SetIsOriginAllowedToAllowWildcardSubdomains()
-        //            .AllowAnyHeader()
-        //            .AllowAnyMethod()
-        //            .AllowCredentials();
-        //    });
-        //});
+        context.Services.AddCors(options =>
+        {
+            options.AddDefaultPolicy(builder =>
+            {
+                builder
+                    .WithOrigins(
+                        configuration["App:CorsOrigins"]
+                            .Split(",", StringSplitOptions.RemoveEmptyEntries)
+                            .Select(o => o.RemovePostFix("/"))
+                            .ToArray()
+                    )
+                    .WithAbpExposedHeaders()
+                    .SetIsOriginAllowedToAllowWildcardSubdomains()
+                    .AllowAnyHeader()
+                    .AllowAnyMethod()
+                    .AllowCredentials();
+            });
+        });
     }
 
     public override void OnApplicationInitialization(ApplicationInitializationContext context)
@@ -190,11 +190,11 @@ public class WebGatewayHostModule : AbpModule
             options.SwaggerEndpoint("/swagger/v1/swagger.json", "WebGateway API");
         });
 
-        //app.UseEndpoints(endpoints =>
-        //{
-        //    endpoints.MapControllerRoute(
-        //        name: "default",
-        //        pattern: "{controller=Home}/{action=Index}/{id?}");
-        //});
+        app.UseEndpoints(endpoints =>
+        {
+            endpoints.MapControllerRoute(
+                name: "default",
+                pattern: "{controller=Home}/{action=Index}/{id?}");
+        });
     }
 }
