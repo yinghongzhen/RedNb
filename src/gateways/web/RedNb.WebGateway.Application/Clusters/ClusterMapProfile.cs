@@ -9,6 +9,8 @@ public class ClusterMapProfile : Profile
     {
         CreateMap<ClusterAddInputDto, Cluster>();
 
+        CreateMap<ClusterUpdateInputDto, Cluster>();
+
         CreateMap<Cluster, ClusterOutputDto>();
     }
 }

@@ -1,6 +1,8 @@
 ﻿using RedNb.WebGateway.Application.Contracts.Clusters;
 using RedNb.WebGateway.Domain.Clusters;
+using System.Collections.Generic;
 using Volo.Abp.Application.Dtos;
+using Volo.Abp.ObjectMapping;
 
 namespace RedNb.WebGateway.Application.Clusters;
 
@@ -28,10 +30,7 @@ public class ClusterAppService : IClusterAppService
     public async Task UpdateAsync(ClusterUpdateInputDto input)
     {
         var cluster = await _clusterRepository.GetAsync(input.Id);
-
         cluster.SetName(input.Name);
-
-        //await _clusterRepository.UpdateAsync(cluster);
     }
 
     public async Task<List<ClusterOutputDto>> GetListAsync()

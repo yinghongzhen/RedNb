@@ -16,6 +16,7 @@ using Volo.Abp;
 using Volo.Abp.AspNetCore.Mvc.AntiForgery;
 using Volo.Abp.Caching;
 using Volo.Abp.DistributedLocking;
+using Volo.Abp.Json;
 using Volo.Abp.Localization;
 using Volo.Abp.VirtualFileSystem;
 
@@ -50,59 +51,13 @@ public class WebGatewayHostModule : AbpModule
             options.JsonSerializerOptions.Converters.Add(new DefaultJsonConverter());
         });
 
-        Configure<AbpAntiForgeryOptions>(options =>
-        {
-            options.AutoValidate = false;
-        });
-
-        ConfigureConventionalControllers();
-        ConfigureLocalization();
-        ConfigureCache(configuration);
-        ConfigureVirtualFileSystem(context);
-        ConfigureDistributedLocking(context, configuration);
-        ConfigureCors(context, configuration);
-        ConfigureSwaggerServices(context, configuration);
-    }
-
-    private void ConfigureCache(IConfiguration configuration)
-    {
-        Configure<AbpDistributedCacheOptions>(options => { options.KeyPrefix = "WebGateway:"; });
-    }
-
-    private void ConfigureVirtualFileSystem(ServiceConfigurationContext context)
-    {
-        var hostingEnvironment = context.Services.GetHostingEnvironment();
-
-        if (hostingEnvironment.IsDevelopment())
-        {
-            Configure<AbpVirtualFileSystemOptions>(options =>
-            {
-                options.FileSets.ReplaceEmbeddedByPhysical<WebGatewayDomainSharedModule>(
-                    Path.Combine(hostingEnvironment.ContentRootPath,
-                        $"..{Path.DirectorySeparatorChar}RedNb.WebGateway.Domain.Shared"));
-                options.FileSets.ReplaceEmbeddedByPhysical<WebGatewayDomainModule>(
-                    Path.Combine(hostingEnvironment.ContentRootPath,
-                        $"..{Path.DirectorySeparatorChar}RedNb.WebGateway.Domain"));
-                options.FileSets.ReplaceEmbeddedByPhysical<WebGatewayApplicationContractsModule>(
-                    Path.Combine(hostingEnvironment.ContentRootPath,
-                        $"..{Path.DirectorySeparatorChar}RedNb.WebGateway.Application.Contracts"));
-                options.FileSets.ReplaceEmbeddedByPhysical<WebGatewayApplicationModule>(
-                    Path.Combine(hostingEnvironment.ContentRootPath,
-                        $"..{Path.DirectorySeparatorChar}RedNb.WebGateway.Application"));
-            });
-        }
-    }
-
-    private void ConfigureConventionalControllers()
-    {
         Configure<AbpAspNetCoreMvcOptions>(options =>
         {
             options.ConventionalControllers.Create(typeof(WebGatewayApplicationModule).Assembly);
         });
-    }
 
-    private static void ConfigureSwaggerServices(ServiceConfigurationContext context, IConfiguration configuration)
-    {
+        Configure<AbpDistributedCacheOptions>(options => { options.KeyPrefix = "WebGateway:"; });
+
         context.Services.AddSwaggerGen(
                 options =>
                 {
@@ -125,31 +80,14 @@ public class WebGatewayHostModule : AbpModule
                     //"RedNb.Dwcj.Application.xml"));
                 }
             );
-    }
 
-    private void ConfigureLocalization()
-    {
-        Configure<AbpLocalizationOptions>(options =>
-        {
-            options.Languages.Add(new LanguageInfo("en", "en", "English"));
-            options.Languages.Add(new LanguageInfo("zh-Hans", "zh-Hans", "简体中文"));
-        });
-    }
-
-    private void ConfigureDistributedLocking(
-        ServiceConfigurationContext context,
-        IConfiguration configuration)
-    {
         context.Services.AddSingleton<IDistributedLockProvider>(sp =>
         {
             var connection = ConnectionMultiplexer
                 .Connect(configuration["Redis:Configuration"]);
             return new RedisDistributedSynchronizationProvider(connection.GetDatabase());
         });
-    }
 
-    private void ConfigureCors(ServiceConfigurationContext context, IConfiguration configuration)
-    {
         context.Services.AddCors(options =>
         {
             options.AddDefaultPolicy(builder =>
