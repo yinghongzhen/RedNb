@@ -16,7 +16,8 @@ public class ClusterManager : DomainService
         return await _clusterRepository.InsertAsync(
                 new Cluster(
                     IdentityManager.NewId(),
-                    name
+                    name,
+                    "1"
                 )
             );
     }

@@ -30,7 +30,6 @@ public class ClusterAppService : IClusterAppService
     public async Task UpdateAsync(ClusterUpdateInputDto input)
     {
         var cluster = await _clusterRepository.GetAsync(input.Id);
-        cluster.SetName(input.Name);
     }
 
     public async Task<List<ClusterOutputDto>> GetListAsync()
