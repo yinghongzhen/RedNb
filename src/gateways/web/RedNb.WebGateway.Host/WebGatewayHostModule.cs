@@ -52,6 +52,15 @@ public class WebGatewayHostModule : AbpModule
 
         context.Services.AddControllersWithViews(options =>
         {
+            foreach (var item in options.Filters)
+            {
+                if(item is ServiceFilterAttribute)
+                {
+                    var type = (ServiceFilterAttribute)item;
+                    Console.WriteLine(type.ServiceType);
+                }
+            }
+
             //options.Filters.AddService(typeof(DefaultAbpExceptionFilter), 20);
         });
 
@@ -67,6 +76,8 @@ public class WebGatewayHostModule : AbpModule
         });
 
         Configure<AbpDistributedCacheOptions>(options => { options.KeyPrefix = "WebGateway:"; });
+
+        Configure<AbpAntiForgeryOptions>(options => { options.AutoValidate = false; });
 
         context.Services.AddSwaggerGen(
                 options =>
