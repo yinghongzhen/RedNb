@@ -3,13 +3,16 @@
 using Autofac.Core;
 using Medallion.Threading;
 using Medallion.Threading.Redis;
+using Microsoft.AspNetCore.Builder.Extensions;
 using Microsoft.AspNetCore.Cors;
+using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.OpenApi.Models;
 using RedNb.Core.Web;
 using RedNb.WebGateway.Application.Contracts;
 using RedNb.WebGateway.Domain;
 using RedNb.WebGateway.Domain.Shared;
+using RedNb.WebGateway.Host.Extensions;
 using StackExchange.Redis;
 using System.Text.Json;
 using Volo.Abp;
@@ -19,6 +22,7 @@ using Volo.Abp.DistributedLocking;
 using Volo.Abp.Json;
 using Volo.Abp.Localization;
 using Volo.Abp.VirtualFileSystem;
+using Yarp.ReverseProxy.Configuration;
 
 namespace RedNb.WebGateway.Host;
 
@@ -38,12 +42,18 @@ public class WebGatewayHostModule : AbpModule
         var configuration = context.Services.GetConfiguration();
         var hostingEnvironment = context.Services.GetHostingEnvironment();
 
-        //context.Services.AddControllersWithViews();
+        context.Services.Configure<ForwardedHeadersOptions>(options =>
+        {
+            options.ForwardedHeaders =
+                ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto;
+            options.KnownNetworks.Clear();
+            options.KnownProxies.Clear();
+        });
 
-        //Configure<MvcOptions>(mvcOptions =>
-        //{
-        //    mvcOptions.Filters.AddService(typeof(DefaultAbpExceptionFilter), 20);
-        //});
+        context.Services.AddControllersWithViews(options =>
+        {
+            //options.Filters.AddService(typeof(DefaultAbpExceptionFilter), 20);
+        });
 
         Configure<JsonOptions>(options =>
         {
@@ -90,22 +100,43 @@ public class WebGatewayHostModule : AbpModule
 
         context.Services.AddCors(options =>
         {
-            options.AddDefaultPolicy(builder =>
+            options.AddDefaultPolicy(policy =>
             {
-                builder
-                    .WithOrigins(
-                        configuration["App:CorsOrigins"]
-                            .Split(",", StringSplitOptions.RemoveEmptyEntries)
-                            .Select(o => o.RemovePostFix("/"))
-                            .ToArray()
-                    )
-                    .WithAbpExposedHeaders()
-                    .SetIsOriginAllowedToAllowWildcardSubdomains()
-                    .AllowAnyHeader()
-                    .AllowAnyMethod()
-                    .AllowCredentials();
+                policy
+                .AllowAnyHeader()
+                .AllowAnyMethod()
+                .SetIsOriginAllowed(o => true)
+                .AllowCredentials();
             });
         });
+
+        var routes = new[]
+            {
+                new RouteConfig()
+                {
+                    RouteId = "route1",
+                    ClusterId = "cluster1",
+                    Match = new RouteMatch
+                    {
+                        Path = "{**catch-all}"
+                    }
+                }
+            };
+                var clusters = new[]
+                {
+                new ClusterConfig()
+                {
+                    ClusterId = "cluster1",
+                    Destinations = new Dictionary<string, DestinationConfig>(StringComparer.OrdinalIgnoreCase)
+                    {
+                        { "destination1", new DestinationConfig() { Address = "https://www.baidu.com" } }
+                    }
+                }
+            };
+
+        context.Services.AddReverseProxy()
+            .LoadFromMemory(routes, clusters)
+            .LoadFromConfig(configuration.GetSection("ReverseProxy"));
     }
 
     public override void OnApplicationInitialization(ApplicationInitializationContext context)
@@ -118,8 +149,8 @@ public class WebGatewayHostModule : AbpModule
             app.UseDeveloperExceptionPage();
         }
 
-        app.UseStaticFiles();
-
+        app.UseForwardedHeaders();
+        app.UseCors();
         app.UseRouting();
 
         app.UseSwagger();
@@ -130,9 +161,7 @@ public class WebGatewayHostModule : AbpModule
 
         app.UseEndpoints(endpoints =>
         {
-            endpoints.MapControllerRoute(
-                name: "default",
-                pattern: "{controller=Home}/{action=Index}/{id?}");
+            endpoints.MapReverseProxy();
         });
     }
 }

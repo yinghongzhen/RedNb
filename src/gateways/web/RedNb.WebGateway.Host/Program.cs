@@ -1,18 +1,25 @@
+using Microsoft.AspNetCore.Http.Features;
 using RedNb.WebGateway.Host;
 
 var builder = WebApplication.CreateBuilder(args);
 
-//builder.Services.AddReverseProxy()
-//    .LoadFromConfig(builder.Configuration.GetSection("ReverseProxy"));
+builder.WebHost.ConfigureKestrel((context, options) =>
+{
+    options.Limits.MaxRequestBodySize = int.MaxValue;
+});
 
-builder.Host.AddAppSettingsSecretsJson();
-builder.Host.UseAutofac();
+builder.Services.Configure<FormOptions>(options =>
+{
+    options.MultipartBodyLengthLimit = int.MaxValue;
+});
+
+builder.Host
+    .AddAppSettingsSecretsJson()
+    .UseAutofac();
 
 builder.Services.AddApplication<WebGatewayHostModule>();
 
 var app = builder.Build();
-
-//app.MapReverseProxy();
 
 app.InitializeApplication();
 
