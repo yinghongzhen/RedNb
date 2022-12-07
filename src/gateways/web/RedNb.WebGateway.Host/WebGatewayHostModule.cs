@@ -121,7 +121,7 @@ public class WebGatewayHostModule : AbpModule
                     ClusterId = "cluster1",
                     Match = new RouteMatch
                     {
-                        Path = "{**catch-all}"
+                        Path = "a/{**catch-all}"
                     }
                 }
             };
@@ -132,7 +132,7 @@ public class WebGatewayHostModule : AbpModule
                     ClusterId = "cluster1",
                     Destinations = new Dictionary<string, DestinationConfig>(StringComparer.OrdinalIgnoreCase)
                     {
-                        { "destination1", new DestinationConfig() { Address = "https://www.baidu.com" } }
+                        { "destination1", new DestinationConfig() { Address = "http://localhost:5029/" } }
                     }
                 }
             };
@@ -162,10 +162,11 @@ public class WebGatewayHostModule : AbpModule
             options.SwaggerEndpoint("/swagger/v1/swagger.json", "WebGateway API");
         });
 
-
         app.UseEndpoints(endpoints =>
         {
-            endpoints.MapControllers();
+            endpoints.MapControllerRoute(
+                    name: "default",
+                    pattern: "{controller=Home}/{action=Index}/{id?}");
 
             endpoints.MapReverseProxy(proxyPipeline =>
             {

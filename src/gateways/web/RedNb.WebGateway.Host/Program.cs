@@ -23,6 +23,4 @@ var app = builder.Build();
 
 app.InitializeApplication();
 
-app.MapGet("/", context => context.Response.WriteAsync("kite gateway run success!"));
-
 app.Run();

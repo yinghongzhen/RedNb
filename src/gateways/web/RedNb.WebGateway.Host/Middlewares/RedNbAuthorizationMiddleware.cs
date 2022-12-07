@@ -11,6 +11,7 @@ public class RedNbAuthorizationMiddleware
 
     public async Task Invoke(HttpContext context)
     {
+        Console.WriteLine(111);
         await _next(context);
     }
 }
