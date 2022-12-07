@@ -13,6 +13,7 @@ using RedNb.WebGateway.Application.Contracts;
 using RedNb.WebGateway.Domain;
 using RedNb.WebGateway.Domain.Shared;
 using RedNb.WebGateway.Host.Extensions;
+using RedNb.WebGateway.Host.Middlewares;
 using StackExchange.Redis;
 using System.Text.Json;
 using Volo.Abp;
@@ -52,16 +53,7 @@ public class WebGatewayHostModule : AbpModule
 
         context.Services.AddControllersWithViews(options =>
         {
-            foreach (var item in options.Filters)
-            {
-                if(item is ServiceFilterAttribute)
-                {
-                    var type = (ServiceFilterAttribute)item;
-                    Console.WriteLine(type.ServiceType);
-                }
-            }
-
-            //options.Filters.AddService(typeof(DefaultAbpExceptionFilter), 20);
+            options.Filters.AddService(typeof(DefaultAbpExceptionFilter), 20);
         });
 
         Configure<JsonOptions>(options =>
@@ -170,9 +162,15 @@ public class WebGatewayHostModule : AbpModule
             options.SwaggerEndpoint("/swagger/v1/swagger.json", "WebGateway API");
         });
 
+
         app.UseEndpoints(endpoints =>
         {
-            endpoints.MapReverseProxy();
+            endpoints.MapControllers();
+
+            endpoints.MapReverseProxy(proxyPipeline =>
+            {
+                proxyPipeline.UseMiddleware<RedNbAuthorizationMiddleware>();
+            });
         });
     }
 }
