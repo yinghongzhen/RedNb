@@ -55,7 +55,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RedNb.WebGateway.EntityFram
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RedNb.WebGateway.Host", "src\gateways\web\RedNb.WebGateway.Host\RedNb.WebGateway.Host.csproj", "{4B421BB5-DD5D-4E2C-BEBD-22CC9EA7493F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "service1", "src\products\service1\service1.csproj", "{051C3E94-5D17-4E77-8F1B-CE5281282604}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "service1", "src\products\service1\service1.csproj", "{051C3E94-5D17-4E77-8F1B-CE5281282604}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "service2", "src\products\service2\service2.csproj", "{F42C7E1C-C040-493B-AD15-723CE78459EA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -127,6 +129,10 @@ Global
 		{051C3E94-5D17-4E77-8F1B-CE5281282604}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{051C3E94-5D17-4E77-8F1B-CE5281282604}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{051C3E94-5D17-4E77-8F1B-CE5281282604}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F42C7E1C-C040-493B-AD15-723CE78459EA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F42C7E1C-C040-493B-AD15-723CE78459EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F42C7E1C-C040-493B-AD15-723CE78459EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F42C7E1C-C040-493B-AD15-723CE78459EA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -154,6 +160,7 @@ Global
 		{49EC4D34-6448-4310-B859-D9C339437C19} = {D2867311-71DF-46AE-BAB2-AB8631998CF1}
 		{4B421BB5-DD5D-4E2C-BEBD-22CC9EA7493F} = {D2867311-71DF-46AE-BAB2-AB8631998CF1}
 		{051C3E94-5D17-4E77-8F1B-CE5281282604} = {7F26B560-89F2-4E97-B517-532FEB27D22B}
+		{F42C7E1C-C040-493B-AD15-723CE78459EA} = {7F26B560-89F2-4E97-B517-532FEB27D22B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {77BB5C0F-ABA5-4459-9FC9-7845E5A25D12}

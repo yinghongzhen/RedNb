@@ -1,17 +1,11 @@
 
 
-using Autofac.Core;
 using Medallion.Threading;
 using Medallion.Threading.Redis;
-using Microsoft.AspNetCore.Builder.Extensions;
-using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.OpenApi.Models;
 using RedNb.Core.Web;
-using RedNb.WebGateway.Application.Contracts;
-using RedNb.WebGateway.Domain;
-using RedNb.WebGateway.Domain.Shared;
 using RedNb.WebGateway.Host.Extensions;
 using RedNb.WebGateway.Host.Middlewares;
 using StackExchange.Redis;
@@ -20,9 +14,6 @@ using Volo.Abp;
 using Volo.Abp.AspNetCore.Mvc.AntiForgery;
 using Volo.Abp.Caching;
 using Volo.Abp.DistributedLocking;
-using Volo.Abp.Json;
-using Volo.Abp.Localization;
-using Volo.Abp.VirtualFileSystem;
 using Yarp.ReverseProxy.Configuration;
 
 namespace RedNb.WebGateway.Host;
@@ -121,7 +112,7 @@ public class WebGatewayHostModule : AbpModule
                     ClusterId = "cluster1",
                     Match = new RouteMatch
                     {
-                        Path = "a/{**catch-all}"
+                        Path = "a1/{**catch-all}"
                     }
                 }
             };
