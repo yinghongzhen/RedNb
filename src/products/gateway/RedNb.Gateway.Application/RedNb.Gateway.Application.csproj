@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="RestSharp" Version="109.0.0-preview.1" />
+    <PackageReference Include="Volo.Abp.AutoMapper" Version="7.0.0-rc.2" />
+    <PackageReference Include="Volo.Abp.Ddd.Application" Version="7.0.0-rc.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\RedNb.Gateway.Application.Contracts\RedNb.Gateway.Application.Contracts.csproj" />
+    <ProjectReference Include="..\RedNb.Gateway.Domain\RedNb.Gateway.Domain.csproj" />
+    <ProjectReference Include="..\RedNb.Gateway.EntityFrameworkCore\RedNb.Gateway.EntityFrameworkCore.csproj" />
+  </ItemGroup>
+
+</Project>
