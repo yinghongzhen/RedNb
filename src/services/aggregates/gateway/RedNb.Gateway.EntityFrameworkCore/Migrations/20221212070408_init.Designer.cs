@@ -12,7 +12,7 @@ using Volo.Abp.EntityFrameworkCore;
 namespace RedNb.Gateway.EntityFrameworkCore.Migrations
 {
     [DbContext(typeof(GatewayDbContext))]
-    [Migration("20221202023447_init")]
+    [Migration("20221212070408_init")]
     partial class init
     {
         /// <inheritdoc />
@@ -41,6 +41,11 @@ namespace RedNb.Gateway.EntityFrameworkCore.Migrations
                         .HasColumnName("ExtraProperties");
 
                     b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("varchar(100)");
+
+                    b.Property<string>("Path")
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("varchar(100)");

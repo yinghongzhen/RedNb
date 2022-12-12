@@ -14,6 +14,7 @@ using Volo.Abp;
 using Volo.Abp.AspNetCore.Mvc.AntiForgery;
 using Volo.Abp.Caching;
 using Volo.Abp.DistributedLocking;
+using Volo.Abp.Localization;
 using Yarp.ReverseProxy.Configuration;
 
 namespace RedNb.Gateway.Host;
@@ -56,6 +57,12 @@ public class GatewayHostModule : AbpModule
         Configure<AbpAspNetCoreMvcOptions>(options =>
         {
             options.ConventionalControllers.Create(typeof(GatewayApplicationModule).Assembly);
+        });
+
+        Configure<AbpLocalizationOptions>(options =>
+        {
+            options.Languages.Add(new LanguageInfo("en", "en", "English"));
+            options.Languages.Add(new LanguageInfo("zh-Hans", "zh-Hans", "¼òÌåÖÐÎÄ"));
         });
 
         Configure<AbpDistributedCacheOptions>(options => { options.KeyPrefix = "Gateway:"; });
@@ -142,6 +149,8 @@ public class GatewayHostModule : AbpModule
         {
             app.UseDeveloperExceptionPage();
         }
+
+        app.UseAbpRequestLocalization();
 
         app.UseForwardedHeaders();
         app.UseCors();

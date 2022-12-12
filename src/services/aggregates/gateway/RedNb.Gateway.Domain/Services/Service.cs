@@ -1,16 +1,16 @@
-﻿namespace RedNb.Auth.Domain.Modules;
+﻿namespace RedNb.Gateway.Domain.Services;
 
 /// <summary>
-/// 模块实体类
+/// 服务实体类
 /// </summary>
-[Table("Module")]
-public class Module : AggregateRoot<long>
+[Table("Service")]
+public class Service : AggregateRootBase
 {
     /// <summary>
     /// 类型
     /// </summary>
     [Required]
-    public EModuleType Type { get; set; }
+    public EServiceType Type { get; set; }
 
     /// <summary>
     /// 名称

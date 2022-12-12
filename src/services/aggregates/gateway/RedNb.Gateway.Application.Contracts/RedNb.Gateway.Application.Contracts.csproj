@@ -6,11 +6,11 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Volo.Abp.Ddd.Application.Contracts" Version="7.0.0-rc.2" />
+		<PackageReference Include="Volo.Abp.Ddd.Application.Contracts" Version="7.0.0-rc.3" />
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\..\..\core\RedNb.Core\RedNb.Core.csproj" />
+		<ProjectReference Include="..\..\..\..\core\RedNb.Core\RedNb.Core.csproj" />
 		<ProjectReference Include="..\RedNb.Gateway.Domain.Shared\RedNb.Gateway.Domain.Shared.csproj" />
 	</ItemGroup>
 

@@ -55,7 +55,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RedNb.Gateway.Domain", "src
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RedNb.Gateway.Domain.Shared", "src\services\aggregates\gateway\RedNb.Gateway.Domain.Shared\RedNb.Gateway.Domain.Shared.csproj", "{227A0091-6BF4-4D93-B546-3914D8949EC2}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RedNb.Gateway.EntityFrameworkCore", "src\products\gateway\RedNb.Gateway.EntityFrameworkCore\RedNb.Gateway.EntityFrameworkCore.csproj", "{EA356BD2-A995-49F2-AF33-CD347373240A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RedNb.Gateway.EntityFrameworkCore", "src\services\aggregates\gateway\RedNb.Gateway.EntityFrameworkCore\RedNb.Gateway.EntityFrameworkCore.csproj", "{EA356BD2-A995-49F2-AF33-CD347373240A}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RedNb.Gateway.Host", "src\services\aggregates\gateway\RedNb.Gateway.Host\RedNb.Gateway.Host.csproj", "{3FEAEFB3-634D-4186-85DA-3C039A4D058A}"
 EndProject

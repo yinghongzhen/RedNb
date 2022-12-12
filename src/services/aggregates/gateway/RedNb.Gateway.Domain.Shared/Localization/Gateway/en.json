@@ -2,7 +2,8 @@
   "culture": "en",
   "texts": {
     "Menu:Home": "Home",
-    "Welcome": "Welcome",
+    "Welcome": "Welcome111",
+    "a":  "111",
     "LongWelcomeMessage": "Welcome to the application. This is a startup project based on the ABP framework. For more information, visit abp.io."
   }
 }
