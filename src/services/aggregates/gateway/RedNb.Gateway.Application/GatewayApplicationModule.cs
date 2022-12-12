@@ -1,9 +1,12 @@
-﻿namespace RedNb.Gateway;
+﻿using Volo.Abp.Localization;
+
+namespace RedNb.Gateway;
 
 [DependsOn(
     typeof(GatewayApplicationContractsModule),
     typeof(GatewayDomainModule),
-    typeof(AbpAutoMapperModule)
+    typeof(AbpAutoMapperModule),
+    typeof(AbpLocalizationModule)
     )]
 public class GatewayApplicationModule : AbpModule
 {
