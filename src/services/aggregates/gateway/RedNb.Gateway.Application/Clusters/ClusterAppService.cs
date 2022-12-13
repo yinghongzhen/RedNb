@@ -3,6 +3,7 @@ using RedNb.Gateway.Application.Contracts.Clusters;
 using RedNb.Gateway.Domain.Clusters;
 using RedNb.Gateway.Domain.Shared.Localization;
 using System.Collections.Generic;
+using Volo.Abp;
 using Volo.Abp.Application.Dtos;
 using Volo.Abp.Localization;
 using Volo.Abp.ObjectMapping;
@@ -31,9 +32,7 @@ public class ClusterAppService : IClusterAppService
 
     public async Task AddAsync(ClusterAddInputDto input)
     {
-        var a = _stringLocalizer["a"];
-
-        Console.WriteLine(a);
+        throw new BusinessException("Gateway:00001");
 
         await _clusterManager.CreateAsync(input.Name);
     }

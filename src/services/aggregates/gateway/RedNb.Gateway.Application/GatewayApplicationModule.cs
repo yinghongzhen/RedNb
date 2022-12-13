@@ -5,8 +5,7 @@ namespace RedNb.Gateway;
 [DependsOn(
     typeof(GatewayApplicationContractsModule),
     typeof(GatewayDomainModule),
-    typeof(AbpAutoMapperModule),
-    typeof(AbpLocalizationModule)
+    typeof(AbpAutoMapperModule)
     )]
 public class GatewayApplicationModule : AbpModule
 {

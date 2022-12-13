@@ -6,8 +6,6 @@ using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.OpenApi.Models;
 using RedNb.Core.Web;
-using RedNb.Gateway.Host.Extensions;
-using RedNb.Gateway.Host.Middlewares;
 using StackExchange.Redis;
 using System.Text.Json;
 using Volo.Abp;
@@ -35,24 +33,16 @@ public class GatewayHostModule : AbpModule
         var configuration = context.Services.GetConfiguration();
         var hostingEnvironment = context.Services.GetHostingEnvironment();
 
-        context.Services.Configure<ForwardedHeadersOptions>(options =>
-        {
-            options.ForwardedHeaders =
-                ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto;
-            options.KnownNetworks.Clear();
-            options.KnownProxies.Clear();
-        });
+        //context.Services.AddControllersWithViews(options =>
+        //{
+        //    options.Filters.AddService(typeof(DefaultAbpExceptionFilter), 20);
+        //});
 
-        context.Services.AddControllersWithViews(options =>
-        {
-            options.Filters.AddService(typeof(DefaultAbpExceptionFilter), 20);
-        });
-
-        Configure<JsonOptions>(options =>
-        {
-            options.JsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;
-            options.JsonSerializerOptions.Converters.Add(new DefaultJsonConverter());
-        });
+        //Configure<JsonOptions>(options =>
+        //{
+        //    options.JsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;
+        //    options.JsonSerializerOptions.Converters.Add(new DefaultJsonConverter());
+        //});
 
         Configure<AbpAspNetCoreMvcOptions>(options =>
         {
@@ -98,46 +88,6 @@ public class GatewayHostModule : AbpModule
                 .Connect(configuration["Redis:Configuration"]);
             return new RedisDistributedSynchronizationProvider(connection.GetDatabase());
         });
-
-        context.Services.AddCors(options =>
-        {
-            options.AddDefaultPolicy(policy =>
-            {
-                policy
-                .AllowAnyHeader()
-                .AllowAnyMethod()
-                .SetIsOriginAllowed(o => true)
-                .AllowCredentials();
-            });
-        });
-
-        var routes = new[]
-            {
-                new RouteConfig()
-                {
-                    RouteId = "route1",
-                    ClusterId = "cluster1",
-                    Match = new RouteMatch
-                    {
-                        Path = "a1/{**catch-all}"
-                    }
-                }
-            };
-                var clusters = new[]
-                {
-                new ClusterConfig()
-                {
-                    ClusterId = "cluster1",
-                    Destinations = new Dictionary<string, DestinationConfig>(StringComparer.OrdinalIgnoreCase)
-                    {
-                        { "destination1", new DestinationConfig() { Address = "http://localhost:5029/" } }
-                    }
-                }
-            };
-
-        context.Services.AddReverseProxy()
-            .LoadFromMemory(routes, clusters)
-            .LoadFromConfig(configuration.GetSection("ReverseProxy"));
     }
 
     public override void OnApplicationInitialization(ApplicationInitializationContext context)
@@ -153,7 +103,7 @@ public class GatewayHostModule : AbpModule
         app.UseAbpRequestLocalization();
 
         app.UseForwardedHeaders();
-        app.UseCors();
+
         app.UseRouting();
 
         app.UseSwagger();
@@ -167,11 +117,6 @@ public class GatewayHostModule : AbpModule
             endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
-
-            //endpoints.MapReverseProxy(proxyPipeline =>
-            //{
-            //    proxyPipeline.UseMiddleware<RedNbAuthorizationMiddleware>();
-            //});
         });
     }
 }

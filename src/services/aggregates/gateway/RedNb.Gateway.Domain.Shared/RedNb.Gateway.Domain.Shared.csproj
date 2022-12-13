@@ -3,7 +3,8 @@
 	<PropertyGroup>
 		<TargetFramework>net7.0</TargetFramework>
 		<ImplicitUsings>enable</ImplicitUsings>
-	</PropertyGroup>
+    <GenerateEmbeddedFilesManifest>true</GenerateEmbeddedFilesManifest>
+  </PropertyGroup>
 
 	<ItemGroup>
 		<PackageReference Include="Volo.Abp.Localization" Version="7.0.0-rc.4" />
@@ -15,5 +16,9 @@
 	<ItemGroup>
 		<EmbeddedResource Include="Localization\Gateway\*.json" />
 	</ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.FileProviders.Embedded" Version="7.0.0" />
+  </ItemGroup>
 
 </Project>

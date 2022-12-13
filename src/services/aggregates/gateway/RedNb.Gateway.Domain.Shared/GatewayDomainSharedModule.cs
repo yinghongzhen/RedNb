@@ -2,7 +2,6 @@
 
 namespace RedNb.Gateway.Domain.Shared;
 
-[DependsOn(typeof(AbpLocalizationModule))]
 public class GatewayDomainSharedModule : AbpModule
 {
     public override void PreConfigureServices(ServiceConfigurationContext context)

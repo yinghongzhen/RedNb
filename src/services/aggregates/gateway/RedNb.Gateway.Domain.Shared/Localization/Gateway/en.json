@@ -3,7 +3,7 @@
   "texts": {
     "Menu:Home": "Home",
     "Welcome": "Welcome111",
-    "a":  "111",
+    "Gateway:00001": "aaaa",
     "LongWelcomeMessage": "Welcome to the application. This is a startup project based on the ABP framework. For more information, visit abp.io."
   }
 }
