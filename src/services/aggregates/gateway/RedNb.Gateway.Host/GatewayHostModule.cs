@@ -168,10 +168,10 @@ public class GatewayHostModule : AbpModule
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
 
-            endpoints.MapReverseProxy(proxyPipeline =>
-            {
-                proxyPipeline.UseMiddleware<RedNbAuthorizationMiddleware>();
-            });
+            //endpoints.MapReverseProxy(proxyPipeline =>
+            //{
+            //    proxyPipeline.UseMiddleware<RedNbAuthorizationMiddleware>();
+            //});
         });
     }
 }

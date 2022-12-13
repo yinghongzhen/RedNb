@@ -16,7 +16,7 @@ public class ClusterManager : DomainService
     {
         if (await _clusterRepository.AnyAsync(x => x.Name == name))
         {
-            throw new UserFriendlyException(code: "Welcome");
+            throw new BusinessException(code: "Welcome");
         }
 
         return await _clusterRepository.InsertAsync(

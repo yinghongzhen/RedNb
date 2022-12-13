@@ -4,6 +4,7 @@ using RedNb.Gateway.Domain.Clusters;
 using RedNb.Gateway.Domain.Shared.Localization;
 using System.Collections.Generic;
 using Volo.Abp.Application.Dtos;
+using Volo.Abp.Localization;
 using Volo.Abp.ObjectMapping;
 
 namespace RedNb.Gateway.Application.Clusters;
@@ -25,6 +26,7 @@ public class ClusterAppService : IClusterAppService
         _objectMapper = objectMapper;
         _clusterManager = clusterManager;
         _stringLocalizer = stringLocalizer;
+
     }
 
     public async Task AddAsync(ClusterAddInputDto input)
