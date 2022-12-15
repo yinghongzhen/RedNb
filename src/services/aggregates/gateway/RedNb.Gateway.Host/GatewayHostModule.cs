@@ -1,10 +1,8 @@
-
-
 using Medallion.Threading;
 using Medallion.Threading.Redis;
-using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.OpenApi.Models;
+using RedNb.Core.Extensions;
 using RedNb.Core.Web;
 using StackExchange.Redis;
 using System.Text.Json;
@@ -13,7 +11,6 @@ using Volo.Abp.AspNetCore.Mvc.AntiForgery;
 using Volo.Abp.Caching;
 using Volo.Abp.DistributedLocking;
 using Volo.Abp.Localization;
-using Yarp.ReverseProxy.Configuration;
 
 namespace RedNb.Gateway.Host;
 
@@ -33,16 +30,16 @@ public class GatewayHostModule : AbpModule
         var configuration = context.Services.GetConfiguration();
         var hostingEnvironment = context.Services.GetHostingEnvironment();
 
-        //context.Services.AddControllersWithViews(options =>
-        //{
-        //    options.Filters.AddService(typeof(DefaultAbpExceptionFilter), 20);
-        //});
+        context.Services.AddControllersWithViews(options =>
+        {
+            options.Filters.AddService(typeof(DefaultAbpExceptionFilter), 20);
+        });
 
-        //Configure<JsonOptions>(options =>
-        //{
-        //    options.JsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;
-        //    options.JsonSerializerOptions.Converters.Add(new DefaultJsonConverter());
-        //});
+        Configure<JsonOptions>(options =>
+        {
+            options.JsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;
+            options.JsonSerializerOptions.Converters.Add(new DefaultJsonConverter());
+        });
 
         Configure<AbpAspNetCoreMvcOptions>(options =>
         {
@@ -54,8 +51,6 @@ public class GatewayHostModule : AbpModule
             options.Languages.Add(new LanguageInfo("en", "en", "English"));
             options.Languages.Add(new LanguageInfo("zh-Hans", "zh-Hans", "简体中文"));
         });
-
-        Configure<AbpDistributedCacheOptions>(options => { options.KeyPrefix = "Gateway:"; });
 
         Configure<AbpAntiForgeryOptions>(options => { options.AutoValidate = false; });
 
@@ -76,11 +71,11 @@ public class GatewayHostModule : AbpModule
 
                     options.DocInclusionPredicate((docName, description) => true);
 
-                    //options.IncludeXmlComments(Path.Combine(
-                    //AppDomain.CurrentDomain.BaseDirectory,
-                    //"RedNb.Dwcj.Application.xml"));
+                    options.AutoIncludeXmlComments();
                 }
             );
+
+        Configure<AbpDistributedCacheOptions>(options => { options.KeyPrefix = "Gateway:"; });
 
         context.Services.AddSingleton<IDistributedLockProvider>(sp =>
         {
@@ -102,14 +97,12 @@ public class GatewayHostModule : AbpModule
 
         app.UseAbpRequestLocalization();
 
-        app.UseForwardedHeaders();
-
         app.UseRouting();
 
         app.UseSwagger();
         app.UseSwaggerUI(options =>
         {
-            options.SwaggerEndpoint("/swagger/v1/swagger.json", "Gateway API");
+            options.SwaggerEndpoint("/swagger/v1/swagger.json", "统一网关服务");
         });
 
         app.UseEndpoints(endpoints =>

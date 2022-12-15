@@ -7,14 +7,14 @@
 
   <ItemGroup>
     <PackageReference Include="RestSharp" Version="109.0.0-preview.1" />
-    <PackageReference Include="Volo.Abp.AutoMapper" Version="7.0.0-rc.2" />
-    <PackageReference Include="Volo.Abp.Ddd.Application" Version="7.0.0-rc.2" />
+    <PackageReference Include="Volo.Abp.AutoMapper" Version="7.0.0-rc.4" />
+    <PackageReference Include="Volo.Abp.Ddd.Application" Version="7.0.0-rc.4" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\RedNb.Gateway.Application.Contracts\RedNb.Gateway.Application.Contracts.csproj" />
-    <ProjectReference Include="..\RedNb.Gateway.Domain\RedNb.Gateway.Domain.csproj" />
-    <ProjectReference Include="..\RedNb.Gateway.EntityFrameworkCore\RedNb.Gateway.EntityFrameworkCore.csproj" />
+    <ProjectReference Include="..\RedNb.Auth.Application.Contracts\RedNb.Auth.Application.Contracts.csproj" />
+    <ProjectReference Include="..\RedNb.Auth.Domain\RedNb.Auth.Domain.csproj" />
+    <ProjectReference Include="..\RedNb.Auth.EntityFrameworkCore\RedNb.Auth.EntityFrameworkCore.csproj" />
   </ItemGroup>
 
 </Project>
