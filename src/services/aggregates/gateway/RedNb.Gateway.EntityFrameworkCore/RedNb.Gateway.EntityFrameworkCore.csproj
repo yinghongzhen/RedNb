@@ -8,8 +8,8 @@
 	<ItemGroup>
 		<ProjectReference Include="..\RedNb.Gateway.Domain\RedNb.Gateway.Domain.csproj" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.1">
-		  <PrivateAssets>all</PrivateAssets>
-		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
 		<PackageReference Include="Volo.Abp.EntityFrameworkCore.MySQL" Version="7.0.0-rc.4" />
 	</ItemGroup>

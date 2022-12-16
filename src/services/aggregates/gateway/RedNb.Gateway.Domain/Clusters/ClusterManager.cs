@@ -14,11 +14,6 @@ public class ClusterManager : DomainService
 
     public async Task<Cluster> CreateAsync(string name)
     {
-        if (await _clusterRepository.AnyAsync(x => x.Name == name))
-        {
-            throw new BusinessException(code: "Welcome");
-        }
-
         return await _clusterRepository.InsertAsync(
                 new Cluster(
                     IdentityManager.NewId(),

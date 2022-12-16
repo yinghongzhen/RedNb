@@ -1,17 +1,17 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>net7.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>net7.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Volo.Abp.Ddd.Domain" Version="7.0.0-rc.4" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Volo.Abp.Ddd.Domain" Version="7.0.0-rc.4" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\..\..\..\core\RedNb.Core\RedNb.Core.csproj" />
-    <ProjectReference Include="..\RedNb.Auth.Domain.Shared\RedNb.Auth.Domain.Shared.csproj" />
-  </ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\..\..\..\core\RedNb.Core\RedNb.Core.csproj" />
+		<ProjectReference Include="..\RedNb.Auth.Domain.Shared\RedNb.Auth.Domain.Shared.csproj" />
+	</ItemGroup>
 
 </Project>
