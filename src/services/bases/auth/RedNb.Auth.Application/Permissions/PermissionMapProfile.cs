@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using RedNb.Auth.Application.Contracts.Permissions.Dtos;
 using RedNb.Auth.Application.Contracts.Users.Dtos;
-using RedNb.Auth.Domain.Admins;
+using RedNb.Auth.Domain.Menus;
 using RedNb.Core.Contracts;
 using RedNb.Core.Extensions;
 using System;

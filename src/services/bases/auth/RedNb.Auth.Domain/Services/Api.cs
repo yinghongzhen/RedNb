@@ -7,7 +7,7 @@ using RedNb.Auth.Domain.Shared.Enums;
 using RedNb.Core.Domain;
 using RedNb.Core.Domain.Audit;
 
-namespace RedNb.Auth.Domain.Admins
+namespace RedNb.Auth.Domain.Services
 {
     /// <summary>
     /// 接口实体类

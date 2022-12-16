@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
+using RedNb.Auth.Domain.Services;
 using RedNb.Auth.Domain.Shared.Enums;
 using RedNb.Core.Domain;
 
-namespace RedNb.Auth.Domain.Admins
+namespace RedNb.Auth.Domain.Menus
 {
     /// <summary>
     /// 权限接口关系实体类

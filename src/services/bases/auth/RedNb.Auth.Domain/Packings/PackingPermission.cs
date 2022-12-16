@@ -1,4 +1,5 @@
-﻿using RedNb.Core.Domain;
+﻿using RedNb.Auth.Domain.Menus;
+using RedNb.Core.Domain;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -10,21 +11,19 @@ using System.Threading.Tasks;
 namespace RedNb.Auth.Domain.Admins
 {
     /// <summary>
-    /// 租户菜单包装实体类
+    /// 菜单包装-权限关系实体类
     /// </summary>
-    [Table("TenantPacking")]
-    public class TenantPacking : EntityBase
+    [Table("PackingPermission")]
+    public class PackingPermission : EntityBase
     {
-        [Required]
-        public long TenantId { get; set; }
-
-        public virtual Tenant Tenant { get; set; }
-
         [Required]
         public long PackingId { get; set; }
 
         public virtual Packing Packing { get; set; }
 
-        public DateTime? VaildTime { get; set; }
+        [Required]
+        public long PermissionId { get; set; }
+
+        public virtual Permission Permission { get; set; }
     }
 }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
-using RedNb.Auth.Domain.Admins;
+using RedNb.Auth.Domain.Menus;
 using RedNb.Core.Domain;
 
 namespace RedNb.Auth.Domain.Roles

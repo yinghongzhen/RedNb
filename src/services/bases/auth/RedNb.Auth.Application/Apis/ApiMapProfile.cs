@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using RedNb.Auth.Application.Contracts.Apis.Dtos;
-using RedNb.Auth.Domain.Admins;
+using RedNb.Auth.Domain.Services;
 using RedNb.Core.Extensions;
 
 namespace RedNb.Auth.Application.Apis

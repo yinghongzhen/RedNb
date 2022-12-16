@@ -1,6 +1,5 @@
 ﻿using RedNb.Auth.Application.Contracts.Configs;
 using RedNb.Auth.Application.Contracts.Configs.Dtos;
-using RedNb.Auth.Domain.Admins;
 using RedNb.Core.Contracts;
 using RedNb.Core.Domain;
 using Microsoft.EntityFrameworkCore;
@@ -14,6 +13,7 @@ using Volo.Abp;
 using Volo.Abp.Domain.Repositories;
 using Volo.Abp.ObjectMapping;
 using RestSharp;
+using RedNb.Auth.Domain.Configs;
 
 namespace RedNb.Auth.Application.Configs
 {

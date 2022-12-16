@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using RedNb.Auth.Application.Contracts.DictDatas.Dtos;
 using RedNb.Auth.Application.Contracts.DictTypes.Dtos;
-using RedNb.Auth.Domain.Admins;
+using RedNb.Auth.Domain.Dicts;
 using RedNb.Core.Extensions;
 using System;
 using System.Collections.Generic;

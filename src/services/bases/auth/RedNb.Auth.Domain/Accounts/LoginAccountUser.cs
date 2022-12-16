@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Net;
 
-namespace RedNb.Auth.Domain.Admins
+namespace RedNb.Auth.Domain.Accounts
 {
     /// <summary>
     /// 登录账户身份关联实体类

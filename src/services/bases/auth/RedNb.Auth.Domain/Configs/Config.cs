@@ -2,17 +2,17 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using RedNb.Auth.Domain.Shared.Enums;
+using System.Text;
 using RedNb.Core.Domain;
 using RedNb.Core.Domain.Audit;
 
-namespace RedNb.Auth.Domain.Admins
+namespace RedNb.Auth.Domain.Configs
 {
     /// <summary>
-    /// 平台实体类
+    /// 参数配置实体类
     /// </summary>
-    [Table("Platform")]
-    public class Platform : AuditFullEntity
+    [Table("Config")]
+    public class Config : AuditFullEntity
     {
         /// <summary>
         /// 名称
@@ -25,13 +25,20 @@ namespace RedNb.Auth.Domain.Admins
         /// 编码
         /// </summary>
         [Required]
-        [MaxLength(20)]
+        [MaxLength(100)]
         public string Key { get; set; }
 
         /// <summary>
-        /// 排序号
+        /// 值
         /// </summary>
         [Required]
-        public decimal Sort { get; set; }
+        [MaxLength(100)]
+        public string Value { get; set; }
+
+        /// <summary>
+        /// 是否系统
+        /// </summary>
+        [Required]
+        public bool IsSystem { get; set; }
     }
 }

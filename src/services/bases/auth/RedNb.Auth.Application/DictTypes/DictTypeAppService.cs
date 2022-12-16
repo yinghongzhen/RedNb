@@ -1,6 +1,5 @@
 ﻿using RedNb.Auth.Application.Contracts.DictTypes;
 using RedNb.Auth.Application.Contracts.DictTypes.Dtos;
-using RedNb.Auth.Domain.Admins;
 using RedNb.Core.Contracts;
 using RedNb.Core.Domain;
 using Microsoft.EntityFrameworkCore;
@@ -15,6 +14,7 @@ using Volo.Abp.Domain.Repositories;
 using Volo.Abp.ObjectMapping;
 using RestSharp;
 using RedNb.Auth.Application.Contracts.DictDatas.Dtos;
+using RedNb.Auth.Domain.Dicts;
 
 namespace RedNb.Auth.Application.DictTypes
 {

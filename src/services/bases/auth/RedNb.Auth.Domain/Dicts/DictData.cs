@@ -3,17 +3,16 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
-using RedNb.Auth.Domain.Shared.Enums;
 using RedNb.Core.Domain;
 using RedNb.Core.Domain.Audit;
 
-namespace RedNb.Auth.Domain.Admins
+namespace RedNb.Auth.Domain.Dicts
 {
     /// <summary>
-    /// 字典类型实体类
+    /// 字典数据实体类
     /// </summary>
-    [Table("DictType")]
-    public class DictType : AuditFullEntity
+    [Table("DictData")]
+    public class DictData : AuditFullEntity
     {
         /// <summary>
         /// 名称
@@ -23,16 +22,21 @@ namespace RedNb.Auth.Domain.Admins
         public string Name { get; set; }
 
         /// <summary>
-        /// 类型
+        /// 编码
         /// </summary>
         [Required]
         [MaxLength(100)]
-        public string Type { get; set; }
+        public string Key { get; set; }
 
         /// <summary>
-        /// 是否系统字典
+        /// 值
         /// </summary>
         [Required]
-        public bool IsSystem { get; set; }
+        [MaxLength(100)]
+        public string Value { get; set; }
+
+        public long DictTypeId { get; set; }
+
+        public virtual DictType DictType { get; set; }
     }
 }

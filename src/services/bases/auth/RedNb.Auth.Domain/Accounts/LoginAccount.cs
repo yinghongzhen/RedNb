@@ -8,7 +8,7 @@ using System.Net;
 using Microsoft.EntityFrameworkCore;
 using RedNb.Core.Domain.Audit;
 
-namespace RedNb.Auth.Domain.Admins
+namespace RedNb.Auth.Domain.Accounts
 {
     /// <summary>
     /// 登录账户实体类

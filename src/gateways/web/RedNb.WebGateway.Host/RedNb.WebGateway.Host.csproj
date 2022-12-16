@@ -21,8 +21,4 @@
     <PackageReference Include="Yarp.ReverseProxy" Version="1.1.1" />
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\RedNb.WebGateway.Application\RedNb.WebGateway.Application.csproj" />
-  </ItemGroup>
-
 </Project>

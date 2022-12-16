@@ -6,7 +6,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using RedNb.Auth.Application.Contracts.Apis;
 using RedNb.Auth.Application.Contracts.Apis.Dtos;
-using RedNb.Auth.Domain.Admins;
 using RedNb.Core.Contracts;
 using Microsoft.EntityFrameworkCore;
 using Volo.Abp.Domain.Repositories;
@@ -16,6 +15,7 @@ using RedNb.Core.Util;
 using RestSharp;
 using System.Text.Json;
 using RedNb.Core.Domain;
+using RedNb.Auth.Domain.Services;
 
 namespace RedNb.Auth.Application.Apis
 {
