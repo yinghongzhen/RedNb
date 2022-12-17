@@ -4,7 +4,7 @@
 /// 用户实体类
 /// </summary>
 [Table("User")]
-public class User : AggregateRoot<long>
+public class User : AggregateRootBase
 {
     /// <summary>
     /// 用户名

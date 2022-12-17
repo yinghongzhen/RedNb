@@ -1,22 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Text;
-using RedNb.Auth.Domain.Shared.Enums;
-using RedNb.Auth.Domain.Tenants;
-using RedNb.Core.Domain;
+﻿namespace RedNb.Auth.Domain.Users;
 
-namespace RedNb.Auth.Domain.Users
+/// <summary>
+/// 用户数据权限实体类
+/// </summary>
+[Table("UserDataScope")]
+public class UserDataScope : EntityBase
 {
-    /// <summary>
-    /// 用户数据权限实体类
-    /// </summary>
-    [Table("UserDataScope")]
-    public class UserDataScope : EntityBase, IHasTenant
-    {
-        public long TenantId { get; set; }
+    [Required]
+    [MaxLength(20)]
+    public string Type { get; set; }
 
-        public virtual Tenant Tenant { get; set; }
-    }
+    [Required]
+    [MaxLength(50)]
+    public string Data { get; set; }
+
+    [Required]
+    [MaxLength(50)]
+    public string Permission { get; set; }
+
+    public long UserId { get; set; }
+
+    public virtual User User { get; set; }
 }

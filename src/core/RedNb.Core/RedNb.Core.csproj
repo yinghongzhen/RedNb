@@ -8,7 +8,7 @@
   <ItemGroup>
     <PackageReference Include="JWT" Version="10.0.0-beta9" />
     <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
-    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="6.3.1" />
+    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="6.4.0" />
     <PackageReference Include="Volo.Abp.AspNetCore.Mvc" Version="7.0.0-rc.4" />
     <PackageReference Include="Volo.Abp.Ddd.Domain" Version="7.0.0-rc.4" />
     <PackageReference Include="Volo.Abp.EntityFrameworkCore" Version="7.0.0-rc.4" />

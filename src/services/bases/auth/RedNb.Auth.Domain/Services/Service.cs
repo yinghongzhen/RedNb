@@ -1,4 +1,4 @@
-﻿namespace RedNb.Gateway.Domain.Services;
+﻿namespace RedNb.Auth.Domain.Services;
 
 /// <summary>
 /// 服务实体类

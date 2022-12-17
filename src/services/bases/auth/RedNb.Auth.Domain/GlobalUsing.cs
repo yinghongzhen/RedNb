@@ -2,3 +2,4 @@
 global using System.ComponentModel.DataAnnotations.Schema;
 global using Volo.Abp.Domain.Entities;
 global using RedNb.Auth.Domain.Shared.Enums;
+global using RedNb.Core.Domain;

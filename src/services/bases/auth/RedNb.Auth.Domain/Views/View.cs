@@ -1,17 +1,11 @@
 ﻿namespace RedNb.Gateway.Domain.Services;
 
 /// <summary>
-/// 服务实体类
+/// 视图实体类
 /// </summary>
 [Table("View")]
 public class View : AggregateRootBase
 {
-    /// <summary>
-    /// 类型
-    /// </summary>
-    [Required]
-    public EServiceType Type { get; set; }
-
     /// <summary>
     /// 名称
     /// </summary>
@@ -25,10 +19,4 @@ public class View : AggregateRootBase
     [Required]
     [MaxLength(20)]
     public string Key { get; set; }
-
-    /// <summary>
-    /// 排序号
-    /// </summary>
-    [Required]
-    public decimal Sort { get; set; }
 }

@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 
-namespace RedNb.Gateway.Domain.Shared.Enums;
+namespace RedNb.Auth.Domain.Shared.Enums;
 
 /// <summary>
 /// 服务类型

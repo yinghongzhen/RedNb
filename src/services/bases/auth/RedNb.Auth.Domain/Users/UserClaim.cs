@@ -1,32 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Text;
-using RedNb.Auth.Domain.Shared.Enums;
-using RedNb.Core.Domain;
-using RedNb.Core.Domain.Audit;
+﻿namespace RedNb.Auth.Domain.Users;
 
-namespace RedNb.Auth.Domain.Users
+/// <summary>
+/// 用户信息实体类
+/// </summary>
+[Table("UserClaim")]
+public class UserClaim : EntityBase
 {
+    [Required]
+    [MaxLength(200)]
+    public string Type { get; set; }
+
+    [Required]
+    public string Value { get; set; }
+
     /// <summary>
-    /// 用户信息实体类
+    /// 用户编号
     /// </summary>
-    [Table("UserClaim")]
-    public class UserClaim : AuditFullEntity
-    {
-        [Required]
-        [MaxLength(200)]
-        public string Type { get; set; }
+    public long UserId { get; set; }
 
-        [Required]
-        public string Value { get; set; }
-
-        /// <summary>
-        /// 用户编号
-        /// </summary>
-        public long UserId { get; set; }
-
-        public virtual User User { get; set; }
-    }
+    public virtual User User { get; set; }
 }
