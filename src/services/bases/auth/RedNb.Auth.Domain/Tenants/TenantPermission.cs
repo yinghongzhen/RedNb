@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using RedNb.Auth.Domain.Menus;
+using RedNb.Auth.Domain.Products;
 using RedNb.Core.Domain;
 
 namespace RedNb.Auth.Domain.Tenants

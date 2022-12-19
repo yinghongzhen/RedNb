@@ -27,8 +27,8 @@ using RedNb.Auth.Application.Contracts.Users;
 using RestSharp;
 using Volo.Abp.Uow;
 using RedNb.Auth.Application.Contracts.Tenants.Dtos;
-using RedNb.Auth.Domain.Menus;
 using RedNb.Auth.Domain.Accounts;
+using RedNb.Auth.Domain.Products;
 
 namespace RedNb.Auth.Application.Accounts
 {

@@ -18,7 +18,7 @@ using Volo.Abp.ObjectMapping;
 using RedNb.Core.Util;
 using RedNb.Core.Domain;
 using RedNb.Core.Application;
-using RedNb.Auth.Domain.Menus;
+using RedNb.Auth.Domain.Products;
 
 namespace RedNb.Auth.Application.Permissions
 {

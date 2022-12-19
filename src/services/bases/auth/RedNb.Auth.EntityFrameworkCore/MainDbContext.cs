@@ -8,11 +8,10 @@ using System.Threading.Tasks;
 using Volo.Abp.Data;
 using RedNb.Core.Data;
 using Microsoft.AspNetCore.Http;
-using RedNb.Auth.Domain.Menus;
 using RedNb.Auth.Domain.Dicts;
 using RedNb.Auth.Domain.Accounts;
 using RedNb.Auth.Domain.Services;
-using RedNb.Auth.Domain.Configs;
+using RedNb.Auth.Domain.Products;
 
 namespace RedNb.Auth.Data
 {

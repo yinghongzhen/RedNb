@@ -13,7 +13,7 @@ using Volo.Abp;
 using Volo.Abp.Domain.Repositories;
 using Volo.Abp.ObjectMapping;
 using RestSharp;
-using RedNb.Auth.Domain.Configs;
+using RedNb.Auth.Domain.Services;
 
 namespace RedNb.Auth.Application.Configs
 {

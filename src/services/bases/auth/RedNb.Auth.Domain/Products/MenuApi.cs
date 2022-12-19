@@ -7,7 +7,7 @@ using RedNb.Auth.Domain.Services;
 using RedNb.Auth.Domain.Shared.Enums;
 using RedNb.Core.Domain;
 
-namespace RedNb.Auth.Domain.Menus
+namespace RedNb.Auth.Domain.Products
 {
     /// <summary>
     /// 权限接口关系实体类

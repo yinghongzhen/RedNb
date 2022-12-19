@@ -1,18 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using RedNb.Auth.Domain.Shared.Enums;
-using RedNb.Core.Domain;
-using RedNb.Core.Domain.Audit;
-
-namespace RedNb.Auth.Domain.Admins
+﻿namespace RedNb.Auth.Domain.Admins
 {
     /// <summary>
     /// 平台实体类
     /// </summary>
     [Table("Platform")]
-    public class Platform : AuditFullEntity
+    public class Platform : EntityBase
     {
         /// <summary>
         /// 名称

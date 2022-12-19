@@ -14,7 +14,7 @@ using Volo.Abp;
 using Volo.Abp.Domain.Repositories;
 using Volo.Abp.ObjectMapping;
 using RestSharp;
-using RedNb.Auth.Domain.Menus;
+using RedNb.Auth.Domain.Products;
 
 namespace RedNb.Auth.Application.Platforms
 {

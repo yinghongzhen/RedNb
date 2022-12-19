@@ -1,4 +1,4 @@
-﻿namespace RedNb.Auth.Domain.Configs;
+﻿namespace RedNb.Auth.Domain.Services;
 
 /// <summary>
 /// 参数配置实体类

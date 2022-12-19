@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using RedNb.Auth.Application.Contracts.Configs.Dtos;
-using RedNb.Auth.Domain.Configs;
+using RedNb.Auth.Domain.Services;
 using RedNb.Core.Extensions;
 using System;
 using System.Collections.Generic;
