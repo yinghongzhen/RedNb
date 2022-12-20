@@ -6,8 +6,15 @@ namespace RedNb.Auth.Domain.Offices;
 /// 公司实体类
 /// </summary>
 [Table("Company")]
-public class Company : AggregateRoot<long>
+public class Company : BaseAggregateRoot
 {
+    /// <summary>
+    /// 公司全称
+    /// </summary>
+    [Required]
+    [MaxLength(200)]
+    public string Name { get; set; }
+
     /// <summary>
     /// 编码
     /// </summary>

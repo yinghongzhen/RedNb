@@ -3,7 +3,7 @@
 namespace RedNb.Gateway.Domain.Routes;
 
 [Table("Route")]
-public class Route : AggregateRootBase
+public class Route : BaseAggregateRoot
 {
     [Required]
     [MaxLength(100)]

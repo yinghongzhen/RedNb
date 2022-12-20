@@ -14,7 +14,6 @@ public class GatewayDbContext : AbpDbContext<GatewayDbContext>
     public DbSet<Cluster> Clusters { get; set; }
     public DbSet<Destination> Destinations { get; set; }
     public DbSet<MetaData> MetaDatas { get; set; }
-
     public DbSet<Match> Matchs { get; set; }
     public DbSet<Route> Routes { get; set; }
     public DbSet<Transform> Transforms { get; set; }

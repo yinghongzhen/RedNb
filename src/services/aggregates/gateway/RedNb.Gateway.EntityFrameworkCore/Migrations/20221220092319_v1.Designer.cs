@@ -12,8 +12,8 @@ using Volo.Abp.EntityFrameworkCore;
 namespace RedNb.Gateway.EntityFrameworkCore.Migrations
 {
     [DbContext(typeof(GatewayDbContext))]
-    [Migration("20221212070408_init")]
-    partial class init
+    [Migration("20221220092319_v1")]
+    partial class v1
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -21,7 +21,7 @@ namespace RedNb.Gateway.EntityFrameworkCore.Migrations
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("_Abp_DatabaseProvider", EfCoreDatabaseProvider.MySql)
-                .HasAnnotation("ProductVersion", "7.0.0")
+                .HasAnnotation("ProductVersion", "7.0.1")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
             modelBuilder.Entity("RedNb.Gateway.Domain.Clusters.Cluster", b =>
@@ -42,13 +42,41 @@ namespace RedNb.Gateway.EntityFrameworkCore.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("varchar(100)");
+                        .HasMaxLength(200)
+                        .HasColumnType("varchar(200)");
+
+                    b.Property<long>("ParentId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("ParentIds")
+                        .IsRequired()
+                        .HasMaxLength(1000)
+                        .HasColumnType("varchar(1000)");
 
                     b.Property<string>("Path")
                         .IsRequired()
                         .HasMaxLength(100)
-                        .HasColumnType("varchar(100)");
+                        .HasColumnType("varchar(100)")
+                        .HasColumnOrder(1);
+
+                    b.Property<decimal>("Sort")
+                        .HasColumnType("decimal(65,30)");
+
+                    b.Property<bool>("TreeLeaf")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<int>("TreeLevel")
+                        .HasColumnType("int");
+
+                    b.Property<string>("TreeNames")
+                        .IsRequired()
+                        .HasMaxLength(1000)
+                        .HasColumnType("varchar(1000)");
+
+                    b.Property<string>("TreeSorts")
+                        .IsRequired()
+                        .HasMaxLength(1000)
+                        .HasColumnType("varchar(1000)");
 
                     b.HasKey("Id");
 

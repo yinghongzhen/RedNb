@@ -5,7 +5,7 @@ using Volo.Abp.Domain.Entities;
 
 namespace RedNb.Core.Domain;
 
-public class AggregateRootBase : AggregateRoot<long>
+public class BaseAggregateRoot : AggregateRoot<long>
 {
     /// <summary>
     /// 主键
