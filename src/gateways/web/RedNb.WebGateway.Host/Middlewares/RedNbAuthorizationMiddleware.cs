@@ -13,7 +13,7 @@ public class RedNbAuthorizationMiddleware
     {
         var path = context.Request.Path;
 
-        Console.WriteLine(path);
+        //Console.WriteLine(path);
 
         await _next(context);
     }

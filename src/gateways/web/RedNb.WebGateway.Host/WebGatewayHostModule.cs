@@ -1,30 +1,52 @@
-
-
-using Medallion.Threading;
-using Medallion.Threading.Redis;
 using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.OpenApi.Models;
+using RedNb.Core;
 using RedNb.Core.Web;
-using RedNb.WebGateway.Host.Extensions;
 using RedNb.WebGateway.Host.Middlewares;
-using StackExchange.Redis;
 using System.Text.Json;
 using Volo.Abp;
 using Volo.Abp.AspNetCore.Mvc.AntiForgery;
-using Volo.Abp.Caching;
-using Volo.Abp.DistributedLocking;
-using Yarp.ReverseProxy.Configuration;
+using Yarp.ReverseProxy.Transforms;
+using Yarp.ReverseProxy.Transforms.Builder;
 
 namespace RedNb.WebGateway.Host;
+
+public class CutomerTransformProvider : ITransformProvider
+{
+    public void Apply(TransformBuilderContext context)
+    {
+        context.AddRequestTransform(transformContext => {
+            var pathArr = transformContext.Path.Value.Split("/").Where(b => !string.IsNullOrEmpty(b)).Select(b => b).ToList();
+            
+            string apiPath = "";
+            switch (pathArr[0])
+            {
+                case "auth":
+                    pathArr[0] = "api/app";
+                    break;
+                default:
+                    break;
+            }
+            transformContext.Path = "/" + string.Join("/", pathArr);
+            return new ValueTask();
+        });
+    }
+
+    public void ValidateCluster(TransformClusterValidationContext context)
+    {
+        //throw new NotImplementedException();
+    }
+
+    public void ValidateRoute(TransformRouteValidationContext context)
+    {
+        //throw new NotImplementedException();
+    }
+}
 
 [DependsOn(
     typeof(AbpAspNetCoreMvcModule),
     typeof(AbpAutofacModule),
-    typeof(AbpDistributedLockingModule),
     typeof(AbpSwashbuckleModule),
-    typeof(WebGatewayApplicationModule),
-    typeof(WebGatewayEntityFrameworkCoreModule),
     typeof(CoreModule)
 )]
 public class WebGatewayHostModule : AbpModule
@@ -53,44 +75,7 @@ public class WebGatewayHostModule : AbpModule
             options.JsonSerializerOptions.Converters.Add(new DefaultJsonConverter());
         });
 
-        Configure<AbpAspNetCoreMvcOptions>(options =>
-        {
-            options.ConventionalControllers.Create(typeof(WebGatewayApplicationModule).Assembly);
-        });
-
-        Configure<AbpDistributedCacheOptions>(options => { options.KeyPrefix = "WebGateway:"; });
-
         Configure<AbpAntiForgeryOptions>(options => { options.AutoValidate = false; });
-
-        context.Services.AddSwaggerGen(
-                options =>
-                {
-                    options.SwaggerDoc(configuration["Service:Version"], new OpenApiInfo
-                    {
-                        Title = configuration["Service:Name"],
-                        Version = configuration["Service:Version"],
-                        Description = configuration["Service:Description"],
-                        License = new OpenApiLicense
-                        {
-                            Name = configuration["Service:License:Name"],
-                            Url = new Uri(configuration["Service:License:Url"])
-                        }
-                    });
-
-                    options.DocInclusionPredicate((docName, description) => true);
-
-                    //options.IncludeXmlComments(Path.Combine(
-                    //AppDomain.CurrentDomain.BaseDirectory,
-                    //"RedNb.Dwcj.Application.xml"));
-                }
-            );
-
-        context.Services.AddSingleton<IDistributedLockProvider>(sp =>
-        {
-            var connection = ConnectionMultiplexer
-                .Connect(configuration["Redis:Configuration"]);
-            return new RedisDistributedSynchronizationProvider(connection.GetDatabase());
-        });
 
         context.Services.AddCors(options =>
         {
@@ -104,33 +89,10 @@ public class WebGatewayHostModule : AbpModule
             });
         });
 
-        var routes = new[]
-            {
-                new RouteConfig()
-                {
-                    RouteId = "route1",
-                    ClusterId = "cluster1",
-                    Match = new RouteMatch
-                    {
-                        Path = "a1/{**catch-all}"
-                    }
-                }
-            };
-                var clusters = new[]
-                {
-                new ClusterConfig()
-                {
-                    ClusterId = "cluster1",
-                    Destinations = new Dictionary<string, DestinationConfig>(StringComparer.OrdinalIgnoreCase)
-                    {
-                        { "destination1", new DestinationConfig() { Address = "http://localhost:5029/" } }
-                    }
-                }
-            };
-
         context.Services.AddReverseProxy()
-            .LoadFromMemory(routes, clusters)
-            .LoadFromConfig(configuration.GetSection("ReverseProxy"));
+            //.LoadFromMemory(routes, clusters)
+            .LoadFromConfig(configuration.GetSection("ReverseProxy"))
+            .AddTransforms<CutomerTransformProvider>();
     }
 
     public override void OnApplicationInitialization(ApplicationInitializationContext context)
@@ -146,12 +108,6 @@ public class WebGatewayHostModule : AbpModule
         app.UseForwardedHeaders();
         app.UseCors();
         app.UseRouting();
-
-        app.UseSwagger();
-        app.UseSwaggerUI(options =>
-        {
-            options.SwaggerEndpoint("/swagger/v1/swagger.json", "WebGateway API");
-        });
 
         app.UseEndpoints(endpoints =>
         {

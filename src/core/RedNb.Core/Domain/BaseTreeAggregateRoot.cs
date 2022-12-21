@@ -5,7 +5,7 @@ namespace RedNb.Core.Domain;
 
 public class BaseTreeAggregateRoot: BaseAggregateRoot
 {
-    https://github.com/thinkgem/jeesite/blob/master/src/main/java/com/thinkgem/jeesite/common/service/TreeService.java
+    //https://github.com/thinkgem/jeesite/blob/master/src/main/java/com/thinkgem/jeesite/common/service/TreeService.java
     /// <summary>
     /// 名称
     /// </summary>
