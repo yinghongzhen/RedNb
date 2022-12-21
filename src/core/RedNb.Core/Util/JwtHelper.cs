@@ -1,9 +1,9 @@
-﻿using RedNb.Core.Domain;
-using RedNb.Core.Extensions;
+﻿using RedNb.Core.Extensions;
 using JWT;
 using JWT.Algorithms;
 using JWT.Exceptions;
 using JWT.Serializers;
+using RedNb.Core.Domain.Shared;
 
 namespace RedNb.Core.Util
 {

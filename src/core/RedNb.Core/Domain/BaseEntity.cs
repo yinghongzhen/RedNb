@@ -1,6 +1,6 @@
 ﻿namespace RedNb.Core.Domain;
 
-public class BaseAggregateRoot : AggregateRoot<long>
+public class BaseEntity : Entity<long>
 {
     /// <summary>
     /// 主键

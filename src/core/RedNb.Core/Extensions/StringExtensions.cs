@@ -1,4 +1,4 @@
-﻿using RedNb.Core.Domain;
+﻿using RedNb.Core.Domain.Shared;
 
 namespace RedNb.Core.Extensions;
 

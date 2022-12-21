@@ -1,11 +1,11 @@
-﻿using RedNb.Core.Domain;
+﻿using RedNb.Core.Domain.Shared;
 using RedNb.Gateway.Domain.Shared.Enums;
 using System.Net;
 
 namespace RedNb.Gateway.Domain.Logs;
 
 [Table("Log")]
-public class Log : EntityBase
+public class Log : BaseEntity
 {
     /// <summary>
     /// 类型

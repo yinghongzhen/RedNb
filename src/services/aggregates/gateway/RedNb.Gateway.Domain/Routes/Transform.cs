@@ -3,7 +3,7 @@
 namespace RedNb.Gateway.Domain.Routes;
 
 [Table("Transform")]
-public class Transform : EntityBase
+public class Transform : BaseEntity
 {
     [Required]
     [MaxLength(100)]

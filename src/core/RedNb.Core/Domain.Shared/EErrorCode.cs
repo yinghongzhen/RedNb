@@ -1,4 +1,4 @@
-﻿namespace RedNb.Core.Domain;
+﻿namespace RedNb.Core.Domain.Shared;
 
 /// <summary>
 /// 错误码

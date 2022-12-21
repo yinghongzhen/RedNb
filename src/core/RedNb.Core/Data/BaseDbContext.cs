@@ -1,14 +1,15 @@
 using RedNb.Core.Application;
 using RedNb.Core.Domain;
 using RedNb.Core.Extensions;
+using Volo.Abp.Domain.Entities;
 
 namespace RedNb.Core.Data;
 
-public class DbContextBase<TDbContext> : AbpDbContext<TDbContext> where TDbContext : DbContext
+public class BaseDbContext<TDbContext> : AbpDbContext<TDbContext> where TDbContext : DbContext
 {
     public LoginUser LoginUser { get; set; }
 
-    public DbContextBase(DbContextOptions<TDbContext> options)
+    public BaseDbContext(DbContextOptions<TDbContext> options)
         : base(options)
     {
 

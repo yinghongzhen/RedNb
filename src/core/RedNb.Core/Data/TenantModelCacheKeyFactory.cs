@@ -11,7 +11,7 @@ namespace RedNb.Core.Data;
 public class TenantModelCacheKeyFactory<T> : IModelCacheKeyFactory where T : DbContext
 {
     public object Create(DbContext context, bool designTime) =>
-        context is DbContextBase<T> dynamicContext
+        context is BaseDbContext<T> dynamicContext
         ? (context.GetType(), dynamicContext.LoginUser?.TenantId, designTime)
         : (object)context.GetType();
 }

@@ -3,7 +3,7 @@
 namespace RedNb.Gateway.Domain.Routes;
 
 [Table("Match")]
-public class Match : EntityBase
+public class Match : BaseEntity
 {
     [Required]
     [MaxLength(100)]

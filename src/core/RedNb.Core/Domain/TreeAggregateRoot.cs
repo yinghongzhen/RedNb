@@ -1,11 +1,7 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿namespace RedNb.Core.Domain;
 
-namespace RedNb.Core.Domain;
-
-public class BaseTreeAggregateRoot: BaseAggregateRoot
+public class TreeAggregateRoot: BaseAggregateRoot
 {
-    //https://github.com/thinkgem/jeesite/blob/master/src/main/java/com/thinkgem/jeesite/common/service/TreeService.java
     /// <summary>
     /// 名称
     /// </summary>

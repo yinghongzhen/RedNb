@@ -3,7 +3,7 @@
 namespace RedNb.Gateway.Domain.Clusters;
 
 [Table("Destination")]
-public class Destination : EntityBase
+public class Destination : BaseEntity
 {
     [Required]
     [MaxLength(100)]

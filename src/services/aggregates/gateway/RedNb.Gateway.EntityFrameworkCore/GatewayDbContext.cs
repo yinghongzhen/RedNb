@@ -1,9 +1,10 @@
-﻿using RedNb.Gateway.Domain.Clusters;
+﻿using RedNb.Core.Data;
+using RedNb.Gateway.Domain.Clusters;
 using RedNb.Gateway.Domain.Routes;
 
 namespace RedNb.Gateway.EntityFrameworkCore;
 
-public class GatewayDbContext : AbpDbContext<GatewayDbContext>
+public class GatewayDbContext : BaseDbContext<GatewayDbContext>
 {
     public GatewayDbContext(DbContextOptions<GatewayDbContext> options)
         : base(options)

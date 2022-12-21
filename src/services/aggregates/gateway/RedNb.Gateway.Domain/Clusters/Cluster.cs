@@ -6,12 +6,8 @@ using Volo.Abp.Auditing;
 namespace RedNb.Gateway.Domain.Clusters;
 
 [Table("Cluster")]
-public class Cluster : BaseAggregateRoot
+public class Cluster : TreeAggregateRoot
 {
-    [Required]
-    [MaxLength(100)]
-    public string Name { get; set; }
-
     [Required]
     [MaxLength(100)]
     public string Path { get; set; }

@@ -3,7 +3,7 @@
 namespace RedNb.Gateway.Domain.Clusters;
 
 [Table("MetaData")]
-public class MetaData : EntityBase
+public class MetaData : BaseEntity
 {
     [Required]
     [MaxLength(100)]
