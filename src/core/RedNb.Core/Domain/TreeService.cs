@@ -17,17 +17,18 @@ public abstract class TreeService<T> : DomainService where T : TreeAggregateRoot
     public virtual async Task AddAsync(T model)
     {
         model.CreateKey();
-        model.IsLast = false;
 
         if (model.ParentId != 0)
         {
             var parent = await _treeEntityRepository.GetAsync(model.ParentId);
 
-            model.UpdateNodeValue(parent);
+            model.AddNode(parent);
+
+            parent.IsLast = false;
         }
         else
         {
-            model.UpdateNodeValue(null);
+            model.AddNode(null);
         }
 
         await _treeEntityRepository.InsertAsync(model);
@@ -48,15 +49,33 @@ public abstract class TreeService<T> : DomainService where T : TreeAggregateRoot
             .Select(m => (TreeAggregateRoot)m)
             .ToListAsync();
 
-        if (old.ParentId == model.ParentId)
-        {
-            old.UpdateTreeValue(null, oldChildren);
-        }
-        else
+        if (model.ParentId != 0)
         {
             var parent = await _treeEntityRepository.GetAsync(model.ParentId);
 
-            model.UpdateTreeValue(parent, oldChildren);
+            if (old.ParentId == model.ParentId)
+            {
+                model.UpdateNodeValue(parent);
+                model.UpdateChildrenValue(oldChildren);
+            }
+            else
+            {
+                model.UpdateNodeValue(parent);
+                model.UpdateChildrenValue(oldChildren);
+            }
+        }
+        else
+        {
+            if (old.ParentId == model.ParentId)
+            {
+                model.UpdateNodeValue(null);
+                model.UpdateChildrenValue(oldChildren);
+            }
+            else
+            {
+                model.UpdateNodeValue(null);
+                model.UpdateChildrenValue(oldChildren);
+            }
         }
     }
 }

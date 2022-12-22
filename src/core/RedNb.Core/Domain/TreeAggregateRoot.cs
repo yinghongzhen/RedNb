@@ -56,6 +56,46 @@ public class TreeAggregateRoot : BaseAggregateRoot
     [Required]
     public bool IsLast { get; set; }
 
+    public void UpdateNode(TreeAggregateRoot parent, )
+    {
+        if (parent != null)
+        {
+            Names = $"{parent.Names}/{Name}";
+            ParentIds = $"{parent.ParentIds}{ParentId},";
+            Sorts = $"{parent.Sorts}{Sort},";
+            Level = parent.Level + 1;
+            IsLast = true;
+        }
+        else
+        {
+            Names = Name;
+            ParentIds = $"{ParentId},";
+            Sorts = $"{Sort},";
+            Level = 0;
+            IsLast = true;
+        }
+    }
+
+    public void DeleteNode(TreeAggregateRoot parent)
+    {
+        if (parent != null)
+        {
+            Names = $"{parent.Names}/{Name}";
+            ParentIds = $"{parent.ParentIds}{ParentId},";
+            Sorts = $"{parent.Sorts}{Sort},";
+            Level = parent.Level + 1;
+            IsLast = true;
+        }
+        else
+        {
+            Names = Name;
+            ParentIds = $"{ParentId},";
+            Sorts = $"{Sort},";
+            Level = 0;
+            IsLast = true;
+        }
+    }
+
     public void UpdateNodeValue(TreeAggregateRoot parent)
     {
         if (parent != null)
