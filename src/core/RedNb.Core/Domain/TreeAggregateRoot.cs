@@ -35,7 +35,7 @@ public class TreeAggregateRoot : BaseAggregateRoot
     /// 排序号
     /// </summary>
     [Required]
-    public decimal Sort { get; set; }
+    public int Sort { get; set; }
 
     /// <summary>
     /// 所有排序号
@@ -56,22 +56,43 @@ public class TreeAggregateRoot : BaseAggregateRoot
     [Required]
     public bool IsLast { get; set; }
 
-    public void UpdateNode(TreeAggregateRoot parent, )
+    private string FormatSort(decimal sort)
+    {
+        return sort.ToString("0000000000");
+    }
+
+    public void UpdateTreeValue(TreeAggregateRoot parent, List<TreeAggregateRoot> children)
     {
         if (parent != null)
         {
             Names = $"{parent.Names}/{Name}";
             ParentIds = $"{parent.ParentIds}{ParentId},";
-            Sorts = $"{parent.Sorts}{Sort},";
+            Sorts = $"{parent.Sorts}{FormatSort(Sort)},";
             Level = parent.Level + 1;
-            IsLast = true;
+
+            parent.IsLast = false;
         }
         else
         {
             Names = Name;
             ParentIds = $"{ParentId},";
-            Sorts = $"{Sort},";
+            Sorts = $"{FormatSort(Sort)},";
             Level = 0;
+        }
+
+        if (children != null && children.Any())
+        {
+            foreach (var item in children)
+            {
+                var childParent = children.SingleOrDefault(m => m.Id == item.ParentId) ?? this;
+
+                item.UpdateTreeValue(childParent, null);
+            }
+
+            IsLast = false;
+        }
+        else
+        {
             IsLast = true;
         }
     }
@@ -93,43 +114,6 @@ public class TreeAggregateRoot : BaseAggregateRoot
             Sorts = $"{Sort},";
             Level = 0;
             IsLast = true;
-        }
-    }
-
-    public void UpdateNodeValue(TreeAggregateRoot parent)
-    {
-        if (parent != null)
-        {
-            Names = $"{parent.Names}/{Name}";
-            ParentIds = $"{parent.ParentIds}{ParentId},";
-            Sorts = $"{parent.Sorts}{Sort},";
-            Level = parent.Level + 1;
-        }
-        else
-        {
-            Names = Name;
-            ParentIds = $"{ParentId},";
-            Sorts = $"{Sort},";
-            Level = 0;
-        }
-    }
-
-    public void UpdateChildrenValue(List<TreeAggregateRoot> children)
-    {
-        if (children != null && children.Any())
-        {
-            foreach (var item in children)
-            {
-                var childParent = children.SingleOrDefault(m => m.Id == item.ParentId) ?? this;
-
-                item.UpdateNodeValue(childParent);
-            }
-
-            IsLast = true;
-        }
-        else
-        {
-            IsLast = false;
         }
     }
 }

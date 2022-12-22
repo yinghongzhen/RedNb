@@ -1,20 +1,24 @@
-﻿using System.Diagnostics.Metrics;
+﻿using RedNb.Core.Contracts;
+using System.Diagnostics.Metrics;
 using Volo.Abp.Domain.Repositories;
 using Volo.Abp.Domain.Services;
 using Volo.Abp.ObjectMapping;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace RedNb.Core.Domain;
 
-public abstract class TreeService<T> : DomainService where T : TreeAggregateRoot, new()
+public abstract class TreeService<TEntity, TOutputDto> : DomainService where TEntity : TreeAggregateRoot, new()
 {
-    private readonly IRepository<T, long> _treeEntityRepository;
+    private readonly IRepository<TEntity, long> _treeEntityRepository;
+    private readonly IObjectMapper _objectMapper;
 
-    public TreeService(IRepository<T, long> treeEntityRepository)
+    public TreeService(IRepository<TEntity, long> treeEntityRepository, IObjectMapper objectMapper)
     {
         _treeEntityRepository = treeEntityRepository;
+        _objectMapper = objectMapper;
     }
 
-    public virtual async Task AddAsync(T model)
+    public virtual async Task AddAsync(TEntity model)
     {
         model.CreateKey();
 
@@ -22,25 +26,28 @@ public abstract class TreeService<T> : DomainService where T : TreeAggregateRoot
         {
             var parent = await _treeEntityRepository.GetAsync(model.ParentId);
 
-            model.AddNode(parent);
+            if (parent == null)
+            {
+                throw new BusinessException("父节点不存在");
+            }
 
-            
+            model.UpdateTreeValue(parent, null);
         }
         else
         {
-            model.AddNode(null);
+            model.UpdateTreeValue(null, null);
         }
 
         await _treeEntityRepository.InsertAsync(model);
     }
 
-    public virtual async Task UpdateAsync(T model)
+    public virtual async Task UpdateAsync(TEntity model)
     {
         var old = await _treeEntityRepository.GetAsync(model.Id);
 
         var queryable = await _treeEntityRepository.GetQueryableAsync();
 
-        var oldParentId = $"{old.Id},";
+        var oldParentId = $"{old.ParentIds}{old.Id}";
 
         var oldChildren = await queryable
             .Where(m => m.ParentIds.Contains(oldParentId))
@@ -49,33 +56,67 @@ public abstract class TreeService<T> : DomainService where T : TreeAggregateRoot
             .Select(m => (TreeAggregateRoot)m)
             .ToListAsync();
 
-        if (model.ParentId != 0)
-        {
-            var parent = await _treeEntityRepository.GetAsync(model.ParentId);
+        old.Name = model.Name;
+        old.ParentId = model.ParentId;
+        old.Sort = model.Sort;
 
-            if (old.ParentId == model.ParentId)
-            {
-                model.UpdateNodeValue(parent);
-                model.UpdateChildrenValue(oldChildren);
-            }
-            else
-            {
-                model.UpdateNodeValue(parent);
-                model.UpdateChildrenValue(oldChildren);
-            }
+        if (old.ParentId != 0)
+        {
+            var parent = await _treeEntityRepository.GetAsync(old.ParentId);
+
+            old.UpdateTreeValue(parent, oldChildren);
         }
         else
         {
-            if (old.ParentId == model.ParentId)
-            {
-                model.UpdateNodeValue(null);
-                model.UpdateChildrenValue(oldChildren);
-            }
-            else
-            {
-                model.UpdateNodeValue(null);
-                model.UpdateChildrenValue(oldChildren);
-            }
+            old.UpdateTreeValue(null, oldChildren);
         }
+    }
+
+    public virtual async Task GetListAsync(TEntity model)
+    {
+        var old = await _treeEntityRepository.GetAsync(model.Id);
+
+        var queryable = await _treeEntityRepository.GetQueryableAsync();
+
+        var oldParentId = $"{old.ParentIds}{old.Id}";
+
+        var oldChildren = await queryable
+            .Where(m => m.ParentIds.Contains(oldParentId))
+            .OrderBy(m => m.Level)
+            .ThenBy(m => m.Id)
+            .Select(m => (TreeAggregateRoot)m)
+            .ToListAsync();
+
+        old.Name = model.Name;
+        old.ParentId = model.ParentId;
+        old.Sort = model.Sort;
+
+        if (old.ParentId != 0)
+        {
+            var parent = await _treeEntityRepository.GetAsync(old.ParentId);
+
+            old.UpdateTreeValue(parent, oldChildren);
+        }
+        else
+        {
+            old.UpdateTreeValue(null, oldChildren);
+        }
+    }
+
+    public virtual async Task<PagedOutputDto<TOutputDto>> GetPageAsync(PagedInputDto input)
+    {
+        var queryable = await _treeEntityRepository.GetQueryableAsync();
+
+        var count = await queryable.CountAsync();
+
+        var list = await queryable
+            .OrderBy(m => m.Sorts)
+            .ThenBy(m => m.Id)
+            .PageBy(input)
+            .ToListAsync();
+
+        var data = _objectMapper.Map<List<TEntity>, List<TOutputDto>>(list);
+
+        return new PagedOutputDto<TOutputDto>(count, data);
     }
 }

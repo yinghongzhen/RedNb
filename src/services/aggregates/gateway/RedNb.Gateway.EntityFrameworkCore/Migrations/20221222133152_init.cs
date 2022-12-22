@@ -31,7 +31,7 @@ namespace RedNb.Gateway.EntityFrameworkCore.Migrations
                     ParentId = table.Column<long>(type: "bigint", nullable: false),
                     ParentIds = table.Column<string>(type: "varchar(1000)", maxLength: 1000, nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    Sort = table.Column<decimal>(type: "decimal(65,30)", nullable: false),
+                    Sort = table.Column<int>(type: "int", nullable: false),
                     Sorts = table.Column<string>(type: "varchar(1000)", maxLength: 1000, nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     Level = table.Column<int>(type: "int", nullable: false),

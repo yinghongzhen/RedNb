@@ -67,8 +67,8 @@ namespace RedNb.Gateway.EntityFrameworkCore.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("varchar(100)");
 
-                    b.Property<decimal>("Sort")
-                        .HasColumnType("decimal(65,30)");
+                    b.Property<int>("Sort")
+                        .HasColumnType("int");
 
                     b.Property<string>("Sorts")
                         .IsRequired()
