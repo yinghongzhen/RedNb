@@ -14,7 +14,7 @@ namespace RedNb.Core.Contracts
         /// </summary>
         [Required]
         [MaxLength(200)]
-        public string TreeName { get; set; }
+        public string Name { get; set; }
 
         /// <summary>
         /// 父级编号
@@ -26,6 +26,6 @@ namespace RedNb.Core.Contracts
         /// 排序号
         /// </summary>
         [Required]
-        public decimal TreeSort { get; set; }
+        public decimal Sort { get; set; }
     }
 }

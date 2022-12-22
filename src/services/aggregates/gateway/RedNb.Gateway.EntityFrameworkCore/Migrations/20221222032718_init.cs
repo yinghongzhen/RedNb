@@ -17,15 +17,25 @@ namespace RedNb.Gateway.EntityFrameworkCore.Migrations
                 name: "Cluster",
                 columns: table => new
                 {
-                    Id = table.Column<long>(type: "bigint", nullable: false),
-                    Name = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Id = table.Column<long>(type: "bigint", nullable: false, comment: "主键"),
                     Path = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     ExtraProperties = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     ConcurrencyStamp = table.Column<string>(type: "varchar(40)", maxLength: 40, nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4")
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Name = table.Column<string>(type: "varchar(200)", maxLength: 200, nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Names = table.Column<string>(type: "varchar(1000)", maxLength: 1000, nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    ParentId = table.Column<long>(type: "bigint", nullable: false),
+                    ParentIds = table.Column<string>(type: "varchar(1000)", maxLength: 1000, nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Sort = table.Column<decimal>(type: "decimal(65,30)", nullable: false),
+                    Sorts = table.Column<string>(type: "varchar(1000)", maxLength: 1000, nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Level = table.Column<int>(type: "int", nullable: false),
+                    IsLast = table.Column<bool>(type: "tinyint(1)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -37,7 +47,7 @@ namespace RedNb.Gateway.EntityFrameworkCore.Migrations
                 name: "Route",
                 columns: table => new
                 {
-                    Id = table.Column<long>(type: "bigint", nullable: false),
+                    Id = table.Column<long>(type: "bigint", nullable: false, comment: "主键"),
                     Name = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     ExtraProperties = table.Column<string>(type: "longtext", nullable: true)
@@ -55,7 +65,7 @@ namespace RedNb.Gateway.EntityFrameworkCore.Migrations
                 name: "Destination",
                 columns: table => new
                 {
-                    Id = table.Column<long>(type: "bigint", nullable: false),
+                    Id = table.Column<long>(type: "bigint", nullable: false, comment: "主键"),
                     Name = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     ClusterId = table.Column<long>(type: "bigint", nullable: true)
@@ -67,7 +77,8 @@ namespace RedNb.Gateway.EntityFrameworkCore.Migrations
                         name: "FK_Destination_Cluster_ClusterId",
                         column: x => x.ClusterId,
                         principalTable: "Cluster",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
@@ -75,7 +86,7 @@ namespace RedNb.Gateway.EntityFrameworkCore.Migrations
                 name: "MetaData",
                 columns: table => new
                 {
-                    Id = table.Column<long>(type: "bigint", nullable: false),
+                    Id = table.Column<long>(type: "bigint", nullable: false, comment: "主键"),
                     Name = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     ClusterId = table.Column<long>(type: "bigint", nullable: true)
@@ -87,7 +98,8 @@ namespace RedNb.Gateway.EntityFrameworkCore.Migrations
                         name: "FK_MetaData_Cluster_ClusterId",
                         column: x => x.ClusterId,
                         principalTable: "Cluster",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
@@ -95,7 +107,7 @@ namespace RedNb.Gateway.EntityFrameworkCore.Migrations
                 name: "Match",
                 columns: table => new
                 {
-                    Id = table.Column<long>(type: "bigint", nullable: false),
+                    Id = table.Column<long>(type: "bigint", nullable: false, comment: "主键"),
                     Name = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     RouteId = table.Column<long>(type: "bigint", nullable: true)
@@ -107,7 +119,8 @@ namespace RedNb.Gateway.EntityFrameworkCore.Migrations
                         name: "FK_Match_Route_RouteId",
                         column: x => x.RouteId,
                         principalTable: "Route",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
@@ -115,7 +128,7 @@ namespace RedNb.Gateway.EntityFrameworkCore.Migrations
                 name: "Transform",
                 columns: table => new
                 {
-                    Id = table.Column<long>(type: "bigint", nullable: false),
+                    Id = table.Column<long>(type: "bigint", nullable: false, comment: "主键"),
                     Name = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     RouteId = table.Column<long>(type: "bigint", nullable: true)
@@ -127,7 +140,8 @@ namespace RedNb.Gateway.EntityFrameworkCore.Migrations
                         name: "FK_Transform_Route_RouteId",
                         column: x => x.RouteId,
                         principalTable: "Route",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 

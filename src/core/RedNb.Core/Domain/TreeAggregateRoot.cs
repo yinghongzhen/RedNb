@@ -1,6 +1,8 @@
-﻿namespace RedNb.Core.Domain;
+﻿using System.Diagnostics;
 
-public class TreeAggregateRoot: BaseAggregateRoot
+namespace RedNb.Core.Domain;
+
+public class TreeAggregateRoot : BaseAggregateRoot
 {
     /// <summary>
     /// 名称
@@ -14,7 +16,7 @@ public class TreeAggregateRoot: BaseAggregateRoot
     /// </summary>
     [Required]
     [MaxLength(1000)]
-    public string TreeNames { get; set; }
+    public string Names { get; set; }
 
     /// <summary>
     /// 父级编号
@@ -40,52 +42,54 @@ public class TreeAggregateRoot: BaseAggregateRoot
     /// </summary>
     [Required]
     [MaxLength(1000)]
-    public string TreeSorts { get; set; }
-
-    /// <summary>
-    /// 是否最末级
-    /// </summary>
-    [Required]
-    public bool TreeLeaf { get; set; }
+    public string Sorts { get; set; }
 
     /// <summary>
     /// 层次级别
     /// </summary>
     [Required]
-    public int TreeLevel { get; set; }
+    public int Level { get; set; }
 
-    //public void UpdateTreeValue(TreeEntity parent, List<TreeEntity> children, Action callback = null)
-    //{
-    //    if (parent != null)
-    //    {
-    //        TreeNames = $"{parent.TreeNames}/{TreeName}";
-    //        ParentIds = $"{parent.ParentIds}{ParentId},";
-    //        TreeSorts = $"{parent.TreeSorts}{TreeSort},";
-    //        TreeLeaf = false;
-    //        TreeLevel = parent.TreeLevel + 1;
-    //    }
-    //    else
-    //    {
-    //        TreeNames = TreeName;
-    //        ParentIds = $"{ParentId},";
-    //        TreeSorts = $"{TreeSort},";
-    //        TreeLeaf = false;
-    //        TreeLevel = 0;
-    //    }
+    /// <summary>
+    /// 是否最末级
+    /// </summary>
+    [Required]
+    public bool IsLast { get; set; }
 
-    //    if (callback != null)
-    //    {
-    //        callback();
-    //    }
+    public void UpdateNodeValue(TreeAggregateRoot parent)
+    {
+        if (parent != null)
+        {
+            Names = $"{parent.Names}/{Name}";
+            ParentIds = $"{parent.ParentIds}{ParentId},";
+            Sorts = $"{parent.Sorts}{Sort},";
+            Level = parent.Level + 1;
+        }
+        else
+        {
+            Names = Name;
+            ParentIds = $"{ParentId},";
+            Sorts = $"{Sort},";
+            Level = 0;
+        }
+    }
 
-    //    if (children != null)
-    //    {
-    //        foreach (var item in children)
-    //        {
-    //            var childParent = children.SingleOrDefault(m => m.Id == item.ParentId) ?? this;
+    public void UpdateChildrenValue(List<TreeAggregateRoot> children)
+    {
+        if (children != null && children.Any())
+        {
+            foreach (var item in children)
+            {
+                var childParent = children.SingleOrDefault(m => m.Id == item.ParentId) ?? this;
 
-    //            item.UpdateTreeValue(childParent, null, null);
-    //        }
-    //    }
-    //}
+                item.UpdateNodeValue(childParent);
+            }
+
+            IsLast = true;
+        }
+        else
+        {
+            IsLast = false;
+        }
+    }
 }

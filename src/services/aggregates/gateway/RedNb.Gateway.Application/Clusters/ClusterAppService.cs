@@ -27,12 +27,21 @@ public class ClusterAppService : IClusterAppService
     /// <returns></returns>
     public async Task AddAsync(ClusterAddInputDto input)
     {
-        await _clusterManager.CreateAsync(input.Name);
+        var model =  _objectMapper.Map<ClusterAddInputDto, Cluster>(input);
+
+        await _clusterManager.AddAsync(model);
     }
 
+    /// <summary>
+    /// 更新集群
+    /// </summary>
+    /// <param name="input"></param>
+    /// <returns></returns>
     public async Task UpdateAsync(ClusterUpdateInputDto input)
     {
-        var cluster = await _clusterRepository.GetAsync(input.Id);
+        var model = _objectMapper.Map<ClusterUpdateInputDto, Cluster>(input);
+
+        await _clusterManager.UpdateAsync(model);
     }
 
     public async Task<List<ClusterOutputDto>> GetListAsync()

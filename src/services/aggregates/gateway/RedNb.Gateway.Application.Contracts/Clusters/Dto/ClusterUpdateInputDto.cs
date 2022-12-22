@@ -1,12 +1,11 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using RedNb.Core.Contracts;
+using System.ComponentModel.DataAnnotations;
 
 namespace RedNb.Gateway.Application.Contracts.Clusters;
 
-public class ClusterUpdateInputDto
+public class ClusterUpdateInputDto : TreeUpdateInputDto
 {
-    public long Id { get; set; }
-
     [Required]
     [MaxLength(100)]
-    public string Name { get; set; }
+    public string Path { get; set; }
 }

@@ -12,7 +12,7 @@ using Volo.Abp.EntityFrameworkCore;
 namespace RedNb.Gateway.EntityFrameworkCore.Migrations
 {
     [DbContext(typeof(GatewayDbContext))]
-    [Migration("20221221025952_init")]
+    [Migration("20221222032718_init")]
     partial class init
     {
         /// <inheritdoc />
@@ -28,7 +28,8 @@ namespace RedNb.Gateway.EntityFrameworkCore.Migrations
                 {
                     b.Property<long>("Id")
                         .HasColumnType("bigint")
-                        .HasColumnOrder(0);
+                        .HasColumnOrder(0)
+                        .HasComment("主键");
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
@@ -40,15 +41,42 @@ namespace RedNb.Gateway.EntityFrameworkCore.Migrations
                         .HasColumnType("longtext")
                         .HasColumnName("ExtraProperties");
 
+                    b.Property<bool>("IsLast")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<int>("Level")
+                        .HasColumnType("int");
+
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("varchar(100)");
+                        .HasMaxLength(200)
+                        .HasColumnType("varchar(200)");
+
+                    b.Property<string>("Names")
+                        .IsRequired()
+                        .HasMaxLength(1000)
+                        .HasColumnType("varchar(1000)");
+
+                    b.Property<long>("ParentId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("ParentIds")
+                        .IsRequired()
+                        .HasMaxLength(1000)
+                        .HasColumnType("varchar(1000)");
 
                     b.Property<string>("Path")
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("varchar(100)");
+
+                    b.Property<decimal>("Sort")
+                        .HasColumnType("decimal(65,30)");
+
+                    b.Property<string>("Sorts")
+                        .IsRequired()
+                        .HasMaxLength(1000)
+                        .HasColumnType("varchar(1000)");
 
                     b.HasKey("Id");
 
@@ -59,7 +87,8 @@ namespace RedNb.Gateway.EntityFrameworkCore.Migrations
                 {
                     b.Property<long>("Id")
                         .HasColumnType("bigint")
-                        .HasColumnOrder(0);
+                        .HasColumnOrder(0)
+                        .HasComment("主键");
 
                     b.Property<long?>("ClusterId")
                         .HasColumnType("bigint");
@@ -80,7 +109,8 @@ namespace RedNb.Gateway.EntityFrameworkCore.Migrations
                 {
                     b.Property<long>("Id")
                         .HasColumnType("bigint")
-                        .HasColumnOrder(0);
+                        .HasColumnOrder(0)
+                        .HasComment("主键");
 
                     b.Property<long?>("ClusterId")
                         .HasColumnType("bigint");
@@ -101,7 +131,8 @@ namespace RedNb.Gateway.EntityFrameworkCore.Migrations
                 {
                     b.Property<long>("Id")
                         .HasColumnType("bigint")
-                        .HasColumnOrder(0);
+                        .HasColumnOrder(0)
+                        .HasComment("主键");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -122,7 +153,8 @@ namespace RedNb.Gateway.EntityFrameworkCore.Migrations
                 {
                     b.Property<long>("Id")
                         .HasColumnType("bigint")
-                        .HasColumnOrder(0);
+                        .HasColumnOrder(0)
+                        .HasComment("主键");
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
@@ -148,7 +180,8 @@ namespace RedNb.Gateway.EntityFrameworkCore.Migrations
                 {
                     b.Property<long>("Id")
                         .HasColumnType("bigint")
-                        .HasColumnOrder(0);
+                        .HasColumnOrder(0)
+                        .HasComment("主键");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -169,7 +202,8 @@ namespace RedNb.Gateway.EntityFrameworkCore.Migrations
                 {
                     b.HasOne("RedNb.Gateway.Domain.Clusters.Cluster", "Cluster")
                         .WithMany()
-                        .HasForeignKey("ClusterId");
+                        .HasForeignKey("ClusterId")
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.Navigation("Cluster");
                 });
@@ -178,7 +212,8 @@ namespace RedNb.Gateway.EntityFrameworkCore.Migrations
                 {
                     b.HasOne("RedNb.Gateway.Domain.Clusters.Cluster", "Cluster")
                         .WithMany()
-                        .HasForeignKey("ClusterId");
+                        .HasForeignKey("ClusterId")
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.Navigation("Cluster");
                 });
@@ -187,7 +222,8 @@ namespace RedNb.Gateway.EntityFrameworkCore.Migrations
                 {
                     b.HasOne("RedNb.Gateway.Domain.Routes.Route", "Route")
                         .WithMany()
-                        .HasForeignKey("RouteId");
+                        .HasForeignKey("RouteId")
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.Navigation("Route");
                 });
@@ -196,7 +232,8 @@ namespace RedNb.Gateway.EntityFrameworkCore.Migrations
                 {
                     b.HasOne("RedNb.Gateway.Domain.Routes.Route", "Route")
                         .WithMany()
-                        .HasForeignKey("RouteId");
+                        .HasForeignKey("RouteId")
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.Navigation("Route");
                 });

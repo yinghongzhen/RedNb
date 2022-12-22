@@ -1,4 +1,6 @@
-﻿namespace RedNb.Core.Domain;
+﻿using RedNb.Core.Util;
+
+namespace RedNb.Core.Domain;
 
 public class BaseAggregateRoot : AggregateRoot<long>
 {
@@ -10,4 +12,9 @@ public class BaseAggregateRoot : AggregateRoot<long>
     [Column(Order = 0)]
     [Comment("主键")]
     public override long Id { get; protected set; }
+
+    internal void CreateKey()
+    {
+        Id = IdentityManager.NewId();
+    }
 }
