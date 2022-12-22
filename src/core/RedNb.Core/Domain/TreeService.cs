@@ -24,7 +24,7 @@ public abstract class TreeService<T> : DomainService where T : TreeAggregateRoot
 
             model.AddNode(parent);
 
-            parent.IsLast = false;
+            
         }
         else
         {
