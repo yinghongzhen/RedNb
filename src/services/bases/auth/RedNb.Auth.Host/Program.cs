@@ -1,22 +1,16 @@
+using Microsoft.AspNetCore.Http.Features;
+using RedNb.Auth.Host;
+
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddControllersWithViews();
+builder.Host
+    .AddAppSettingsSecretsJson()
+    .UseAutofac();
+
+builder.Services.AddApplication<AuthHostModule>();
 
 var app = builder.Build();
 
-if (!app.Environment.IsDevelopment())
-{
-    app.UseExceptionHandler("/Home/Error");
-}
-
-app.UseStaticFiles();
-
-app.UseRouting();
-
-app.UseAuthorization();
-
-app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+app.InitializeApplication();
 
 app.Run();

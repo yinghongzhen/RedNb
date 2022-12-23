@@ -1,24 +1,17 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using RedNb.Auth.Application.Contracts;
-using RedNb.Auth.Data;
-using RedNb.Auth.Domain;
-using Volo.Abp.AutoMapper;
-using Volo.Abp.Modularity;
+﻿namespace RedNb.Auth.Application;
 
-namespace RedNb.Auth.Application
+[DependsOn(
+    typeof(AuthApplicationContractsModule),
+    typeof(AuthDomainModule),
+    typeof(AbpAutoMapperModule)
+    )]
+public class AuthApplicationModule : AbpModule
 {
-    [DependsOn(
-        typeof(AuthDomainModule),
-        typeof(AbpAutoMapperModule),
-        typeof(AuthApplicationContractsModule))]
-    public class AuthApplicationModule : AbpModule
+    public override void ConfigureServices(ServiceConfigurationContext context)
     {
-        public override void ConfigureServices(ServiceConfigurationContext context)
+        Configure<AbpAutoMapperOptions>(options =>
         {
-            Configure<AbpAutoMapperOptions>(options =>
-            {
-                options.AddMaps<AuthApplicationModule>();
-            });
-        }
+            options.AddMaps<AuthApplicationModule>();
+        });
     }
 }

@@ -2,9 +2,9 @@ using Medallion.Threading;
 using Medallion.Threading.Redis;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.OpenApi.Models;
+using RedNb.Auth.Application;
 using RedNb.Core.Extensions;
 using RedNb.Core.Web;
-using RedNb.Gateway.Application;
 using StackExchange.Redis;
 using System.Text.Json;
 using Volo.Abp;
@@ -13,18 +13,18 @@ using Volo.Abp.Caching;
 using Volo.Abp.DistributedLocking;
 using Volo.Abp.Localization;
 
-namespace RedNb.Gateway.Host;
+namespace RedNb.Auth.Host;
 
 [DependsOn(
     typeof(AbpAspNetCoreMvcModule),
     typeof(AbpAutofacModule),
     typeof(AbpDistributedLockingModule),
     typeof(AbpSwashbuckleModule),
-    typeof(GatewayApplicationModule),
-    typeof(GatewayEntityFrameworkCoreModule),
+    typeof(AuthApplicationModule),
+    typeof(AuthEntityFrameworkCoreModule),
     typeof(CoreModule)
 )]
-public class GatewayHostModule : AbpModule
+public class AuthHostModule : AbpModule
 {
     public override void ConfigureServices(ServiceConfigurationContext context)
     {
@@ -44,7 +44,7 @@ public class GatewayHostModule : AbpModule
 
         Configure<AbpAspNetCoreMvcOptions>(options =>
         {
-            options.ConventionalControllers.Create(typeof(GatewayApplicationModule).Assembly);
+            options.ConventionalControllers.Create(typeof(AuthApplicationModule).Assembly);
         });
 
         Configure<AbpLocalizationOptions>(options =>
@@ -76,7 +76,7 @@ public class GatewayHostModule : AbpModule
                 }
             );
 
-        Configure<AbpDistributedCacheOptions>(options => { options.KeyPrefix = "Gateway:"; });
+        Configure<AbpDistributedCacheOptions>(options => { options.KeyPrefix = "Auth:"; });
 
         context.Services.AddSingleton<IDistributedLockProvider>(sp =>
         {

@@ -19,7 +19,7 @@ public class GatewayEntityFrameworkCoreModule : AbpModule
 
         context.Services.AddAbpDbContext<GatewayDbContext>(options =>
         {
-            options.AddDefaultRepositories(includeAllEntities: true);
+            options.AddDefaultRepositories();
         });
 
         Configure<AbpDbContextOptions>(options =>

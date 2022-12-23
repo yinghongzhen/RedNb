@@ -1,6 +1,4 @@
-﻿using RedNb.Gateway.Domain.Shared;
-
-namespace RedNb.Gateway.Application.Contracts;
+﻿namespace RedNb.Gateway.Application.Contracts;
 
 [DependsOn(
     typeof(GatewayDomainSharedModule),

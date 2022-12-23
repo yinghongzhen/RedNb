@@ -2,7 +2,7 @@
 
 namespace RedNb.Core.Domain;
 
-public class BaseAggregateRoot : AggregateRoot<long>
+public class BaseAggregateRoot : BasicAggregateRoot<long>
 {
     /// <summary>
     /// 主键
@@ -13,7 +13,7 @@ public class BaseAggregateRoot : AggregateRoot<long>
     [Comment("主键")]
     public override long Id { get; protected set; }
 
-    internal void CreateKey()
+    public void CreateKey()
     {
         Id = IdentityManager.NewId();
     }

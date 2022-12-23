@@ -1,13 +1,13 @@
 {
   "profiles": {
-    "RedNb.Auth.HttpApi.Host": {
+    "http": {
       "commandName": "Project",
       "launchBrowser": true,
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
       "dotnetRunMessages": true,
-      "applicationUrl": "http://localhost:5287"
+      "applicationUrl": "http://localhost:9101"
     },
     "IIS Express": {
       "commandName": "IISExpress",
@@ -27,7 +27,7 @@
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
     "iisExpress": {
-      "applicationUrl": "http://localhost:62766",
+      "applicationUrl": "http://localhost:6820",
       "sslPort": 0
     }
   }

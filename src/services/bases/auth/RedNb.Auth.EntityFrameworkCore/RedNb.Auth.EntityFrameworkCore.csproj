@@ -6,6 +6,12 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+	  <Compile Remove="EntityFrameworkCore\**" />
+	  <EmbeddedResource Remove="EntityFrameworkCore\**" />
+	  <None Remove="EntityFrameworkCore\**" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<ProjectReference Include="..\RedNb.Auth.Domain\RedNb.Auth.Domain.csproj" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.1">
 			<PrivateAssets>all</PrivateAssets>

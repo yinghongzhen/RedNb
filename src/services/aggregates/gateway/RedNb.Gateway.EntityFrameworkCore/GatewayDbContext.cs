@@ -1,5 +1,4 @@
 ﻿using RedNb.Core.Data;
-using RedNb.Core.Domain;
 using RedNb.Gateway.Domain.Clusters;
 using RedNb.Gateway.Domain.Routes;
 

@@ -1,6 +1,4 @@
-﻿using Volo.Abp.Localization;
-
-namespace RedNb.Gateway;
+﻿namespace RedNb.Gateway.Application;
 
 [DependsOn(
     typeof(GatewayApplicationContractsModule),

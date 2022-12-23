@@ -117,5 +117,7 @@ public class BaseDbContext<TDbContext> : AbpDbContext<TDbContext> where TDbConte
         }
 
         builder.EnableQueryFilter(LoginUser?.TenantId);
+
+        builder.Entity<Entity<long>>().Property(m => m.Id).DatabaseGenerated(;
     }
 }

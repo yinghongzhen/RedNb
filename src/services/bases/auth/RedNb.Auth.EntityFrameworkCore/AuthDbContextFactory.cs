@@ -1,24 +1,15 @@
-﻿using System;
-using System.IO;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Design;
-using Microsoft.Extensions.Configuration;
-using RedNb.Auth.EntityFrameworkCore;
+﻿namespace RedNb.Auth.EntityFrameworkCore;
 
-namespace RedNb.Auth;
-
-/* This class is needed for EF Core console commands
- * (like Add-Migration and Update-Database commands) */
 public class AuthDbContextFactory : IDesignTimeDbContextFactory<AuthDbContext>
 {
     public AuthDbContext CreateDbContext(string[] args)
     {
-        AuthEfCoreEntityExtensionMappings.Configure();
-
         var configuration = BuildConfiguration();
 
         var builder = new DbContextOptionsBuilder<AuthDbContext>()
-            .UseSqlServer(configuration.GetConnectionString("Default"));
+                .UseMySql(
+                configuration.GetConnectionString("Default"),
+                new MySqlServerVersion(new Version(8, 0, 24)));
 
         return new AuthDbContext(builder.Options);
     }
@@ -26,8 +17,10 @@ public class AuthDbContextFactory : IDesignTimeDbContextFactory<AuthDbContext>
     private static IConfigurationRoot BuildConfiguration()
     {
         var builder = new ConfigurationBuilder()
-            .SetBasePath(Path.Combine(Directory.GetCurrentDirectory(), "../RedNb.Auth.DbMigrator/"))
-            .AddJsonFile("appsettings.json", optional: false);
+            .SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
+            .AddJsonFile("appsettings.json", optional: false)
+            .AddJsonFile("appsettings.Development.json", optional: false)
+            .AddJsonFile("appsettings.secrets.json", optional: false);
 
         return builder.Build();
     }

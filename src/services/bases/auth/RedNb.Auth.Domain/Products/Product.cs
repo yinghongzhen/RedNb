@@ -1,6 +1,6 @@
-﻿using Volo.Abp.Domain.Entities;
+﻿using JetBrains.Annotations;
 
-namespace RedNb.Auth.Domain.Tenants;
+namespace RedNb.Auth.Domain.Products;
 
 /// <summary>
 /// 产品实体类
@@ -15,16 +15,12 @@ public class Product : BaseAggregateRoot
     [MaxLength(100)]
     public string Name { get; set; }
 
-    /// <summary>
-    /// 编码
-    /// </summary>
-    [Required]
-    [MaxLength(20)]
-    public string Key { get; set; }
+    public List<Platform> Platforms { get; private set; } = new List<Platform>();
 
-    /// <summary>
-    /// 排序号
-    /// </summary>
-    [Required]
-    public decimal Sort { get; set; }
+    public void AddPlatform(Platform input)
+    {
+        input.CreateKey();
+
+        Platforms.Add(input);
+    }
 }

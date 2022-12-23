@@ -7,6 +7,51 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+	  <Compile Remove="Accounts\**" />
+	  <Compile Remove="Apis\**" />
+	  <Compile Remove="Caches\**" />
+	  <Compile Remove="Companys\**" />
+	  <Compile Remove="Configs\**" />
+	  <Compile Remove="Departments\**" />
+	  <Compile Remove="DictTypes\**" />
+	  <Compile Remove="Employees\**" />
+	  <Compile Remove="Modules\**" />
+	  <Compile Remove="Permissions\**" />
+	  <Compile Remove="Posts\**" />
+	  <Compile Remove="Roles\**" />
+	  <Compile Remove="Tenants\**" />
+	  <Compile Remove="Users\**" />
+	  <EmbeddedResource Remove="Accounts\**" />
+	  <EmbeddedResource Remove="Apis\**" />
+	  <EmbeddedResource Remove="Caches\**" />
+	  <EmbeddedResource Remove="Companys\**" />
+	  <EmbeddedResource Remove="Configs\**" />
+	  <EmbeddedResource Remove="Departments\**" />
+	  <EmbeddedResource Remove="DictTypes\**" />
+	  <EmbeddedResource Remove="Employees\**" />
+	  <EmbeddedResource Remove="Modules\**" />
+	  <EmbeddedResource Remove="Permissions\**" />
+	  <EmbeddedResource Remove="Posts\**" />
+	  <EmbeddedResource Remove="Roles\**" />
+	  <EmbeddedResource Remove="Tenants\**" />
+	  <EmbeddedResource Remove="Users\**" />
+	  <None Remove="Accounts\**" />
+	  <None Remove="Apis\**" />
+	  <None Remove="Caches\**" />
+	  <None Remove="Companys\**" />
+	  <None Remove="Configs\**" />
+	  <None Remove="Departments\**" />
+	  <None Remove="DictTypes\**" />
+	  <None Remove="Employees\**" />
+	  <None Remove="Modules\**" />
+	  <None Remove="Permissions\**" />
+	  <None Remove="Posts\**" />
+	  <None Remove="Roles\**" />
+	  <None Remove="Tenants\**" />
+	  <None Remove="Users\**" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<PackageReference Include="Volo.Abp.Ddd.Application.Contracts" Version="7.0.0-rc.4" />
 	</ItemGroup>
 
