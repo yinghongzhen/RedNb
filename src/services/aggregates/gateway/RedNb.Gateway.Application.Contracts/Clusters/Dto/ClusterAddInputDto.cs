@@ -1,5 +1,4 @@
 ﻿using RedNb.Core.Contracts;
-using RedNb.Gateway.Domain.Shared.Enums;
 using System.ComponentModel.DataAnnotations;
 
 namespace RedNb.Gateway.Application.Contracts.Clusters;

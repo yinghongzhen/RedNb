@@ -7,7 +7,7 @@ using Volo.Abp.Application.Dtos;
 
 namespace RedNb.Core.Contracts
 {
-    public class AuditFullEntityDto : EntityBaseDto
+    public class AuditFullEntityDto : BaseEntityDto
     {
         /// <summary>
         /// 创建者编号

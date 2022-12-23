@@ -7,15 +7,13 @@ using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace RedNb.Core.Domain;
 
-public abstract class TreeService<TEntity, TOutputDto> : DomainService where TEntity : TreeAggregateRoot, new()
+public abstract class TreeService<TEntity> : DomainService where TEntity : TreeAggregateRoot, new()
 {
     private readonly IRepository<TEntity, long> _treeEntityRepository;
-    private readonly IObjectMapper _objectMapper;
 
-    public TreeService(IRepository<TEntity, long> treeEntityRepository, IObjectMapper objectMapper)
+    public TreeService(IRepository<TEntity, long> treeEntityRepository)
     {
         _treeEntityRepository = treeEntityRepository;
-        _objectMapper = objectMapper;
     }
 
     public virtual async Task AddAsync(TEntity model)
@@ -70,53 +68,5 @@ public abstract class TreeService<TEntity, TOutputDto> : DomainService where TEn
         {
             old.UpdateTreeValue(null, oldChildren);
         }
-    }
-
-    public virtual async Task GetListAsync(TEntity model)
-    {
-        var old = await _treeEntityRepository.GetAsync(model.Id);
-
-        var queryable = await _treeEntityRepository.GetQueryableAsync();
-
-        var oldParentId = $"{old.ParentIds}{old.Id}";
-
-        var oldChildren = await queryable
-            .Where(m => m.ParentIds.Contains(oldParentId))
-            .OrderBy(m => m.Level)
-            .ThenBy(m => m.Id)
-            .Select(m => (TreeAggregateRoot)m)
-            .ToListAsync();
-
-        old.Name = model.Name;
-        old.ParentId = model.ParentId;
-        old.Sort = model.Sort;
-
-        if (old.ParentId != 0)
-        {
-            var parent = await _treeEntityRepository.GetAsync(old.ParentId);
-
-            old.UpdateTreeValue(parent, oldChildren);
-        }
-        else
-        {
-            old.UpdateTreeValue(null, oldChildren);
-        }
-    }
-
-    public virtual async Task<PagedOutputDto<TOutputDto>> GetPageAsync(PagedInputDto input)
-    {
-        var queryable = await _treeEntityRepository.GetQueryableAsync();
-
-        var count = await queryable.CountAsync();
-
-        var list = await queryable
-            .OrderBy(m => m.Sorts)
-            .ThenBy(m => m.Id)
-            .PageBy(input)
-            .ToListAsync();
-
-        var data = _objectMapper.Map<List<TEntity>, List<TOutputDto>>(list);
-
-        return new PagedOutputDto<TOutputDto>(count, data);
     }
 }

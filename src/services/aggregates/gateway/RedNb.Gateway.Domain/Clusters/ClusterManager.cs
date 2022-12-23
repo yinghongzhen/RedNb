@@ -6,8 +6,7 @@ namespace RedNb.Gateway.Domain.Clusters;
 
 public class ClusterManager : TreeService<Cluster>
 {
-    public ClusterManager(IRepository<Cluster, long> treeEntityRepository,
-        IObjectMapper objectMapper) : base(treeEntityRepository, objectMapper)
+    public ClusterManager(IRepository<Cluster, long> treeEntityRepository) : base(treeEntityRepository)
     {
     }
 }

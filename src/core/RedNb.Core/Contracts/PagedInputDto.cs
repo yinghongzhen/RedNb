@@ -1,74 +1,69 @@
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Text.Json.Serialization;
 using Volo.Abp.Application.Dtos;
 
-namespace RedNb.Core.Contracts
+namespace RedNb.Core.Contracts;
+
+public class PagedInputDto : IPagedResultRequest
 {
-    public class PagedInputDto : IPagedResultRequest
+    private int _pageIndx = 1;
+    private int _pageSize = 20;
+
+    public PagedInputDto()
     {
-        private int _pageIndx = 1;
-        private int _pageSize = 20;
+    }
 
-        public PagedInputDto()
+    /// <summary>
+    /// 当前页码
+    /// </summary>
+    public int PageIndex
+    {
+        get
         {
+            return _pageIndx;
         }
-
-        /// <summary>
-        /// 当前页码
-        /// </summary>
-        public int PageIndex
+        set
         {
-            get
-            {
-                return _pageIndx;
-            }
-            set
-            {
-                _pageIndx = value <= 0 ? 1 : value;
-            }
+            _pageIndx = value <= 0 ? 1 : value;
         }
+    }
 
-        /// <summary>
-        /// 每页条数
-        /// </summary>
-        public int PageSize
+    /// <summary>
+    /// 每页条数
+    /// </summary>
+    public int PageSize
+    {
+        get
         {
-            get
-            {
-                return _pageSize;
-            }
-            set
-            {
-                _pageSize = value <= 0 ? 20 : value;
-            }
+            return _pageSize;
         }
-
-        [JsonIgnore]
-        public int SkipCount
+        set
         {
-            get
-            {
-                return (PageIndex - 1) * PageSize;
-            }
-            set
-            {
-
-            }
+            _pageSize = value <= 0 ? 20 : value;
         }
+    }
 
-        [JsonIgnore]
-        public int MaxResultCount
+    [JsonIgnore]
+    public int SkipCount
+    {
+        get
         {
-            get
-            {
-                return PageSize;
-            }
-            set
-            {
+            return (PageIndex - 1) * PageSize;
+        }
+        set
+        {
 
-            }
+        }
+    }
+
+    [JsonIgnore]
+    public int MaxResultCount
+    {
+        get
+        {
+            return PageSize;
+        }
+        set
+        {
+
         }
     }
 }

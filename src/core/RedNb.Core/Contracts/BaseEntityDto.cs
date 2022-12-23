@@ -7,7 +7,7 @@ using Volo.Abp.Application.Dtos;
 
 namespace RedNb.Core.Contracts
 {
-    public class EntityBaseDto : EntityDto<long>
+    public class BaseEntityDto : EntityDto<long>
     {
         
     }
