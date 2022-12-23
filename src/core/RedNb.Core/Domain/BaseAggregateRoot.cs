@@ -13,7 +13,7 @@ public class BaseAggregateRoot : BasicAggregateRoot<long>
     [Comment("主键")]
     public override long Id { get; protected set; }
 
-    public void CreateKey()
+    public BaseAggregateRoot()
     {
         Id = IdentityManager.NewId();
     }

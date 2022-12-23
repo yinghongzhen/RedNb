@@ -18,8 +18,6 @@ public abstract class TreeService<TEntity> : DomainService where TEntity : TreeA
 
     public virtual async Task AddAsync(TEntity model)
     {
-        model.CreateKey();
-
         if (model.ParentId != 0)
         {
             var parent = await _treeEntityRepository.GetAsync(model.ParentId);

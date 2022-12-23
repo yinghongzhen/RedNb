@@ -19,8 +19,6 @@ public class Product : BaseAggregateRoot
 
     public void AddPlatform(Platform input)
     {
-        input.CreateKey();
-
         Platforms.Add(input);
     }
 }

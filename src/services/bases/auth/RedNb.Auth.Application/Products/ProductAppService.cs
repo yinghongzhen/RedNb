@@ -22,11 +22,10 @@ namespace RedNb.Auth.Application.Products
         public async Task AddAsync(ProductAddInputDto input)
         {
             var model = _objectMapper.Map<ProductAddInputDto, Product>(input);
-            model.CreateKey();
 
             model.AddPlatform(new Platform()
             {
-                Name= "PC管理端",
+                Name = "PC管理端",
             });
 
             model.AddPlatform(new Platform()
@@ -62,7 +61,7 @@ namespace RedNb.Auth.Application.Products
 
         public async Task<List<ProductOutputDto>> GetAllAsync(ProductGetAllInputDto input)
         {
-            var queryable = await _productRepository.GetQueryableAsync();
+            var queryable = await _productRepository.WithDetailsAsync(m => m.Platforms);
 
             var list = await queryable
                 .OrderByDescending(m => m.Id)

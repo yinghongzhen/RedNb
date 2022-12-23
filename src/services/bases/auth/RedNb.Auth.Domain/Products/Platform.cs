@@ -19,6 +19,4 @@ public class Platform : BaseEntity
     public long ProductId { get; set; }
 
     public virtual Product Product { get; set; }
-
-    protected Platform() { }
 }

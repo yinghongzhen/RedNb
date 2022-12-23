@@ -13,7 +13,7 @@ public class BaseEntity : Entity<long>
     [Comment("主键")]
     public override long Id { get; protected set; }
 
-    public void CreateKey()
+    protected BaseEntity()
     {
         Id = IdentityManager.NewId();
     }
