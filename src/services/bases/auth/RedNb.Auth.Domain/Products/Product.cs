@@ -1,9 +1,4 @@
-﻿using JetBrains.Annotations;
-using System.Collections.Generic;
-using Volo.Abp.Domain.Entities;
-using Volo.Abp;
-
-namespace RedNb.Auth.Domain.Products;
+﻿namespace RedNb.Auth.Domain.Products;
 
 /// <summary>
 /// 产品实体类
@@ -17,21 +12,4 @@ public class Product : BaseAggregateRoot
     [Required]
     [MaxLength(100)]
     public string Name { get; set; }
-
-    public virtual List<Platform> Platforms { get; protected set; } = new List<Platform>();
-
-    public void AddPlatform(Platform input)
-    {
-        Platforms.Add(input);
-    }
-
-    public void DeletePlatform(long id)
-    {
-        var platform = Platforms.SingleOrDefault(m => m.Id == id);
-
-        if(platform != null)
-        {
-            Platforms.Remove(platform);
-        }
-    }
 }

@@ -7,41 +7,8 @@
 
 	<ItemGroup>
 	  <Compile Remove="Accounts\**" />
-	  <Compile Remove="Companys\**" />
-	  <Compile Remove="Departments\**" />
-	  <Compile Remove="Dicts\**" />
-	  <Compile Remove="Employees\**" />
-	  <Compile Remove="Menus\**" />
-	  <Compile Remove="Posts\**" />
-	  <Compile Remove="Roles\**" />
-	  <Compile Remove="Services\**" />
-	  <Compile Remove="Tenants\**" />
-	  <Compile Remove="Users\**" />
-	  <Compile Remove="Views\**" />
 	  <EmbeddedResource Remove="Accounts\**" />
-	  <EmbeddedResource Remove="Companys\**" />
-	  <EmbeddedResource Remove="Departments\**" />
-	  <EmbeddedResource Remove="Dicts\**" />
-	  <EmbeddedResource Remove="Employees\**" />
-	  <EmbeddedResource Remove="Menus\**" />
-	  <EmbeddedResource Remove="Posts\**" />
-	  <EmbeddedResource Remove="Roles\**" />
-	  <EmbeddedResource Remove="Services\**" />
-	  <EmbeddedResource Remove="Tenants\**" />
-	  <EmbeddedResource Remove="Users\**" />
-	  <EmbeddedResource Remove="Views\**" />
 	  <None Remove="Accounts\**" />
-	  <None Remove="Companys\**" />
-	  <None Remove="Departments\**" />
-	  <None Remove="Dicts\**" />
-	  <None Remove="Employees\**" />
-	  <None Remove="Menus\**" />
-	  <None Remove="Posts\**" />
-	  <None Remove="Roles\**" />
-	  <None Remove="Services\**" />
-	  <None Remove="Tenants\**" />
-	  <None Remove="Users\**" />
-	  <None Remove="Views\**" />
 	</ItemGroup>
 
 	<ItemGroup>

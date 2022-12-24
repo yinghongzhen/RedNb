@@ -1,12 +1,10 @@
-﻿using RedNb.Auth.Domain.Tenants;
-
-namespace RedNb.Auth.Domain.Offices;
+﻿namespace RedNb.Auth.Domain.Posts;
 
 /// <summary>
 /// 职位实体类
 /// </summary>
 [Table("Post")]
-public class Post : AggregateRoot<long>
+public class Post : BaseAggregateRoot
 {
     /// <summary>
     /// 名称
@@ -32,7 +30,7 @@ public class Post : AggregateRoot<long>
     /// 排序号
     /// </summary>
     [Required]
-    public decimal Sort { get; set; }
+    public int Sort { get; set; }
 
     /// <summary>
     /// 备注信息

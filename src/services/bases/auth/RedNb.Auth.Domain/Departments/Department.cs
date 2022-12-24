@@ -1,12 +1,13 @@
 ﻿using RedNb.Auth.Domain.Tenants;
+using Volo.Abp;
 
-namespace RedNb.Auth.Domain.Offices;
+namespace RedNb.Auth.Domain.Departments;
 
 /// <summary>
 /// 组织机构实体类
 /// </summary>
 [Table("Department")]
-public class Department : AggregateRoot<long>
+public class Department : TreeAggregateRoot, ISoftDelete
 {
     /// <summary>
     /// 编码
@@ -55,11 +56,12 @@ public class Department : AggregateRoot<long>
     public bool IsActive { get; set; }
 
     [Required]
-    public bool IsDeleted { get; set; }
+    public bool IsDeleted { get; }
 
     /// <summary>
     /// 租户编号
     /// </summary>
+    [Required]
     public long TenantId { get; set; }
 
     public virtual Tenant Tenant { get; set; }

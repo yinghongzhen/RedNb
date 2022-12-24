@@ -1,20 +1,14 @@
 ﻿using RedNb.Auth.Domain.Tenants;
+using Volo.Abp;
 
-namespace RedNb.Auth.Domain.Offices;
+namespace RedNb.Auth.Domain.Companys;
 
 /// <summary>
 /// 公司实体类
 /// </summary>
 [Table("Company")]
-public class Company : BaseAggregateRoot
+public class Company : TreeAggregateRoot, ISoftDelete
 {
-    /// <summary>
-    /// 公司全称
-    /// </summary>
-    [Required]
-    [MaxLength(200)]
-    public string Name { get; set; }
-
     /// <summary>
     /// 编码
     /// </summary>
@@ -40,7 +34,7 @@ public class Company : BaseAggregateRoot
     public bool IsActive { get; set; }
 
     [Required]
-    public bool IsDeleted { get; set; }
+    public bool IsDeleted { get; }
 
     /// <summary>
     /// 租户编号

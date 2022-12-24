@@ -7,7 +7,7 @@ namespace RedNb.Auth.Domain.Offices;
 /// 员工实体类
 /// </summary>
 [Table("Employee")]
-public class Employee : AggregateRoot<long>
+public class Employee : BaseAggregateRoot
 {
     /// <summary>
     /// 姓名
