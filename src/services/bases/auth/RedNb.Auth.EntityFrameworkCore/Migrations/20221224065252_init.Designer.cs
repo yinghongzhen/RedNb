@@ -11,7 +11,7 @@ using Volo.Abp.EntityFrameworkCore;
 namespace RedNb.Auth.EntityFrameworkCore.Migrations
 {
     [DbContext(typeof(AuthDbContext))]
-    [Migration("20221223085102_init")]
+    [Migration("20221224065252_init")]
     partial class init
     {
         /// <inheritdoc />
@@ -52,16 +52,6 @@ namespace RedNb.Auth.EntityFrameworkCore.Migrations
                         .HasColumnOrder(0)
                         .HasComment("主键");
 
-                    b.Property<string>("ConcurrencyStamp")
-                        .IsConcurrencyToken()
-                        .HasMaxLength(40)
-                        .HasColumnType("varchar(40)")
-                        .HasColumnName("ConcurrencyStamp");
-
-                    b.Property<string>("ExtraProperties")
-                        .HasColumnType("longtext")
-                        .HasColumnName("ExtraProperties");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(100)
@@ -74,13 +64,11 @@ namespace RedNb.Auth.EntityFrameworkCore.Migrations
 
             modelBuilder.Entity("RedNb.Auth.Domain.Products.Platform", b =>
                 {
-                    b.HasOne("RedNb.Auth.Domain.Products.Product", "Product")
+                    b.HasOne("RedNb.Auth.Domain.Products.Product", null)
                         .WithMany("Platforms")
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
-
-                    b.Navigation("Product");
                 });
 
             modelBuilder.Entity("RedNb.Auth.Domain.Products.Product", b =>

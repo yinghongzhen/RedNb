@@ -15,8 +15,5 @@ public class Platform : BaseEntity
     [MaxLength(100)]
     public string Name { get; set; }
 
-    [Required]
-    public long ProductId { get; set; }
-
-    public virtual Product Product { get; set; }
+    public virtual long ProductId { get; set; }
 }

@@ -61,13 +61,11 @@ namespace RedNb.Auth.EntityFrameworkCore.Migrations
 
             modelBuilder.Entity("RedNb.Auth.Domain.Products.Platform", b =>
                 {
-                    b.HasOne("RedNb.Auth.Domain.Products.Product", "Product")
+                    b.HasOne("RedNb.Auth.Domain.Products.Product", null)
                         .WithMany("Platforms")
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
-
-                    b.Navigation("Product");
                 });
 
             modelBuilder.Entity("RedNb.Auth.Domain.Products.Product", b =>

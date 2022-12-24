@@ -104,18 +104,18 @@ public class BaseDbContext<TDbContext> : AbpDbContext<TDbContext> where TDbConte
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        optionsBuilder.ReplaceService<IModelCacheKeyFactory, TenantModelCacheKeyFactory<TDbContext>>();
+        //optionsBuilder.ReplaceService<IModelCacheKeyFactory, TenantModelCacheKeyFactory<TDbContext>>();
     }
 
     protected override void OnModelCreating(ModelBuilder builder)
     {
         base.OnModelCreating(builder);
 
-        foreach (var relationship in builder.Model.GetEntityTypes().SelectMany(e => e.GetForeignKeys()))
-        {
-            relationship.DeleteBehavior = DeleteBehavior.Restrict;
-        }
+        //foreach (var relationship in builder.Model.GetEntityTypes().SelectMany(e => e.GetForeignKeys()))
+        //{
+        //    relationship.DeleteBehavior = DeleteBehavior.Restrict;
+        //}
 
-        builder.EnableQueryFilter(LoginUser?.TenantId);
+        //builder.EnableQueryFilter(LoginUser?.TenantId);
     }
 }

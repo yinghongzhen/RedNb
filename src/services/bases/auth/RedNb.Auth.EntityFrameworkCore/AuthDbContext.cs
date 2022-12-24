@@ -1,6 +1,7 @@
 ﻿using RedNb.Core.Data;
 using RedNb.Auth.Domain.Products;
 using Microsoft.EntityFrameworkCore;
+using Volo.Abp.EntityFrameworkCore.Modeling;
 
 namespace RedNb.Auth.EntityFrameworkCore;
 
@@ -21,7 +22,11 @@ public class AuthDbContext : BaseDbContext<AuthDbContext>
 
         builder.Entity<Product>(b =>
         {
-            b.Navigation(q => q.Platforms).UsePropertyAccessMode(PropertyAccessMode.Property);
+            b.ConfigureByConvention();
+
+            b.HasMany(u => u.Platforms).WithOne().HasForeignKey(uc => uc.ProductId).IsRequired();
+
+            b.ApplyObjectExtensionMappings();
         });
     }
 }

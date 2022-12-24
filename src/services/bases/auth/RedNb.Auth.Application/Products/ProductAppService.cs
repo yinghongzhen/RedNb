@@ -4,6 +4,7 @@ using RedNb.Auth.Application.Contracts.Products.Dtos;
 using RedNb.Auth.Domain.Products;
 using RedNb.Core.Contracts;
 using Microsoft.EntityFrameworkCore;
+using Volo.Abp.ObjectMapping;
 
 namespace RedNb.Auth.Application.Products
 {
@@ -34,6 +35,15 @@ namespace RedNb.Auth.Application.Products
             });
 
             await _productRepository.InsertAsync(model);
+        }
+
+        public async Task DeletePlatformAsync(PlatformDeleteInputDto input)
+        {
+            var queryable = await _productRepository.WithDetailsAsync(m => m.Platforms);
+
+            var product = await queryable.SingleOrDefaultAsync(m=>m.Id == input.ProductId);
+
+            product.DeletePlatform(input.PlatformId);
         }
 
         public async Task DeleteAsync(DeleteInputDto input)
