@@ -1,10 +1,12 @@
-﻿namespace RedNb.Auth.Domain.Users;
+﻿using RedNb.Auth.Domain.Tenants;
+
+namespace RedNb.Auth.Domain.Users;
 
 /// <summary>
 /// 用户实体类
 /// </summary>
 [Table("User")]
-public class User : AggregateRootBase
+public class User : BaseAggregateRoot
 {
     /// <summary>
     /// 用户名

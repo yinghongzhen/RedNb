@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Text;
-using Volo.Abp.Domain.Entities;
+﻿using RedNb.Auth.Domain.Posts;
 
-namespace RedNb.Auth.Domain.Offices;
+namespace RedNb.Auth.Domain.Employees;
 
 /// <summary>
 /// 员工岗位关联实体类

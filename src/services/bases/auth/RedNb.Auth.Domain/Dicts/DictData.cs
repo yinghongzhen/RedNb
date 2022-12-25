@@ -4,7 +4,7 @@
 /// 字典数据实体类
 /// </summary>
 [Table("DictData")]
-public class DictData : EntityBase
+public class DictData : BaseEntity
 {
     /// <summary>
     /// 名称
@@ -28,6 +28,4 @@ public class DictData : EntityBase
     public string Value { get; set; }
 
     public long DictTypeId { get; set; }
-
-    public virtual DictType DictType { get; set; }
 }

@@ -1,10 +1,10 @@
-﻿namespace RedNb.Gateway.Domain.Services;
+﻿namespace RedNb.Gateway.Domain.Views;
 
 /// <summary>
 /// 视图实体类
 /// </summary>
 [Table("View")]
-public class View : AggregateRootBase
+public class View : BaseAggregateRoot
 {
     /// <summary>
     /// 名称

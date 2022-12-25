@@ -19,7 +19,7 @@ public class AuthEntityFrameworkCoreModule : AbpModule
 
         context.Services.AddAbpDbContext<AuthDbContext>(options =>
         {
-            options.AddDefaultRepositories();
+            options.AddDefaultRepositories(includeAllEntities: true);
         });
 
         Configure<AbpDbContextOptions>(options =>

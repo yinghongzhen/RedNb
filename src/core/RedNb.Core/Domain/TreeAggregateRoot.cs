@@ -1,6 +1,4 @@
-﻿using System.Diagnostics;
-
-namespace RedNb.Core.Domain;
+﻿namespace RedNb.Core.Domain;
 
 public class TreeAggregateRoot : BaseAggregateRoot
 {

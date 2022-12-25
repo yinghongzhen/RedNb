@@ -24,6 +24,6 @@ public class CompanyDepartment : Entity
 
     public override object[] GetKeys()
     {
-        return new object[] { DepartmentId, CompanyId };
+        return new object[] { CompanyId, DepartmentId };
     }
 }

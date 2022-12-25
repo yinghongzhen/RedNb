@@ -4,7 +4,7 @@
 /// 角色数据权限实体类
 /// </summary>
 [Table("RoleDataScope")]
-public class RoleDataScope : EntityBase
+public class RoleDataScope : BaseEntity
 {
     [Required]
     [MaxLength(20)]
@@ -22,6 +22,4 @@ public class RoleDataScope : EntityBase
     /// 角色编号
     /// </summary>
     public long RoleId { get; set; }
-
-    public virtual Role Role { get; set; }
 }

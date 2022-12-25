@@ -1,4 +1,6 @@
-﻿namespace RedNb.Auth.Domain.Posts;
+﻿using RedNb.Auth.Domain.Tenants;
+
+namespace RedNb.Auth.Domain.Posts;
 
 /// <summary>
 /// 职位实体类

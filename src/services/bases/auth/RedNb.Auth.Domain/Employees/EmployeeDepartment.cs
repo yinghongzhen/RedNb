@@ -1,4 +1,7 @@
-﻿namespace RedNb.Auth.Domain.Offices;
+﻿using RedNb.Auth.Domain.Departments;
+using RedNb.Auth.Domain.Posts;
+
+namespace RedNb.Auth.Domain.Employees;
 
 /// <summary>
 /// 员工附属部门关联实体类

@@ -4,7 +4,7 @@
 /// 字典类型实体类
 /// </summary>
 [Table("DictType")]
-public class DictType : AggregateRootBase
+public class DictType : BaseAggregateRoot
 {
     /// <summary>
     /// 名称

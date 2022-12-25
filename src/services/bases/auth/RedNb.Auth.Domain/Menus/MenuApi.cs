@@ -1,26 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Text;
-using RedNb.Auth.Domain.Services;
-using RedNb.Auth.Domain.Shared.Enums;
-using RedNb.Core.Domain;
+﻿using RedNb.Auth.Domain.Services;
 
-namespace RedNb.Auth.Domain.Products
+namespace RedNb.Auth.Domain.Menus;
+
+/// <summary>
+/// 权限接口关系实体类
+/// </summary>
+[Table("MenuApi")]
+public class MenuApi : BaseEntity
 {
-    /// <summary>
-    /// 权限接口关系实体类
-    /// </summary>
-    [Table("PermissionApi")]
-    public class PermissionApi : EntityBase
-    {
-        public long ApiId { get; set; }
+    public long ApiId { get; set; }
 
-        public virtual Api Api { get; set; }
+    public virtual Api Api { get; set; }
 
-        public long PermissionId { get; set; }
+    public long MenuId { get; set; }
 
-        public virtual Permission Permission { get; set; }
-    }
+    public virtual Menu Menu { get; set; }
 }

@@ -5,12 +5,13 @@ using RedNb.Auth.Domain.Products;
 using RedNb.Core.Contracts;
 using Microsoft.EntityFrameworkCore;
 using Volo.Abp.ObjectMapping;
+using RedNb.Auth.Domain.Companys;
 
 namespace RedNb.Auth.Application.Products
 {
     public class ProductAppService : IProductAppService
     {
-        private readonly IRepository<Product, long> _productRepository;
+        private readonly IRepository<CompanyDepartment, long> _productRepository;
         private readonly IObjectMapper _objectMapper;
 
         public ProductAppService(IRepository<Product, long> platformRepository,

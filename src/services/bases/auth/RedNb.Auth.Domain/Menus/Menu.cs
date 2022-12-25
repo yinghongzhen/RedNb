@@ -74,12 +74,6 @@ public class Menu : TreeAggregateRoot
     [MaxLength(200)]
     public string Desc { get; set; }
 
-    /// <summary>
-    /// 使用状态
-    /// </summary>
-    [Required]
-    public EUsageStatus Status { get; set; }
-
     [Required]
     public long PlatformId { get; set; }
 

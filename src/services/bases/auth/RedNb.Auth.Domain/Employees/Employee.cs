@@ -1,7 +1,9 @@
-﻿using RedNb.Auth.Domain.Tenants;
+﻿using RedNb.Auth.Domain.Companys;
+using RedNb.Auth.Domain.Departments;
+using RedNb.Auth.Domain.Tenants;
 using RedNb.Auth.Domain.Users;
 
-namespace RedNb.Auth.Domain.Offices;
+namespace RedNb.Auth.Domain.Employees;
 
 /// <summary>
 /// 员工实体类

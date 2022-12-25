@@ -6,7 +6,7 @@ namespace RedNb.Auth.Domain.Roles;
 /// 角色实体类
 /// </summary>
 [Table("Role")]
-public class Role : AuditFullEntity, IHasTenant
+public class Role : BaseAggregateRoot
 {
     /// <summary>
     /// 名称
