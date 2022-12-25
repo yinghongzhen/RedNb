@@ -4,7 +4,7 @@
 /// 参数配置实体类
 /// </summary>
 [Table("Config")]
-public class Config : AggregateRootBase
+public class Config : BaseEntity
 {
     /// <summary>
     /// 名称

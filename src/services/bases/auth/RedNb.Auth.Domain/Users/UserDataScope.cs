@@ -4,7 +4,7 @@
 /// 用户数据权限实体类
 /// </summary>
 [Table("UserDataScope")]
-public class UserDataScope : EntityBase
+public class UserDataScope : BaseEntity
 {
     [Required]
     [MaxLength(20)]
@@ -19,6 +19,4 @@ public class UserDataScope : EntityBase
     public string Permission { get; set; }
 
     public long UserId { get; set; }
-
-    public virtual User User { get; set; }
 }

@@ -1,10 +1,12 @@
-﻿namespace RedNb.Auth.Domain.Services;
+﻿using RedNb.Core.Domain.Shared;
+
+namespace RedNb.Auth.Domain.Services;
 
 /// <summary>
 /// 接口实体类
 /// </summary>
 [Table("Api")]
-public class Api : EntityBase
+public class Api : BaseEntity
 {
     /// <summary>
     /// 名称
@@ -43,6 +45,4 @@ public class Api : EntityBase
     /// 服务编号
     /// </summary>
     public long ServiceId { get; set; }
-
-    public virtual Service Service { get; set; }
 }

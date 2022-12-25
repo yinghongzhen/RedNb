@@ -1,10 +1,12 @@
-﻿namespace RedNb.Auth.Domain.Users;
+﻿using RedNb.Auth.Domain.Roles;
+
+namespace RedNb.Auth.Domain.Users;
 
 /// <summary>
 /// 用户角色关联实体类
 /// </summary>
 [Table("UserRole")]
-public class UserRole : EntityBase
+public class UserRole : Entity
 {
     /// <summary>
     /// 角色编号
@@ -18,5 +20,8 @@ public class UserRole : EntityBase
     /// </summary>
     public long UserId { get; set; }
 
-    public virtual User User { get; set; }
+    public override object[] GetKeys()
+    {
+        return new object[] { UserId, RoleId };
+    }
 }

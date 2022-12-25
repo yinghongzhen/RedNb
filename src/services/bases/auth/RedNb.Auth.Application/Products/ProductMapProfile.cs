@@ -19,8 +19,6 @@ namespace RedNb.Auth.Application.Products
             CreateMap<ProductUpdateInputDto, Product>();
 
             CreateMap<Product, ProductOutputDto>();
-
-            CreateMap<Platform, PlatformOutputDto>();
         }
     }
 }

@@ -4,7 +4,7 @@
 /// 服务实体类
 /// </summary>
 [Table("Service")]
-public class Service : AggregateRootBase
+public class Service : BaseAggregateRoot
 {
     /// <summary>
     /// 类型
@@ -30,5 +30,5 @@ public class Service : AggregateRootBase
     /// 排序号
     /// </summary>
     [Required]
-    public decimal Sort { get; set; }
+    public int Sort { get; set; }
 }

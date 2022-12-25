@@ -4,7 +4,7 @@
 /// 租户实体类
 /// </summary>
 [Table("Tenant")]
-public class Tenant : AggregateRoot<long>
+public class Tenant : BaseAggregateRoot
 {
     /// <summary>
     /// 名称

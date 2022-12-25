@@ -6,7 +6,7 @@ namespace RedNb.Auth.Domain.Users;
 /// 用户实体类
 /// </summary>
 [Table("User")]
-public class User : BaseAggregateRoot
+public class User : FullAggregateRoot
 {
     /// <summary>
     /// 用户名
@@ -115,4 +115,6 @@ public class User : BaseAggregateRoot
     public long TenantId { get; set; }
 
     public virtual Tenant Tenant { get; set; }
+
+    public virtual List<UserDataScope> UserDataScopes { get; set; }
 }

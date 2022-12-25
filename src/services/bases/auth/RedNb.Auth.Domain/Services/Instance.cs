@@ -4,7 +4,7 @@
 /// 服务实例实体类
 /// </summary>
 [Table("Instance")]
-public class Instance : AggregateRootBase
+public class Instance : BaseEntity
 {
     /// <summary>
     /// 类型
@@ -30,5 +30,5 @@ public class Instance : AggregateRootBase
     /// 排序号
     /// </summary>
     [Required]
-    public decimal Sort { get; set; }
+    public int Sort { get; set; }
 }

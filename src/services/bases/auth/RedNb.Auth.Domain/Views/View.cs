@@ -1,4 +1,4 @@
-﻿namespace RedNb.Gateway.Domain.Views;
+﻿namespace RedNb.Auth.Domain.Views;
 
 /// <summary>
 /// 视图实体类
