@@ -1,6 +1,9 @@
 ﻿global using AutoMapper;
+global using Microsoft.EntityFrameworkCore;
 global using RedNb.Auth.Application.Contracts;
 global using RedNb.Auth.Domain;
+global using RedNb.Core.Contracts;
+global using Volo.Abp;
 global using Volo.Abp.AutoMapper;
 global using Volo.Abp.Domain.Repositories;
 global using Volo.Abp.Modularity;

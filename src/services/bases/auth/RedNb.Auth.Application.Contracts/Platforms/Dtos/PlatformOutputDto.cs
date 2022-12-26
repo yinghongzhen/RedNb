@@ -1,6 +1,6 @@
 ﻿using RedNb.Core.Contracts;
 
-namespace RedNb.Auth.Application.Contracts.Products.Dtos;
+namespace RedNb.Auth.Application.Contracts.Platforms.Dtos;
 
 public class PlatformOutputDto : BaseEntityDto
 {

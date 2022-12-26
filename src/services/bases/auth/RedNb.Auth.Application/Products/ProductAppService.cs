@@ -1,75 +1,79 @@
-﻿using RedNb.Core.Domain;
-using RedNb.Auth.Application.Contracts.Products;
+﻿using RedNb.Auth.Application.Contracts.Products;
 using RedNb.Auth.Application.Contracts.Products.Dtos;
+using RedNb.Auth.Domain.Platforms;
 using RedNb.Auth.Domain.Products;
-using RedNb.Core.Contracts;
-using Microsoft.EntityFrameworkCore;
-using Volo.Abp.ObjectMapping;
-using RedNb.Auth.Domain.Companys;
 
 namespace RedNb.Auth.Application.Products
 {
     public class ProductAppService : IProductAppService
     {
-        private readonly IRepository<CompanyDepartment, long> _productRepository;
+        private readonly IRepository<Product, long> _productRepository;
+        private readonly IRepository<Platform, long> _platformRepository;
         private readonly IObjectMapper _objectMapper;
 
-        public ProductAppService(IRepository<Product, long> platformRepository,
+        public ProductAppService(IRepository<Product, long> productRepository,
+            IRepository<Platform, long> platformRepository,
             IObjectMapper objectMapper)
         {
-            _productRepository = platformRepository;
+            _productRepository = productRepository;
+            _platformRepository = platformRepository;
             _objectMapper = objectMapper;
         }
 
+        /// <summary>
+        /// 添加产品
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
         public async Task AddAsync(ProductAddInputDto input)
         {
-            var model = _objectMapper.Map<ProductAddInputDto, Product>(input);
+            var product = _objectMapper.Map<ProductAddInputDto, Product>(input);
 
-            model.AddPlatform(new Platform()
-            {
-                Name = "PC管理端",
-            });
-
-            model.AddPlatform(new Platform()
-            {
-                Name = "移动端",
-            });
-
-            await _productRepository.InsertAsync(model);
+            await _productRepository.InsertAsync(product);
         }
 
-        public async Task DeletePlatformAsync(PlatformDeleteInputDto input)
+        /// <summary>
+        /// 批量删除产品
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        /// <exception cref="UserFriendlyException"></exception>
+        public async Task DeleteBatchAsync(DeleteBatchInputDto input)
         {
-            var queryable = await _productRepository.WithDetailsAsync(m => m.Platforms);
+            if (input.Ids != null)
+            {
+                foreach (var item in input.Ids)
+                {
+                    var product = await _productRepository.GetAsync(item);
 
-            var product = await queryable.SingleOrDefaultAsync(m=>m.Id == input.ProductId);
+                    if (await _platformRepository
+                        .AnyAsync(m => m.ProductId == product.Id))
+                    {
+                        throw new UserFriendlyException("产品已配置平台，禁止删除");
+                    }
 
-            product.DeletePlatform(input.PlatformId);
+                    await _productRepository.DeleteAsync(product);
+                }
+            }
         }
 
-        public async Task DeleteAsync(DeleteInputDto input)
-        {
-            //foreach (var item in input.Ids)
-            //{
-            //    var product = await _productRepository.GetAsync(item);
-
-            //    //if (await _pla
-            //    //    .AnyAsync(m => m.ProductId == platform.Id))
-            //    //{
-            //    //    throw new UserFriendlyException("平台已配置权限，禁止删除");
-            //    //}
-
-            //    await _productRepository.DeleteAsync(platform);
-            //}
-        }
-
+        /// <summary>
+        /// 更新产品
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
         public async Task UpdateAsync(ProductUpdateInputDto input)
         {
-            var model = await _productRepository.GetAsync(input.Id);
+            var product = await _productRepository.GetAsync(input.Id);
 
-            _objectMapper.Map(input, model);
+            _objectMapper.Map(input, product);
         }
 
+        /// <summary>
+        /// 获取全部产品列表
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
         public async Task<List<ProductOutputDto>> GetAllAsync(ProductGetAllInputDto input)
         {
             var queryable = await _productRepository.WithDetailsAsync(m => m.Platforms);
@@ -78,9 +82,7 @@ namespace RedNb.Auth.Application.Products
                 .OrderByDescending(m => m.Id)
                 .ToListAsync();
 
-            var data = _objectMapper.Map<List<Product>, List<ProductOutputDto>>(list);
-
-            return data;
+            return _objectMapper.Map<List<Product>, List<ProductOutputDto>>(list);
         }
     }
 }

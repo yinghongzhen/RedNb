@@ -7,7 +7,7 @@ public interface IProductAppService : IApplicationService, ITransientDependency
 {
     Task AddAsync(ProductAddInputDto input);
 
-    Task DeleteAsync(DeleteInputDto input);
+    Task DeleteBatchAsync(DeleteBatchInputDto input);
 
     Task UpdateAsync(ProductUpdateInputDto input);
 

@@ -1,4 +1,7 @@
-﻿namespace RedNb.Auth.Domain.Products;
+﻿
+using RedNb.Auth.Domain.Platforms;
+
+namespace RedNb.Auth.Domain.Products;
 
 /// <summary>
 /// 产品实体类
@@ -12,4 +15,6 @@ public class Product : BaseAggregateRoot
     [Required]
     [MaxLength(100)]
     public string Name { get; set; }
+
+    public virtual ICollection<Platform> Platforms { get; set; }
 }
