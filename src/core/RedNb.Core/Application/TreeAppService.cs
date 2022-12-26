@@ -1,11 +1,7 @@
 ﻿using RedNb.Core.Contracts;
-using System.Diagnostics.Metrics;
-using System.Security;
 using Volo.Abp.Application.Services;
 using Volo.Abp.Domain.Repositories;
-using Volo.Abp.Domain.Services;
 using Volo.Abp.ObjectMapping;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace RedNb.Core.Domain;
 
@@ -15,29 +11,70 @@ public abstract class TreeAppService<TEntity, TAddInputDto, TUpdateInputDto, TOu
      where TUpdateInputDto : TreeUpdateInputDto
      where TOutputDto : TreeOutputDto<TOutputDto>
 {
-    private readonly TreeService<TEntity> _treeService;
-    private readonly IObjectMapper _objectMapper;
     private readonly IRepository<TEntity, long> _entityRepository;
+    private readonly IObjectMapper _objectMapper;
 
-    public TreeAppService(TreeService<TEntity> treeService, IObjectMapper objectMapper, IRepository<TEntity, long> entityRepository)
+    public TreeAppService(IRepository<TEntity, long> entityRepository,
+        IObjectMapper objectMapper)
     {
-        _treeService = treeService;
-        _objectMapper = objectMapper;
         _entityRepository = entityRepository;
+        _objectMapper = objectMapper;
     }
 
     public async Task AddAsync(TAddInputDto input)
     {
         var model = _objectMapper.Map<TAddInputDto, TEntity>(input);
 
-        await _treeService.AddAsync(model);
+        if (model.ParentId != 0)
+        {
+            var parent = await _entityRepository.GetAsync(model.ParentId);
+
+            if (parent == null)
+            {
+                throw new BusinessException("父节点不存在");
+            }
+
+            model.UpdateTreeValue(parent, null);
+        }
+        else
+        {
+            model.UpdateTreeValue(null, null);
+        }
+
+        await _entityRepository.InsertAsync(model);
     }
 
     public async Task UpdateAsync(TUpdateInputDto input)
     {
         var model = _objectMapper.Map<TUpdateInputDto, TEntity>(input);
 
-        await _treeService.UpdateAsync(model);
+        var old = await _entityRepository.GetAsync(model.Id);
+
+        var queryable = await _entityRepository.GetQueryableAsync();
+
+        var oldParentId = $"{old.ParentIds}{old.Id}";
+
+        var oldChildren = await queryable
+            .Where(m => m.ParentIds.Contains(oldParentId))
+            .OrderBy(m => m.Level)
+            .ThenBy(m => m.Id)
+            .Select(m => (TreeAggregateRoot)m)
+            .ToListAsync();
+
+        old.Name = model.Name;
+        old.ParentId = model.ParentId;
+        old.Sort = model.Sort;
+
+        if (old.ParentId != 0)
+        {
+            var parent = await _entityRepository.GetAsync(old.ParentId);
+
+            old.UpdateTreeValue(parent, oldChildren);
+        }
+        else
+        {
+            old.UpdateTreeValue(null, oldChildren);
+        }
     }
 
     public virtual async Task<List<TOutputDto>> GetListAsync()
