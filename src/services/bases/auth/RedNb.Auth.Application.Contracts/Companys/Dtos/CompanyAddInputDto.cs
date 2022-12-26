@@ -30,5 +30,11 @@ namespace RedNb.Auth.Application.Contracts.Companys.Dtos
         [Required]
         [MaxLength(100)]
         public string AreaCode { get; set; }
+
+        /// <summary>
+        /// 租户编号
+        /// </summary>
+        [Required]
+        public long TenantId { get; set; }
     }
 }

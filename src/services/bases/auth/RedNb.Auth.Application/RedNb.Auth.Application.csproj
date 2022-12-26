@@ -10,7 +10,6 @@
 	  <Compile Remove="Accounts\**" />
 	  <Compile Remove="Apis\**" />
 	  <Compile Remove="Caches\**" />
-	  <Compile Remove="Companys\**" />
 	  <Compile Remove="Configs\**" />
 	  <Compile Remove="Departments\**" />
 	  <Compile Remove="DictTypes\**" />
@@ -24,7 +23,6 @@
 	  <EmbeddedResource Remove="Accounts\**" />
 	  <EmbeddedResource Remove="Apis\**" />
 	  <EmbeddedResource Remove="Caches\**" />
-	  <EmbeddedResource Remove="Companys\**" />
 	  <EmbeddedResource Remove="Configs\**" />
 	  <EmbeddedResource Remove="Departments\**" />
 	  <EmbeddedResource Remove="DictTypes\**" />
@@ -38,7 +36,6 @@
 	  <None Remove="Accounts\**" />
 	  <None Remove="Apis\**" />
 	  <None Remove="Caches\**" />
-	  <None Remove="Companys\**" />
 	  <None Remove="Configs\**" />
 	  <None Remove="Departments\**" />
 	  <None Remove="DictTypes\**" />

@@ -30,9 +30,15 @@ public class Company : TreeAggregateRoot, ISoftDelete
     [MaxLength(100)]
     public string AreaCode { get; set; }
 
+    /// <summary>
+    /// 是否启用
+    /// </summary>
     [Required]
     public bool IsActive { get; set; }
 
+    /// <summary>
+    /// 是否删除
+    /// </summary>
     [Required]
     public bool IsDeleted { get; }
 
@@ -43,4 +49,6 @@ public class Company : TreeAggregateRoot, ISoftDelete
     public long TenantId { get; set; }
 
     public virtual Tenant Tenant { get; set; }
+
+    //public virtual List<CompanyDepartment> CompanyDepartments { get; set; }
 }
