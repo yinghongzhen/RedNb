@@ -14,6 +14,7 @@
 	  <Compile Remove="Departments\**" />
 	  <Compile Remove="DictTypes\**" />
 	  <Compile Remove="Employees\**" />
+	  <Compile Remove="Menus\**" />
 	  <Compile Remove="Modules\**" />
 	  <Compile Remove="Posts\**" />
 	  <Compile Remove="Roles\**" />
@@ -26,6 +27,7 @@
 	  <EmbeddedResource Remove="Departments\**" />
 	  <EmbeddedResource Remove="DictTypes\**" />
 	  <EmbeddedResource Remove="Employees\**" />
+	  <EmbeddedResource Remove="Menus\**" />
 	  <EmbeddedResource Remove="Modules\**" />
 	  <EmbeddedResource Remove="Posts\**" />
 	  <EmbeddedResource Remove="Roles\**" />
@@ -38,6 +40,7 @@
 	  <None Remove="Departments\**" />
 	  <None Remove="DictTypes\**" />
 	  <None Remove="Employees\**" />
+	  <None Remove="Menus\**" />
 	  <None Remove="Modules\**" />
 	  <None Remove="Posts\**" />
 	  <None Remove="Roles\**" />
